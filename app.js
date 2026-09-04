@@ -197,6 +197,28 @@
     `;
   }
 
+  function renderWorksheetCard(worksheet) {
+    if (!worksheet || !worksheet.url) return '';
+    return `
+      <a class="worksheet-link-card" href="${worksheet.url}" target="_blank" rel="noopener noreferrer" aria-label="Open practice worksheet: ${worksheet.title}">
+        <div class="worksheet-card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="8" y1="13" x2="16" y2="13"></line>
+            <line x1="8" y1="17" x2="13" y2="17"></line>
+          </svg>
+        </div>
+        <div class="worksheet-card-content">
+          <span class="worksheet-card-label">Practice worksheet</span>
+          <h3 class="worksheet-card-title">${worksheet.title}</h3>
+          ${worksheet.note ? `<p class="worksheet-card-desc">${worksheet.note}</p>` : ''}
+        </div>
+        <span class="worksheet-cta-btn">Open worksheet ↗</span>
+      </a>
+    `;
+  }
+
   function scrollToReference(e) {
     if (e && e.preventDefault) e.preventDefault();
     const refStage = document.getElementById('stage-reference');
@@ -319,6 +341,7 @@
         <h2>Check your knowledge</h2>
         <p class="stage-desc">${topic.test.questions.length} questions. Score ${topic.test.passScore}/${topic.test.questions.length} to pass.</p>
         <div id="quizMount"></div>
+        ${topic.reference && topic.reference.worksheet ? renderWorksheetCard(topic.reference.worksheet) : ''}
       </div>
 
       <div class="stage" id="stage-reference">
@@ -385,19 +408,7 @@
     main.innerHTML = `
       <div class="hero">
         <h1>Learn French systematically from beginner to expert</h1>
-        <p>Pick a curriculum level below or explore modules in the sidebar. Each topic includes clear visual references, core explanations, a curated video lesson card, and a short test that gates your progression.</p>
-        
-        <div class="hero-level-box">
-          <div>
-            <h3>Active Pathway: <span style="color:var(--accent);">${getLevelLabel(userLevel)}</span></h3>
-            <p>Your modules and progress are tailored to this proficiency tier. Pass tests to advance sequentially.</p>
-          </div>
-          <div class="level-picker">
-            <button class="lvl-btn ${userLevel === 'beginner' ? 'active' : ''}" data-lvl="beginner">Beginner</button>
-            <button class="lvl-btn ${userLevel === 'intermediate' ? 'active' : ''}" data-lvl="intermediate">Intermediate</button>
-            <button class="lvl-btn ${userLevel === 'expert' ? 'active' : ''}" data-lvl="expert">Expert</button>
-          </div>
-        </div>
+        <p>You're on the <b style="color:var(--accent);">${getLevelLabel(userLevel)}</b> pathway — switch levels anytime from the header. Each topic includes clear visual references, core explanations, a curated video lesson card, and a short test that gates your progression.</p>
 
         <div class="cta-row">
           <button class="btn" id="startGrammarBtn">Start Grammar Course</button>
@@ -415,12 +426,6 @@
       <div class="module-grid" id="moduleGrid"></div>
       <footer class="foot">Apprendre.io — Built for mastery. No build step, no accounts required; your progress stays in your browser.</footer>
     `;
-
-    main.querySelectorAll('.lvl-btn').forEach(b => {
-      b.addEventListener('click', () => {
-        setUserLevel(b.dataset.lvl);
-      });
-    });
 
     document.getElementById('startGrammarBtn').addEventListener('click', () => {
       if (userLevel === 'expert') location.hash = '#/grammar/b2c1-present-subjunctive';

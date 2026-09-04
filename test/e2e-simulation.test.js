@@ -67,7 +67,7 @@ require("../app.js");
 globalThis.location.hash = "#/overview";
 window.render();
 assert.ok(elements.main.innerHTML.includes("Learn French"), "Overview must render hero headline");
-assert.ok(elements.main.innerHTML.includes("Active Pathway"), "Overview must render pathway box");
+assert.ok(!elements.main.innerHTML.includes("hero-level-box"), "Overview must not render the removed pathway box");
 
 // Test level switching
 window.setUserLevel("intermediate");

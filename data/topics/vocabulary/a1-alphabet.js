@@ -66,6 +66,11 @@
       ]
     },
     reference: {
+      worksheet: {
+        title: "French Alphabet Tracing Worksheets (A–Z)",
+        url: "https://atozworksheet.com/wp-content/uploads/french-alphabet-tracing-worksheets.pdf",
+        note: "Free 26-page printable PDF — uppercase & lowercase tracing practice with pronunciation guide for every letter."
+      },
       video: {
         "title": "The French Alphabet with Learn French With Alexa",
         "watchUrl": "https://www.youtube.com/watch?v=CEx2fPn-_UE",

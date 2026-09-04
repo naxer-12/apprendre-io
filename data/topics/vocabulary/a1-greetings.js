@@ -50,6 +50,11 @@
       ]
     },
     reference: {
+      worksheet: {
+        title: "Se saluer & se présenter — Fiche d'exercices",
+        url: "https://www.podcastfrancaisfacile.com/wp-content/uploads/2019/06/se-presenter-_-fiche.pdf",
+        note: "Free A1 practice sheet from Podcast Français Facile — exercises on greeting people and introducing yourself."
+      },
       video: {
         "title": "Greetings in French! Hello, Hi, and Goodbye in French!",
         "watchUrl": "https://www.youtube.com/watch?v=OGkbK9-_BRE",

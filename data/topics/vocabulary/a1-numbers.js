@@ -60,6 +60,11 @@
       ]
     },
     reference: {
+      worksheet: {
+        title: "French Numbers Practice Worksheet + Answer Key",
+        url: "https://numbersinfrench.com/french-numbers-worksheet.pdf",
+        note: "Free fill-in-the-blank worksheet covering easy ranges plus the tricky 70–99 vigesimal zone, with a self-check answer key."
+      },
       video: {
         "title": "French Numbers 1-100 (Learn French With Alexa)",
         "watchUrl": "https://www.youtube.com/watch?v=Mt00FUPzLPc",
