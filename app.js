@@ -168,7 +168,7 @@
       <div class="video-section">
         <a class="video-card-link" href="${watchUrl}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${video.title} on YouTube">
           <div class="video-thumb-wrap">
-            ${thumbUrl ? `<img src="${thumbUrl}" class="video-thumb-img" alt="${video.title} thumbnail" loading="lazy">` : ''}
+            ${thumbUrl ? `<img src="${thumbUrl}" class="video-thumb-img" alt="${video.title} thumbnail" loading="lazy" onerror="this.style.display='none'">` : ''}
             <div class="video-thumb-overlay"></div>
             <div class="video-play-badge">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">

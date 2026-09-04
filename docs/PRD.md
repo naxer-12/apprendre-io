@@ -71,7 +71,7 @@ Every topic page implements a standardized 4-stage pedagogical loop:
 2. **Stage 2 · Content & Rules:** High-yield explanations, comparison tables, and in-context bilingual examples.
 3. **Stage 3 · Short Test:** 5 multiple-choice questions with instant correct/incorrect visual feedback, score tally, retry mechanism, and automatic gating resolution upon scoring $\ge 4/5$.
 4. **Stage 4 · Reference & Video:**
-   - **Embedded Video Player:** Responsive 16:9 YouTube iframe featuring top-rated video lessons from recognized educators (Learn French with Alexa, Français avec Pierre, Français Authentique).
+   - **Interactive Video Card:** Clickable high-definition YouTube video cards with HD thumbnails, animated play badges, and direct external watch links from top educators (Learn French with Alexa, Français avec Pierre, Français Authentique), avoiding iframe embed restrictions.
    - **Authoritative Text References:** Citations from LAITS Tex's French Grammar, *Easy French Step-by-Step*, TV5MONDE, and *Madrigal's Magic Key to French*.
 
 ### 4.4 Multi-Theme Accessibility System (Feature F4)
@@ -175,10 +175,11 @@ Each topic file assigns directly into `window.TOPICS[id]`:
 - **Decision:** Enforce that a topic cannot be opened until its prerequisite topic is passed with $\ge 4/5$ on the quiz.
 - **Rationale:** Prevents random topic jumping and ensures prerequisite grammatical structures (e.g. *être* and *avoir*) are cemented before dependent compound tenses (*passé composé*, *plus-que-parfait*) are introduced.
 
-### ADR-004: In-App Embedded Video Iframes
+### ADR-004: In-App Embedded Video Iframes (Superseded by ADR-007)
 - **Date:** 2026-09-04
-- **Decision:** Embed YouTube video tutorials using privacy-enhanced `youtube-nocookie.com` iframes in Stage 4 of every topic.
-- **Rationale:** User feedback explicitly requested in-app watchable video content so learners do not leave the lesson flow to search for external explanations.
+- **Status:** Superseded by ADR-007
+- **Original Decision:** Embed YouTube video tutorials using privacy-enhanced `youtube-nocookie.com` iframes in Stage 4 of every topic.
+- **Superseded Rationale:** Replaced by ADR-007 with clickable interactive video cards due to YouTube iframe embedding restrictions ("Video unavailable") on local/external origins.
 
 ### ADR-005: Multi-Skill Beginner Track Extension
 - **Date:** 2026-09-04
