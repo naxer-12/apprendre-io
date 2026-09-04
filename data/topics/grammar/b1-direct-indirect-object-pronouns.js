@@ -56,12 +56,12 @@
     },
     reference: {
       video: {
-        "title": "COD et COI : Ne faites plus l'erreur !",
-        "watchUrl": "https://www.youtube.com/watch?v=k5J6h7G8f9e",
-        "videoId": "k5J6h7G8f9e",
-        "channel": "Fran\u00e7ais avec Pierre",
-        "note": "Direct vs indirect pronouns, identifying verbs with \u00e0, and pronoun substitution."
-},
+        "title": "Direct Object Pronouns ! Les Pronoms COD",
+        "watchUrl": "https://www.youtube.com/watch?v=W9aKFBzwxro",
+        "videoId": "W9aKFBzwxro",
+        "channel": "Learn French with Alexa",
+        "note": "Learn COD vs COI distinctions, replacing people and objects in compound clauses."
+      },
       read: [
         { title: "Global Exam — Direct and Indirect Object Explainer", url: "https://global-exam.com/blog/en/french-grammar-direct-and-indirect-object/", note: "COD vs COI, verbs that take à" },
         { title: "Lawless French — Indirect Objects", url: "https://www.lawlessfrench.com/grammar/indirect-objects/", note: "Me, te, lui, nous, vous, leur syntax" },

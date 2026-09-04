@@ -34,12 +34,12 @@
     },
     reference: {
       video: {
-        "title": "L'Imparfait en Fran\u00e7ais : Formation et Utilisation",
-        "watchUrl": "https://www.youtube.com/watch?v=hJqg6iPqj9A",
-        "videoId": "hJqg6iPqj9A",
-        "channel": "Fran\u00e7ais avec Pierre",
-        "note": "Forming the imperfect tense and contrasting it with pass\u00e9 compos\u00e9."
-},
+        "title": "French Imperfect Tense (l'imparfait) | Free Full Live Lesson",
+        "watchUrl": "https://www.youtube.com/watch?v=8LBvMfR7fWc",
+        "videoId": "8LBvMfR7fWc",
+        "channel": "Learn French with Alexa",
+        "note": "Stem formation from nous present tense, endings (-ais, -ais, -ait...), and ongoing past states."
+      },
       read: [
         { title: "Tex's French Grammar — tap5/tap7", url: "https://laits.utexas.edu/tex/gr/tap5.html", note: "Formation, then idiomatic uses vs. passé composé" },
         { title: "Easy French Step-by-Step, Chapter 14", url: null, note: "The imparfait and past narration" }

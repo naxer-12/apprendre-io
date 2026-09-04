@@ -32,12 +32,12 @@
     },
     reference: {
       video: {
-        "title": "Le Pass\u00e9 Compos\u00e9 avec \u00caTRE (DR & MRS VANDERTRAMP)",
-        "watchUrl": "https://www.youtube.com/watch?v=N-0wXqU5Hl8",
-        "videoId": "N-0wXqU5Hl8",
+        "title": "Être or Avoir in the Passé Composé",
+        "watchUrl": "https://www.youtube.com/watch?v=p7iiqxYB2JI",
+        "videoId": "p7iiqxYB2JI",
         "channel": "Learn French with Alexa",
-        "note": "Motion and state-change verbs that take \u00eatre with subject agreement."
-},
+        "note": "How to identify verbs of motion and reflexives that take être, plus past participle agreement."
+      },
       read: [
         { title: "Tex's French Grammar — tap3", url: "https://laits.utexas.edu/tex/gr/tap3.html", note: "The \"Dr & Mrs Vandertramp\" verb set" },
         { title: "Easy French Step-by-Step, Chapter 13", url: null, note: "The passé composé with être" }

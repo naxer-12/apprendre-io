@@ -61,12 +61,12 @@
     },
     reference: {
       video: {
-        "title": "French Numbers 1 to 20 (Les nombres de 1 \u00e0 20)",
-        "watchUrl": "https://www.youtube.com/watch?v=Dma28MvE_wY",
-        "videoId": "Dma28MvE_wY",
+        "title": "French Numbers 1-100 (Learn French With Alexa)",
+        "watchUrl": "https://www.youtube.com/watch?v=Mt00FUPzLPc",
+        "videoId": "Mt00FUPzLPc",
         "channel": "Learn French with Alexa",
-        "note": "Clear native pronunciation of numbers 0 to 20 including liaison pronunciation rules."
-},
+        "note": "Pronunciation and counting patterns from 0 to 100, including 70s, 80s, and 90s."
+      },
       read: [
         { title: "Wikibooks — French/Lessons/Numbers", url: "https://en.wikibooks.org/wiki/French/Lessons/Numbers", note: "IPA transcription for every number 0–20" },
         { title: "Wikibooks — Print version (compiled)", url: "https://en.wikibooks.org/wiki/French/Lessons/Print_version", note: "Same numbers lesson as one fetchable page" }

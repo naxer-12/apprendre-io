@@ -32,12 +32,12 @@
     },
     reference: {
       video: {
-        "title": "QUI ou QUE ? Les Pronoms Relatifs Simples",
-        "watchUrl": "https://www.youtube.com/watch?v=o0C5bI8Uq6Q",
-        "videoId": "o0C5bI8Uq6Q",
-        "channel": "Fran\u00e7ais avec Pierre",
-        "note": "The definitive guide to distinguishing between subject qui and direct object que."
-},
+        "title": "Practise your French Relative Pronouns 'Qui vs Que'",
+        "watchUrl": "https://www.youtube.com/watch?v=muVni0GxE48",
+        "videoId": "muVni0GxE48",
+        "channel": "Learn French with Alexa",
+        "note": "How to choose between subject pronoun qui and direct object pronoun que."
+      },
       read: [ { title: "Tex's French Grammar — pror1", url: "https://laits.utexas.edu/tex/gr/pror1.html", note: "Basic relative clauses" } ], watchListen: [] }
   };
 })();

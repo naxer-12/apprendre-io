@@ -47,11 +47,11 @@
     },
     reference: {
       video: {
-        title: "How to Form French Sentences (SVO Word Order)",
-        "watchUrl": "https://www.youtube.com/watch?v=5aLhU7Gvhj8",
-        "videoId": "5aLhU7Gvhj8",
-        channel: "Français avec Pierre",
-        note: "Learn sentence structure, connecting words, and common beginner writing mistakes."
+        "title": "French - Sentence Structures & Word Order Explained",
+        "watchUrl": "https://www.youtube.com/watch?v=iapPL7V6wyc",
+        "videoId": "iapPL7V6wyc",
+        "channel": "Love Learning Languages",
+        "note": "Core word order (SVO), placement of adjectives, and forming complete French sentences."
       },
       read: [
         { title: "Tex's French Grammar — Sentence Structure", url: "https://laits.utexas.edu/tex/gr/overview.html", note: "Basic French syntax and punctuation" }

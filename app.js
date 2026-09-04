@@ -159,34 +159,38 @@
   }
 
   function renderVideoCard(video) {
-    if (!video) return '';
-    const videoId = video.videoId || extractYouTubeId(video.watchUrl || video.embedUrl);
-    const watchUrl = video.watchUrl || (videoId ? `https://www.youtube.com/watch?v=${videoId}` : '#');
-    const thumbUrl = videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '';
+    if (!video || !video.watchUrl) return '';
+    const watchUrl = video.watchUrl;
+    const channel = video.channel || 'YouTube';
+    const title = video.title || 'Video Lesson';
 
     return `
       <div class="video-section">
-        <a class="video-card-link" href="${watchUrl}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${video.title} on YouTube">
-          <div class="video-thumb-wrap">
-            ${thumbUrl ? `<img src="${thumbUrl}" class="video-thumb-img" alt="${video.title} thumbnail" loading="lazy" onerror="this.style.display='none'">` : ''}
-            <div class="video-thumb-overlay"></div>
-            <div class="video-play-badge">
+        <a class="video-link-card" href="${watchUrl}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${title} on YouTube">
+          <div class="video-card-icon-wrap">
+            <div class="video-card-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
                 <polygon points="6 4 20 12 6 20 6 4"/>
               </svg>
             </div>
-            <div class="video-badge-pill">Watch on YouTube ↗</div>
           </div>
-          <div class="video-info">
-            <div class="video-meta-top">
-              <span class="video-channel-tag">${video.channel}</span>
-              <span class="video-featured-tag">Featured Video Lesson</span>
+          <div class="video-card-content">
+            <div class="video-card-meta">
+              <span class="video-channel-pill">${channel}</span>
+              <span class="video-type-label">Video Lesson</span>
             </div>
-            <h3 class="video-card-title">${video.title}</h3>
+            <h3 class="video-card-title">${title}</h3>
             ${video.note ? `<p class="video-card-desc">${video.note}</p>` : ''}
-            <div class="video-card-footer">
-              <span class="video-click-prompt">Click to open video lesson on YouTube in a new tab ↗</span>
-            </div>
+          </div>
+          <div class="video-card-cta">
+            <span class="video-cta-btn">
+              <span>Watch on YouTube</span>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </span>
           </div>
         </a>
       </div>

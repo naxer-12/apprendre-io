@@ -39,12 +39,12 @@
     },
     reference: {
       video: {
-        "title": "Le Futur Proche (Near Future Tense in French)",
-        "watchUrl": "https://www.youtube.com/watch?v=7X8m-M4_f8E",
-        "videoId": "7X8m-M4_f8E",
+        "title": "Learn French: know the futur proche with Aller under 5 minutes",
+        "watchUrl": "https://www.youtube.com/watch?v=DybxlyAQrxo",
+        "videoId": "DybxlyAQrxo",
         "channel": "Learn French with Alexa",
-        "note": "How to talk about upcoming plans easily using aller + infinitive."
-},
+        "note": "How to express upcoming actions using aller in the present tense plus an infinitive verb."
+      },
       read: [
         { title: "Tex's French Grammar — taf1", url: "https://laits.utexas.edu/tex/gr/taf1.html", note: "Near-future construction" },
         { title: "Easy French Step-by-Step, Chapter 6", url: null, note: "Expressing the Future with aller" }

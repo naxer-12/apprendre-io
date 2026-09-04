@@ -45,12 +45,12 @@
     },
     reference: {
       video: {
-        "title": "Regular -ER, -IR, -RE Verbs in the Present Tense",
-        "watchUrl": "https://www.youtube.com/watch?v=9w_v0w0Kzfg",
-        "videoId": "9w_v0w0Kzfg",
+        "title": "How to conjugate the French present tense!",
+        "watchUrl": "https://www.youtube.com/watch?v=TSUusl2PWoY",
+        "videoId": "TSUusl2PWoY",
         "channel": "Learn French with Alexa",
-        "note": "Learn regular verb conjugation endings step-by-step with examples."
-},
+        "note": "Master regular -er, -ir, and -re present tense verb conjugation patterns with clear examples."
+      },
       read: [
         { title: "Tex's French Grammar — tapr1", url: "https://laits.utexas.edu/tex/gr/tapr1.html", note: "Regular verb conjugation patterns" },
         { title: "Easy French Step-by-Step, Chapters 3–5", url: null, note: "Regular -er, -ir, and -re verbs in the present tense" }

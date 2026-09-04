@@ -30,7 +30,7 @@
 
 ### Architectural Invariants (DO NOT BREAK)
 1. **Zero External Build Step / Dependencies:** Must run instantly via static file server or directly in the browser. No npm build, webpack, or external framework dependencies.
-2. **Zero Iframes for Video (`ADR-007`):** YouTube inline iframes fail frequently with *"Video unavailable"* on external origins/localhost due to embed restrictions. Use **interactive local video cards** (`.video-card-link`) with HD thumbnails and direct watch links (`target="_blank" rel="noopener noreferrer"`).
+2. **Zero Iframes and Zero Unavailable Content (`ADR-007`):** Inline iframes and simulated iframe player canvases fail, waste space, and frequently hit embed/region restrictions. Instead, use **clean video resource link cards** (`.video-link-card`) with channel pill, verified lesson title, and direct external watch links (`target="_blank" rel="noopener noreferrer"`). All 28 video links are strictly verified active and reachable (HTTP 200). Never insert fake, deleted, or unverified YouTube IDs.
 3. **Hard Sequential Gating (`ADR-003`):** Topics are locked until prerequisite topics are completed with a score of $\ge 4/5$ ($80\%$).
 4. **Resilient French Speech Synthesis (`ADR-008`):** Use `window.speechSynthesis` with asynchronous voice caching (`onvoiceschanged`), fallback matching (`fr-FR`, `fr-CA`), and visual `.speaking` ripple animation.
 
@@ -96,7 +96,7 @@ Every topic view (`renderTopicDetail`) is partitioned into 4 distinct pedagogica
    - Immediate feedback on answer selection (`.correct` in green, `.wrong` in red).
    - Dynamic score calculation; scoring $\ge 4/5$ ($80\%$) triggers `recordScore()`, unlocking the next topic and displaying celebratory feedback.
 4. **Stage 4 · Reference & Video (`#stage-reference`):**
-   - **Interactive Video Card (`.video-card-link`):** Clickable YouTube video card with HD thumbnail (`img.youtube.com/vi/<ID>/hqdefault.jpg`), animated pulsing play button, channel tag, and direct watch URL in a new tab. Gracefully handles thumbnail errors via `onerror="this.style.display='none'"`.
+   - **Video Resource Link Card (`.video-link-card`):** Sleek, horizontal card with video icon badge, channel pill, lesson title, description, and direct external "Watch on YouTube ↗" button in a new tab. No black 16:9 iframe simulators or broken image fallbacks.
    - **Authoritative Text Citations:** Curated reference links (Tex's French Grammar, TV5MONDE, Lawless French, etc.).
 
 ---

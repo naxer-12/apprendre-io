@@ -45,11 +45,11 @@
     },
     reference: {
       video: {
-        title: "French Listening Practice for Beginners (A1)",
-        "watchUrl": "https://www.youtube.com/watch?v=5a4GvhZ1u8g",
-        "videoId": "5a4GvhZ1u8g",
-        channel: "FrenchPod101",
-        note: "Daily conversational listening scenarios with native audio and transcriptions."
+        "title": "Having Breakfast in Slow French | Super Easy French 152",
+        "watchUrl": "https://www.youtube.com/watch?v=40IAXVvjSDA",
+        "videoId": "40IAXVvjSDA",
+        "channel": "Easy French",
+        "note": "Slow, clear spoken French with subtitles for beginner A1 listening practice."
       },
       read: [
         { title: "TV5MONDE — Exercices d'écoute A1", url: "https://apprendre.tv5monde.com/", note: "Graded authentic French audio exercises" }

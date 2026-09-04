@@ -43,12 +43,12 @@
     },
     reference: {
       video: {
-        "title": "Partitive Articles in French (du, de la, de l', des)",
-        "watchUrl": "https://www.youtube.com/watch?v=yF-4vR7gC18",
-        "videoId": "yF-4vR7gC18",
+        "title": "French Partitive Articles: du, de la, des, de l', de, d'",
+        "watchUrl": "https://www.youtube.com/watch?v=6edld_vN7VA",
+        "videoId": "6edld_vN7VA",
         "channel": "Learn French with Alexa",
-        "note": "How to say 'some' or express unspecified food and drink quantities."
-},
+        "note": "Clear explanation of uncountable quantities, food items, and how partitives become de in negation."
+      },
       read: [
         { title: "Easy French Step-by-Step, Chapter 9", url: null, note: "The Partitive Article" },
         { title: "The French Experiment — Partitive Articles", url: "https://www.thefrenchexperiment.com/learn-french", note: "Beginner-focused lesson on du/de la/des" }

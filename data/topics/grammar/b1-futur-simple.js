@@ -58,12 +58,12 @@
     },
     reference: {
       video: {
-        "title": "Le Futur Simple : R\u00e8gle, Terminaisons et Verbes Irr\u00e9guliers",
-        "watchUrl": "https://www.youtube.com/watch?v=F4qGg0X1v7o",
-        "videoId": "F4qGg0X1v7o",
-        "channel": "Fran\u00e7ais avec Pierre",
-        "note": "Forming the simple future with stem modifications for high-frequency irregular verbs."
-},
+        "title": "French Made Easy: Le Futur Simple",
+        "watchUrl": "https://www.youtube.com/watch?v=2cYZfyeySVA",
+        "videoId": "2cYZfyeySVA",
+        "channel": "Learn French with Alexa",
+        "note": "Regular and irregular stems with standard future endings (-ai, -as, -a, -ons, -ez, -ont)."
+      },
       read: [
         { title: "Tex's French Grammar — taf2/taf3", url: "https://laits.utexas.edu/tex/gr/taf2.html", note: "Regular future formation & irregular stems" },
         { title: "Easy French Step-by-Step, Chapter 15", url: null, note: "Future tenses and predictions" }

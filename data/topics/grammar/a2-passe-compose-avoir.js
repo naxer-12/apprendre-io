@@ -32,12 +32,12 @@
     },
     reference: {
       video: {
-        "title": "Le Pass\u00e9 Compos\u00e9 avec AVOIR",
-        "watchUrl": "https://www.youtube.com/watch?v=mC-8L6x0m3o",
-        "videoId": "mC-8L6x0m3o",
+        "title": "How to build the PASSÉ COMPOSÉ with AVOIR",
+        "watchUrl": "https://www.youtube.com/watch?v=o-hxMuZwVzI",
+        "videoId": "o-hxMuZwVzI",
         "channel": "Learn French with Alexa",
-        "note": "How to form past participles (-\u00e9, -i, -u) and conjugate with avoir."
-},
+        "note": "Formation of the compound past tense with avoir and regular/irregular past participles."
+      },
       read: [
         { title: "Tex's French Grammar — tap2", url: "https://laits.utexas.edu/tex/gr/tap2.html", note: "Formation + agreement rules" },
         { title: "Easy French Step-by-Step, Chapter 13", url: null, note: "Forms and Uses of the passé composé" }

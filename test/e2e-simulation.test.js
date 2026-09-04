@@ -81,13 +81,13 @@ window.render();
 assert.strictEqual(globalThis.location.hash, "#/overview", "Routing to #/practice must redirect to #/overview");
 assert.ok(!elements.header.innerHTML.includes("navPractice"), "Header must not render navPractice tab");
 
-// Test lesson render with interactive video card (A1 Articles)
+// Test lesson render with clean video link card (A1 Articles)
 globalThis.location.hash = "#/grammar/a1-articles";
 window.render();
 assert.ok(elements.main.innerHTML.includes("Articles & Gender of Nouns"), "Lesson must render topic title");
-assert.ok(elements.main.innerHTML.includes("video-card-link"), "Lesson must render interactive video card link");
-assert.ok(elements.main.innerHTML.includes("https://www.youtube.com/watch?v=8w1b8p0E9j4"), "Video card link must point to YouTube watch URL");
-assert.ok(elements.main.innerHTML.includes("img.youtube.com"), "Video card must render YouTube thumbnail image");
+assert.ok(elements.main.innerHTML.includes("video-link-card"), "Lesson must render clean video link card");
+assert.ok(elements.main.innerHTML.includes("https://www.youtube.com/watch?v=OCs_5X5c0YA"), "Video card link must point to verified YouTube watch URL");
+assert.ok(!elements.main.innerHTML.includes("video-thumb-wrap"), "Must not render simulated iframe player wrapper");
 
 // Test deep-dive / further study link in Stage 2
 assert.ok(elements.main.innerHTML.includes("where you can get more details for further topic and study"), "Stage 2 must include further study link");

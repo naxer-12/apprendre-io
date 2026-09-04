@@ -39,12 +39,12 @@
     },
     reference: {
       video: {
-        "title": "French Possessive Adjectives (mon, ma, mes, ton, ta, tes, etc.)",
-        "watchUrl": "https://www.youtube.com/watch?v=tM0N5vE1A6k",
-        "videoId": "tM0N5vE1A6k",
+        "title": "How to say MY, YOUR, OUR, etc. (French Possessive Adjectives)",
+        "watchUrl": "https://www.youtube.com/watch?v=Q4_AjquFUQc",
+        "videoId": "Q4_AjquFUQc",
         "channel": "Learn French with Alexa",
-        "note": "Understand how possessive adjectives match the noun's gender rather than the owner."
-},
+        "note": "Learn mon, ton, son, notre, votre, leur and how they agree with the possessed noun."
+      },
       read: [
         { title: "Easy French Step-by-Step, Chapter 10", url: null, note: "Possessive Adjectives and Pronouns" },
         { title: "The French Experiment — Possessive Adjectives", url: "https://www.thefrenchexperiment.com/learn-french", note: "Beginner-focused lesson on possession" }

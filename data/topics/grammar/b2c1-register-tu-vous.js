@@ -54,12 +54,12 @@
     },
     reference: {
       video: {
-        "title": "Tu ou Vous ? Quand tutoyer et quand vouvoyer en France",
-        "watchUrl": "https://www.youtube.com/watch?v=m1N2o3P4q5r",
-        "videoId": "m1N2o3P4q5r",
-        "channel": "Fran\u00e7ais Authentique",
-        "note": "Real cultural etiquette, social distance, workplace customs, and shifting register."
-},
+        "title": "When to use 'Tu' or 'Vous' in French (formal vs. informal You)",
+        "watchUrl": "https://www.youtube.com/watch?v=x_FgtR0pI7E",
+        "videoId": "x_FgtR0pI7E",
+        "channel": "Comme une Française",
+        "note": "Cultural nuances, social registers, professional workplace norms, and politeness levels."
+      },
       read: [
         { title: "Français Authentique — Les registres de langue", url: "https://www.francaisauthentique.com/", note: "Natural spoken French, social register, and conversational nuances" },
         { title: "Loewen et al. (2020) — Pragmatic Competence in Mobile Learning", url: null, note: "Empirical comparison of tu/vous acquisition between classroom and apps" }

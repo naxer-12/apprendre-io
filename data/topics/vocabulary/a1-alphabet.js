@@ -67,12 +67,12 @@
     },
     reference: {
       video: {
-        "title": "The French Alphabet (L'alphabet fran\u00e7ais)",
-        "watchUrl": "https://www.youtube.com/watch?v=5auM5n_x9qU",
-        "videoId": "5auM5n_x9qU",
+        "title": "The French Alphabet with Learn French With Alexa",
+        "watchUrl": "https://www.youtube.com/watch?v=CEx2fPn-_UE",
+        "videoId": "CEx2fPn-_UE",
         "channel": "Learn French with Alexa",
-        "note": "Listen to the complete French alphabet with standard pronunciation and mouth shapes."
-},
+        "note": "Letter-by-letter French pronunciation, vowels, accents, and phonetic nuances."
+      },
       read: [
         { title: "Wikibooks — French/Lessons/Alphabet", url: "https://en.wikibooks.org/wiki/French/Lessons/Alphabet", note: "3-column table: letter, name, IPA + simplified respelling" },
         { title: "About-France.com (PDF)", url: "https://about-france.com/tourism/french-phrases.pdf", note: "English respellings, e.g. \"Merci (mair-see)\"" },

@@ -54,12 +54,12 @@
     },
     reference: {
       video: {
-        "title": "Les Pronoms Relatifs DONT et O\u00d9",
-        "watchUrl": "https://www.youtube.com/watch?v=p1Q2r3S4t5u",
-        "videoId": "p1Q2r3S4t5u",
-        "channel": "Fran\u00e7ais avec Pierre",
-        "note": "How to replace prepositional de phrases with dont, and express locations or time with o\u00f9."
-},
+        "title": "Les pronoms relatifs en français : QUE - QUI - DONT",
+        "watchUrl": "https://www.youtube.com/watch?v=gAztaclwNa4",
+        "videoId": "gAztaclwNa4",
+        "channel": "Français avec Pierre",
+        "note": "Mastering complex relative clauses with dont (verbs taking de) and où (place and time)."
+      },
       read: [
         { title: "Tex's French Grammar — pror3", url: "https://laits.utexas.edu/tex/gr/pror3.html", note: "Relative pronouns dont and où" },
         { title: "The French Experiment — Best way to learn French", url: "https://www.thefrenchexperiment.com/best-way-to-learn-french", note: "The intermediate plateau and staying motivated" }

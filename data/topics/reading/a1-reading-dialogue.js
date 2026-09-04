@@ -50,11 +50,11 @@
     },
     reference: {
       video: {
-        title: "Ordering Food & Drinks at a French Café",
-        "watchUrl": "https://www.youtube.com/watch?v=g_y6P51T3l0",
-        "videoId": "g_y6P51T3l0",
-        channel: "Learn French with Alexa",
-        note: "Real café vocabulary, authentic dialogue pronunciation, and cultural etiquette."
+        "title": "Simple French Conversation for Beginners – Conversation Facile en Français",
+        "watchUrl": "https://www.youtube.com/watch?v=XKqhmtg6EVg",
+        "videoId": "XKqhmtg6EVg",
+        "channel": "French Facile",
+        "note": "Slow spoken dialogue with written text to accompany reading comprehension practice."
       },
       read: [
         { title: "TV5MONDE — Au restaurant (A1)", url: "https://apprendre.tv5monde.com/", note: "Graded dialogue and comprehension reading exercises" }

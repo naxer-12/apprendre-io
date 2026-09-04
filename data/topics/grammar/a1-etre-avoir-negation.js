@@ -54,12 +54,12 @@
     },
     reference: {
       video: {
-        "title": "The Verbs \u00caTRE and AVOIR in Present Tense + Negation",
-        "watchUrl": "https://www.youtube.com/watch?v=Jc6zH1m9qZg",
-        "videoId": "Jc6zH1m9qZg",
+        "title": "Être & Avoir (French Essentials Lesson 10)",
+        "watchUrl": "https://www.youtube.com/watch?v=84olv0BM4oY",
+        "videoId": "84olv0BM4oY",
         "channel": "Learn French with Alexa",
-        "note": "Conjugation of \u00eatre & avoir, and how to form standard negation using ne...pas."
-},
+        "note": "Learn present tense conjugations of the two foundational French auxiliary verbs and basic negation."
+      },
       read: [
         { title: "Tex's French Grammar — virr1 (Être)", url: "https://laits.utexas.edu/tex/gr/virr1.html", note: "Full être conjugation table" },
         { title: "Easy French Step-by-Step, Chapter 2", url: null, note: "The Verbs être and avoir, Subject Pronouns, and Negation" }

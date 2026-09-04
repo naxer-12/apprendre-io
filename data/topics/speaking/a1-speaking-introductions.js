@@ -47,11 +47,11 @@
     },
     reference: {
       video: {
-        title: "How to Introduce Yourself in French",
-        "watchUrl": "https://www.youtube.com/watch?v=6iWJcQG1b0s",
-        "videoId": "6iWJcQG1b0s",
-        channel: "Learn French with Alexa",
-        note: "Step-by-step pronunciation guide for introducing your name, origin, job, and hobbies."
+        "title": "GCSE French Speaking: Talk About Yourself",
+        "watchUrl": "https://www.youtube.com/watch?v=7Z69tpPjqGk",
+        "videoId": "7Z69tpPjqGk",
+        "channel": "Language Tuition Online",
+        "note": "Guided spoken phrases for introducing your name, age, origin, and interests."
       },
       read: [
         { title: "Français Authentique — Se présenter naturellement", url: "https://www.francaisauthentique.com/", note: "Spoken conversational rhythm and everyday self-introductions" }

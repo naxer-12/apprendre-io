@@ -51,12 +51,12 @@
     },
     reference: {
       video: {
-        "title": "Basic French Greetings & Politeness",
-        "watchUrl": "https://www.youtube.com/watch?v=k8PBXEWH7Co",
-        "videoId": "k8PBXEWH7Co",
+        "title": "Greetings in French! Hello, Hi, and Goodbye in French!",
+        "watchUrl": "https://www.youtube.com/watch?v=OGkbK9-_BRE",
+        "videoId": "OGkbK9-_BRE",
         "channel": "Learn French with Alexa",
-        "note": "Master Bonjour, Salut, Merci, and the crucial distinction between formal and informal greetings."
-},
+        "note": "Essential greetings, polite farewells, and social courtesies in everyday French."
+      },
       read: [
         { title: "Wikibooks — French/Lessons/Greetings", url: "https://en.wikibooks.org/wiki/French/Lessons/Greetings", note: "IPA transcription per phrase" },
         { title: "Wikivoyage — French phrasebook", url: "https://en.wikivoyage.org/wiki/French_phrasebook", note: "English respelling, e.g. \"Bonjour (bon-zhoor)\"" }

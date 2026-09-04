@@ -35,12 +35,12 @@
     },
     reference: {
       video: {
-        "title": "French Reflexive Verbs (Les Verbes Pronominaux)",
-        "watchUrl": "https://www.youtube.com/watch?v=T0mH8oE8fbc",
-        "videoId": "T0mH8oE8fbc",
+        "title": "French Made Easy: Reflexive Verbs",
+        "watchUrl": "https://www.youtube.com/watch?v=0u9h-WnZj7o",
+        "videoId": "0u9h-WnZj7o",
         "channel": "Learn French with Alexa",
-        "note": "Conjugating reflexive verbs like se lever, se laver, and everyday daily routines."
-},
+        "note": "Understand daily routines and reflexive pronoun placement (me, te, se, nous, vous, se)."
+      },
       read: [
         { title: "Tex's French Grammar — tap4", url: "https://laits.utexas.edu/tex/gr/tap4.html", note: "Se laver, se lever, etc." },
         { title: "Easy French Step-by-Step, Chapter 12", url: null, note: "Reflexive Pronouns with Pronominal Verbs" }

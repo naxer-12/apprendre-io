@@ -55,12 +55,12 @@
     },
     reference: {
       video: {
-        "title": "Le Conditionnel Pr\u00e9sent en Fran\u00e7ais",
-        "watchUrl": "https://www.youtube.com/watch?v=z1X2y3W4v5u",
-        "videoId": "z1X2y3W4v5u",
-        "channel": "Fran\u00e7ais avec Pierre",
-        "note": "Polite requests, advice, and hypothetical situations with si clauses."
-},
+        "title": "Comparing French Tenses: Conditional VS Imperfect",
+        "watchUrl": "https://www.youtube.com/watch?v=fOmO3b4chW0",
+        "videoId": "fOmO3b4chW0",
+        "channel": "Learn French with Alexa",
+        "note": "Formation of conditionnel présent using future stems with imperfect endings."
+      },
       read: [
         { title: "Tex's French Grammar — tac1", url: "https://laits.utexas.edu/tex/gr/tac1.html", note: "Conditionnel formation, politeness, and hypothetical si clauses" },
         { title: "Easy French Step-by-Step, Chapter 15", url: null, note: "Conditional sentences" }

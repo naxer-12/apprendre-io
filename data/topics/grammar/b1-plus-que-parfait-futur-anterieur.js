@@ -55,12 +55,12 @@
     },
     reference: {
       video: {
-        "title": "Le Plus-que-Parfait et le Futur Ant\u00e9rieur",
-        "watchUrl": "https://www.youtube.com/watch?v=d2X3y4W5v6u",
-        "videoId": "d2X3y4W5v6u",
-        "channel": "Fran\u00e7ais avec Pierre",
-        "note": "Mastering compound past and future tenses along a timeline."
-},
+        "title": "How and When to use the PLUS-QUE-PARFAIT in French",
+        "watchUrl": "https://www.youtube.com/watch?v=jaDCV37skV0",
+        "videoId": "jaDCV37skV0",
+        "channel": "Learn French with Alexa",
+        "note": "Using imperfect auxiliary with past participle to express actions prior to other past events."
+      },
       read: [
         { title: "Tex's French Grammar — tap9", url: "https://laits.utexas.edu/tex/gr/tap9.html", note: "Plus-que-parfait formation and timeline" },
         { title: "Tex's French Grammar — taf5", url: "https://laits.utexas.edu/tex/gr/taf5.html", note: "Futur antérieur formation and use after quand/dès que" },
