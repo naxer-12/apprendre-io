@@ -33,15 +33,58 @@
   }
   window.setUserLevel = setUserLevel;
 
-  function speak(text) {
+  let cachedVoices = [];
+  function loadVoices() {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      cachedVoices = window.speechSynthesis.getVoices() || [];
+    }
+  }
+  loadVoices();
+  if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+    if (window.speechSynthesis.onvoiceschanged !== undefined) {
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+    }
+  }
+
+  function getFrenchVoice() {
+    if (!cachedVoices.length) loadVoices();
+    return (
+      cachedVoices.find(v => v.lang === 'fr-FR' && (v.name.includes('Google') || v.name.includes('Thomas') || v.name.includes('Amélie') || v.name.includes('Audrey') || v.name.includes('Natural') || v.name.includes('Siri'))) ||
+      cachedVoices.find(v => v.lang === 'fr-FR') ||
+      cachedVoices.find(v => v.lang && v.lang.toLowerCase().startsWith('fr')) ||
+      null
+    );
+  }
+
+  function speak(text, btnElement) {
+    if (!text || typeof window === 'undefined') return;
     try {
       if (!('speechSynthesis' in window)) return;
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+      }
       window.speechSynthesis.cancel();
+
       const u = new SpeechSynthesisUtterance(text);
       u.lang = 'fr-FR';
-      u.rate = 0.85;
+      u.rate = 0.88;
+      u.pitch = 1.0;
+
+      const voice = getFrenchVoice();
+      if (voice) u.voice = voice;
+
+      if (btnElement && btnElement.classList) {
+        btnElement.classList.add('speaking');
+        u.onend = () => btnElement.classList.remove('speaking');
+        u.onerror = () => btnElement.classList.remove('speaking');
+      }
+
       window.speechSynthesis.speak(u);
-    } catch (e) {}
+    } catch (e) {
+      if (btnElement && btnElement.classList) {
+        btnElement.classList.remove('speaking');
+      }
+    }
   }
   window.speak = speak;
 
@@ -80,7 +123,7 @@
         <div class="tile-big">${it.display}</div>
         <div class="tile-gloss">${it.gloss || ''}</div>
         <div class="tile-ipa">${it.ipa || ''}</div>
-        <button class="speak-btn" onclick="speak(${JSON.stringify(it.speak || it.display)})" aria-label="Play ${it.display}">${speakIcon}</button>
+        <button class="speak-btn" onclick="speak(${JSON.stringify(it.speak || it.display)}, this)" aria-label="Listen to pronunciation of ${it.display}" title="Pronounce">${speakIcon}</button>
       </div>`).join('') + '</div>';
   }
 
@@ -109,23 +152,57 @@
     }).join('') + '</div>';
   }
 
+  function extractYouTubeId(url) {
+    if (!url) return '';
+    const m = String(url).match(/(?:embed\/|v=|vi\/|youtu\.be\/|\/v\/)([a-zA-Z0-9_-]{11})/);
+    return m ? m[1] : '';
+  }
+
   function renderVideoEmbed(video) {
-    if (!video || !video.embedUrl) return '';
+    if (!video) return '';
+    const videoId = video.videoId || extractYouTubeId(video.embedUrl || video.watchUrl);
+    const watchUrl = video.watchUrl || (videoId ? `https://www.youtube.com/watch?v=${videoId}` : (video.embedUrl || '#'));
+    const thumbUrl = videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '';
+
     return `
       <div class="video-section">
-        <div class="video-card">
-          <div class="video-header">
-            <div class="video-title">Featured Video: ${video.title}</div>
-            <div class="video-channel">${video.channel}</div>
+        <a class="video-card-link" href="${watchUrl}" target="_blank" rel="noopener noreferrer" aria-label="Watch ${video.title} on YouTube">
+          <div class="video-thumb-wrap">
+            ${thumbUrl ? `<img src="${thumbUrl}" class="video-thumb-img" alt="${video.title} thumbnail" loading="lazy">` : ''}
+            <div class="video-thumb-overlay"></div>
+            <div class="video-play-badge">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <polygon points="6 4 20 12 6 20 6 4"/>
+              </svg>
+            </div>
+            <div class="video-badge-pill">Watch on YouTube ↗</div>
           </div>
-          <div class="video-wrapper">
-            <iframe src="${video.embedUrl}" title="${video.title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          <div class="video-info">
+            <div class="video-meta-top">
+              <span class="video-channel-tag">${video.channel}</span>
+              <span class="video-featured-tag">Featured Video Lesson</span>
+            </div>
+            <h3 class="video-card-title">${video.title}</h3>
+            ${video.note ? `<p class="video-card-desc">${video.note}</p>` : ''}
+            <div class="video-card-footer">
+              <span class="video-click-prompt">Click to open video lesson on YouTube in a new tab ↗</span>
+            </div>
           </div>
-          <div class="video-note">${video.note || ''}</div>
-        </div>
+        </a>
       </div>
     `;
   }
+
+  function scrollToReference(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const refStage = document.getElementById('stage-reference');
+    if (refStage) {
+      refStage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      refStage.classList.add('highlight-pulse');
+      setTimeout(() => refStage.classList.remove('highlight-pulse'), 1600);
+    }
+  }
+  window.scrollToReference = scrollToReference;
 
   function renderQuiz(topic, onGraded) {
     const qs = topic.test.questions;
@@ -209,12 +286,28 @@
         <h2>Core learning</h2>
         <p class="stage-desc">${topic.content.intro}</p>
         ${(topic.content.tables || []).map(renderTable).join('')}
-        ${topic.content.example ? `<p class="stage-desc"><strong>In-context example:</strong> <em>${topic.content.example.fr}</em> — ${topic.content.example.en}</p>` : ''}
+        ${topic.content.example ? `
+          <div class="example-box">
+            <span class="example-tag">In-context example:</span>
+            <span class="example-fr">${topic.content.example.fr}</span>
+            <button class="speak-btn mini" onclick="speak(${JSON.stringify(topic.content.example.fr)}, this)" aria-label="Listen to example sentence" title="Pronounce">${speakIcon}</button>
+            <span class="example-en">— ${topic.content.example.en}</span>
+          </div>` : ''}
         ${(topic.content.callouts || []).map(c => `
           <div class="callout" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:16px;">
             <h3 style="margin:0 0 6px;">${c.label}</h3>
             <p style="margin:0;color:var(--ink-soft);line-height:1.5;">${c.body}${c.cite ? ` — <cite style="font-weight:700;color:var(--accent);">${c.cite}</cite>` : ''}</p>
           </div>`).join('')}
+        
+        <div class="deep-dive-card">
+          <div class="deep-dive-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          </div>
+          <div class="deep-dive-text">
+            <span class="deep-dive-label">Looking for greater depth?</span>
+            <span class="deep-dive-desc">The content above covers the core essentials. Discover <a href="#stage-reference" class="deep-dive-link" onclick="scrollToReference(event)">where you can get more details for further topic and study ↓</a></span>
+          </div>
+        </div>
       </div>
 
       <div class="stage">
@@ -224,7 +317,7 @@
         <div id="quizMount"></div>
       </div>
 
-      <div class="stage">
+      <div class="stage" id="stage-reference">
         <div class="stage-kicker">4 · Reference &amp; Video</div>
         <h2>Watch, listen &amp; read</h2>
         ${topic.reference && topic.reference.video ? renderVideoEmbed(topic.reference.video) : ''}
@@ -305,7 +398,6 @@
         <div class="cta-row">
           <button class="btn" id="startGrammarBtn">Start Grammar Course</button>
           <button class="btn ghost" id="startVocabBtn">Start Vocabulary</button>
-          <button class="btn ghost" id="practiceQuickBtn">Practice Flashcards</button>
         </div>
       </div>
 
@@ -334,9 +426,6 @@
     document.getElementById('startVocabBtn').addEventListener('click', () => {
       location.hash = '#/vocabulary/a1-alphabet';
     });
-    document.getElementById('practiceQuickBtn').addEventListener('click', () => {
-      location.hash = '#/practice';
-    });
 
     const grid = document.getElementById('moduleGrid');
     window.MODULES.forEach(mod => {
@@ -361,57 +450,6 @@
         location.hash = `#/${mod.id}/${first.id}`;
       });
       grid.appendChild(card);
-    });
-  }
-
-  function renderPractice() {
-    const progress = window.Progress.loadProgress(localStorage);
-    const completedIds = Object.keys(progress.completed);
-    const main = document.getElementById('main');
-
-    const cards = [
-      { front: 'Bonjour', back: 'Hello / Good day [bon-zhoor]' },
-      { front: 'Merci beaucoup', back: 'Thank you very much [mair-see boh-koo]' },
-      { front: "S'il vous plaît", back: 'Please (formal) [seel voo pleh]' },
-      { front: 'le café / la table', back: 'Definite articles (le = masc, la = fem)' },
-      { front: 'du pain / de la salade', back: 'Partitive articles (some / unspecified quantity)' },
-      { front: 'qui vs. que', back: 'qui = subject (follows noun), que = direct object' },
-      { front: 'Passé Composé (avoir)', back: 'avoir (present) + past participle (-é, -i, -u)' },
-      { front: 'DR & MRS VANDERTRAMP', back: 'Motion/state verbs using ÊTRE with subject agreement' },
-      { front: 'Imparfait', back: 'nous-form without -ons + -ais, -ais, -ait, -ions, -iez, -aient' },
-      { front: 'Futur Simple', back: 'Infinitive + -ai, -as, -a, -ons, -ez, -ont' },
-      { front: 'Conditionnel Présent', back: 'Future stem + Imparfait endings (politeness & hypotheses)' },
-      { front: 'Plus-que-parfait', back: 'Imparfait of avoir/être + past participle (had done)' },
-      { front: 'COD vs. COI', back: 'COD: le/la/les (direct). COI: lui/leur (indirect: to him/her/them)' },
-      { front: 'dont & où', back: "dont = object of 'de'; où = place or moment in time" },
-      { front: 'Subjonctif Présent', back: 'ils-stem + -e, -es, -e, -ions, -iez, -ent (expresses necessity/doubt)' },
-      { front: 'Tu vs. Vous', back: 'Tu = informal/close; Vous = formal/polite/strangers/plural' }
-    ];
-
-    main.innerHTML = `
-      <div class="practice-head">
-        <h1>Active Recall Practice</h1>
-        <p>Flip flashcards to test your knowledge of essential vocabulary, verb tenses, and grammatical structures. Active recall strengthens long-term neural consolidation.</p>
-        <div class="queue-note">
-          <span>Completed curriculum topics: <b>${completedIds.length} / 28</b></span>
-        </div>
-      </div>
-
-      <div class="flash-grid" id="flashGrid"></div>
-      <footer class="foot">Apprendre.io — Active retrieval practice. Tap any card to flip and verify your recall.</footer>
-    `;
-
-    const grid = document.getElementById('flashGrid');
-    cards.forEach(c => {
-      const el = document.createElement('div');
-      el.className = 'flash';
-      el.innerHTML = `
-        <div class="front">${c.front}</div>
-        <div class="back">${c.back}</div>
-        <div class="hint">Tap to flip</div>
-      `;
-      el.addEventListener('click', () => el.classList.toggle('flipped'));
-      grid.appendChild(el);
     });
   }
 
@@ -530,7 +568,6 @@
       
       <div class="header-nav">
         <button class="nav-tab on" id="navLearn">Learn</button>
-        <button class="nav-tab" id="navPractice">Practice</button>
       </div>
 
       <div class="header-right">
@@ -557,9 +594,6 @@
     });
     document.getElementById('navLearn').addEventListener('click', () => {
       location.hash = '#/overview';
-    });
-    document.getElementById('navPractice').addEventListener('click', () => {
-      location.hash = '#/practice';
     });
 
     header.querySelectorAll('.lvl-btn').forEach(b => {
@@ -594,18 +628,8 @@
   }
 
   function updateNavState() {
-    const [route] = currentRoute();
     const navLearn = document.getElementById('navLearn');
-    const navPractice = document.getElementById('navPractice');
-    if (!navLearn || !navPractice) return;
-
-    if (route === 'practice') {
-      navPractice.classList.add('on');
-      navLearn.classList.remove('on');
-    } else {
-      navLearn.classList.add('on');
-      navPractice.classList.remove('on');
-    }
+    if (navLearn) navLearn.classList.add('on');
   }
 
   function render() {
@@ -615,7 +639,8 @@
     const [moduleId, topicId] = currentRoute();
 
     if (moduleId === 'practice') {
-      renderPractice();
+      location.hash = '#/overview';
+      return;
     } else if (topicId && window.TOPICS && window.TOPICS[topicId]) {
       renderLesson(window.TOPICS[topicId]);
     } else {

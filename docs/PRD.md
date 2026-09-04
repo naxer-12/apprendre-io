@@ -190,6 +190,21 @@ Each topic file assigns directly into `window.TOPICS[id]`:
 - **Decision:** Refactor color system with 5 discrete palettes (Light, Dark, Sepia, Nordic, Matcha) using CSS custom properties with strict WCAG AAA contrast for body and secondary text.
 - **Rationale:** Resolves user feedback regarding washed-out text visibility in the default light mode while offering rich personalized visual experiences.
 
+### ADR-007: Interactive YouTube Video Cards Replacing Iframes
+- **Date:** 2026-09-04
+- **Decision:** Replace inline `<iframe>` video embeds with interactive, clickable Video Cards featuring high-definition thumbnails (`img.youtube.com/vi/<ID>/hqdefault.jpg`), animated play badges, channel labels, and direct YouTube watch URLs (`target="_blank" rel="noopener noreferrer"`).
+- **Rationale:** YouTube iframes on external domains or `localhost` frequently fail with "Video unavailable" due to content creator embed restrictions, CSP headers, or referrer policies. Clickable cards completely eliminate playback errors, guarantee access on all devices, and provide a faster, more responsive page load.
+
+### ADR-008: Resilient French Speech Synthesis & Pronunciation Feedback
+- **Date:** 2026-09-04
+- **Decision:** Implement an asynchronous voice-detection engine for the Web Speech API that caches voices on `voiceschanged`, selects native French voices (`fr-FR`, `fr-CA`), calls `speechSynthesis.resume()`, and attaches `.speaking` visual ripple wave animations to the speaker button during playback. Add speaker buttons to both vocabulary cards and in-context example sentences.
+- **Rationale:** Resolves audio pronunciation failures caused by uninitialized voice lists and browser audio suspensions, while giving learners immediate multisensory visual and auditory feedback.
+
+### ADR-009: Deep-Dive Further Study Navigation & Practice Tab Removal
+- **Date:** 2026-09-04
+- **Decision:** Add a dedicated callout card in Stage 2 linking learners to Stage 4 ("where you can get more details for further topic and study") with smooth scrolling and highlight pulse animation. Concurrently, remove the Practice tab and quick practice CTA from the interface per user request.
+- **Rationale:** Clarifies the instructional architecture (Stage 2 covers the essential gist; Stage 4 provides exhaustive reference material) and streamlines navigation by focusing the learner on the sequential curriculum.
+
 ---
 
 ## 7. Implementation & Task Tracking Matrix
@@ -204,10 +219,14 @@ Each topic file assigns directly into `window.TOPICS[id]`:
 | **TSK-06** | Grammar B1 | 5 B1 grammar topics (Futur simple to Relative *dont/où*) | Completed | `node test/data.test.js` (PASSED) |
 | **TSK-07** | Grammar B2–C1 | 3 B2–C1 topics (Subjunctive mood to *Tu vs Vous* register) | Completed | `node test/data.test.js` (PASSED) |
 | **TSK-08** | Multi-Theming | Light, Dark, Sepia, Nordic, Matcha themes with high contrast | Completed | Verified in browser & UI |
-| **TSK-09** | Video Embeds | 16:9 YouTube iframe embeds across all 28 topics | Completed | Verified in test suite & browser |
+| **TSK-09** | Video Cards | Clickable YouTube video cards with thumbnails & play badges | Completed | Verified in test suite & browser |
 | **TSK-10** | Level Scoping | Beginner, Intermediate, Expert pathway filtering | Completed | `test/e2e-simulation.test.js` (PASSED) |
 | **TSK-11** | Multi-Skill A1 | Reading, Writing, Speaking, Listening A1 modules | Completed | `test/data.test.js` (PASSED) |
 | **TSK-12** | Documentation | Comprehensive PRD, ADR decision log, and roadmap | Completed | `docs/PRD.md` |
+| **TSK-13** | Audio Engine | Voice matching, asynchronous caching, and speaking animation | Completed | `test/e2e-simulation.test.js` (PASSED) |
+| **TSK-14** | Deep-Dive Links | Stage 2 to Stage 4 smooth scroll and study references | Completed | `test/e2e-simulation.test.js` (PASSED) |
+| **TSK-15** | UI Animations | Keyframe animations, hover transforms, and quiz feedback | Completed | Verified in styles.css & browser |
+| **TSK-16** | Practice Removal | Removal of Practice tab and CTA per user request | Completed | `test/e2e-simulation.test.js` (PASSED) |
 
 ---
 
@@ -215,5 +234,5 @@ Each topic file assigns directly into `window.TOPICS[id]`:
 
 1. **A2–C1 Extensions for Multi-Skill Modules:** Authoring A2 through C1 topics for Reading, Writing, Speaking, and Listening.
 2. **Audio Dictation Input:** Leveraging the Web Speech API's `SpeechRecognition` for spoken voice grading in the Speaking module.
-3. **FSRS-Based Spaced Repetition Scheduling:** Upgrading Practice mode to use the Free Spaced Repetition Scheduler (FSRS) algorithm for optimal review intervals.
+3. **FSRS-Based Spaced Repetition Scheduling:** Reintroducing Practice mode powered by the Free Spaced Repetition Scheduler (FSRS) algorithm for optimal review intervals.
 4. **Data Export/Import:** Allowing users to backup and restore their `localStorage` learning history via JSON.

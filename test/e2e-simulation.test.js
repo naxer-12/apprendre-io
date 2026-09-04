@@ -75,17 +75,26 @@ assert.strictEqual(localStorage.getItem("apprendre-io:user-level"), "intermediat
 window.setUserLevel("beginner");
 assert.strictEqual(localStorage.getItem("apprendre-io:user-level"), "beginner");
 
-// Test practice render
+// Test practice removal and redirection to overview
 globalThis.location.hash = "#/practice";
 window.render();
-assert.ok(elements.main.innerHTML.includes("Active Recall Practice"), "Practice must render header");
+assert.strictEqual(globalThis.location.hash, "#/overview", "Routing to #/practice must redirect to #/overview");
+assert.ok(!elements.header.innerHTML.includes("navPractice"), "Header must not render navPractice tab");
 
-// Test lesson render with video iframe (A1 Articles)
+// Test lesson render with interactive video card (A1 Articles)
 globalThis.location.hash = "#/grammar/a1-articles";
 window.render();
 assert.ok(elements.main.innerHTML.includes("Articles & Gender of Nouns"), "Lesson must render topic title");
-assert.ok(elements.main.innerHTML.includes("Featured Video"), "Lesson must render featured video section");
-assert.ok(elements.main.innerHTML.includes("<iframe"), "Lesson must render iframe embed");
+assert.ok(elements.main.innerHTML.includes("video-card-link"), "Lesson must render interactive video card link");
+assert.ok(elements.main.innerHTML.includes("https://www.youtube.com/watch?v=8w1b8p0E9j4"), "Video card link must point to YouTube watch URL");
+assert.ok(elements.main.innerHTML.includes("img.youtube.com"), "Video card must render YouTube thumbnail image");
+
+// Test deep-dive / further study link in Stage 2
+assert.ok(elements.main.innerHTML.includes("where you can get more details for further topic and study"), "Stage 2 must include further study link");
+assert.ok(elements.main.innerHTML.includes('id="stage-reference"'), "Stage 4 must have id stage-reference");
+
+// Test speech synthesis pronunciation engine
+assert.strictEqual(typeof window.speak, "function", "window.speak must be exported as a function");
 
 // Test gating progression
 const t1 = window.TOPICS["a1-articles"];

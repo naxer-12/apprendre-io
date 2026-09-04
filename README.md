@@ -13,13 +13,13 @@ An evidence-backed French-learning web application: pick a proficiency tier (**B
 - **Adaptive Level Scoping:** Select **Beginner** (A1/A2), **Intermediate** (A2/B1), or **Expert** (B2/C1). The entire curriculum, sidebar, and dashboard focus on your chosen tier.
 - **Sequential Test Gating:** Each topic requires scoring $\ge 80\%$ (4/5) on its short test before the next topic unlocks.
 - **4-Stage Pedagogical Loop:**
-  1. *Visual Reference:* Interactive card grids, conjugation tables, IPA phonetics, and native pronunciation audio (`SpeechSynthesis`).
-  2. *Core Content:* High-yield grammatical rules and bilingual examples.
-  3. *Short Test:* Active retrieval practice with instant feedback and gating resolution.
-  4. *Reference & Video:* Embedded responsive 16:9 YouTube video lessons from top educators (*Learn French with Alexa*, *Français avec Pierre*, *Français Authentique*) and primary textbook citations.
+  1. *Visual Reference:* Interactive card grids, conjugation tables, IPA phonetics, and native pronunciation audio (`SpeechSynthesis`) with active voice detection and speaking pulse animations.
+  2. *Core Content & Gist:* High-yield grammatical rules, audio-enabled examples, and deep-dive links to comprehensive references ("where you can get more details for further topic and study").
+  3. *Short Test:* Active retrieval practice with instant feedback, micro-interaction animations, and gating resolution.
+  4. *Reference & Video:* Rich, clickable interactive YouTube video cards with HD thumbnails, animated play badges, and direct external watch links from top educators (*Learn French with Alexa*, *Français avec Pierre*, *Français Authentique*), avoiding iframe embed restrictions.
 - **Multi-Skill Modules:** Full A1 to C1 Grammar curriculum (21 topics), Vocabulary, plus A1 foundational modules for Reading, Writing, Speaking, and Listening.
 - **Multi-Theme Customization:** 5 WCAG AAA accessible themes (Light, Dark, Sepia, Nordic, Matcha) with high-contrast text and instant persistence.
-- **Active Recall Flashcards (`#/practice`):** Dedicated flashcard practice queue with flip-to-recall interactions.
+- **Animated & Responsive Interface:** Staggered entrance transitions (`fadeInUp`), hover micro-interactions on cards, sidebar slide effects, and audio wave animations.
 - **Zero Dependencies / No Build Step:** Pure vanilla HTML5, CSS3 Custom Properties, and ES6+ JavaScript. Runs anywhere without `npm install`.
 
 ## Run it
