@@ -4,7 +4,7 @@
       id: "vocabulary",
       name: "Vocabulary",
       icon: "vocab",
-      description: "Words, chunks & mnemonics",
+      description: "Words, chunks & core vocabulary",
       topics: [
         "a1-alphabet",
         "a1-numbers",
@@ -40,9 +40,41 @@
         "b2c1-register-tu-vous"
       ]
     },
-    { id: "reading", name: "Reading", icon: "reading", description: "Graded texts A1 → C1", topics: [] },
-    { id: "writing", name: "Writing", icon: "writing", description: "Sentences to essays", topics: [] },
-    { id: "speaking", name: "Speaking", icon: "speaking", description: "Output & social register", topics: [] },
-    { id: "listening", name: "Listening", icon: "listening", description: "Audio comprehension", topics: [] }
+    {
+      id: "reading",
+      name: "Reading",
+      icon: "reading",
+      description: "Graded authentic texts & dialogues",
+      topics: [
+        "a1-reading-dialogue"
+      ]
+    },
+    {
+      id: "writing",
+      name: "Writing",
+      icon: "writing",
+      description: "Sentence construction & syntax",
+      topics: [
+        "a1-writing-sentences"
+      ]
+    },
+    {
+      id: "speaking",
+      name: "Speaking",
+      icon: "speaking",
+      description: "Spoken French & natural output",
+      topics: [
+        "a1-speaking-introductions"
+      ]
+    },
+    {
+      id: "listening",
+      name: "Listening",
+      icon: "listening",
+      description: "Audio comprehension & ear training",
+      topics: [
+        "a1-listening-comprehension"
+      ]
+    }
   ];
 })();

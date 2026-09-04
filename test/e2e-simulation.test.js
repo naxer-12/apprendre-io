@@ -28,6 +28,8 @@ function mockElement(id) {
       toggle(c) { if (this.contains(c)) this.remove(c); else this.add(c); }
     },
     dataset: {},
+    setAttribute(k, v) { this[k] = v; },
+    removeAttribute(k) { delete this[k]; },
     style: {},
     appendChild(child) { (this.children = this.children || []).push(child); },
     querySelectorAll(selector) { return []; },
@@ -50,11 +52,10 @@ globalThis.document = {
 require("../progress.js");
 
 // 2. Load all topics
-const vocabFiles = fs.readdirSync(path.join(__dirname, "../data/topics/vocabulary"));
-vocabFiles.forEach(f => require(path.join(__dirname, "../data/topics/vocabulary", f)));
-
-const grammarFiles = fs.readdirSync(path.join(__dirname, "../data/topics/grammar"));
-grammarFiles.forEach(f => require(path.join(__dirname, "../data/topics/grammar", f)));
+["vocabulary", "grammar", "reading", "writing", "speaking", "listening"].forEach(dir => {
+  const files = fs.readdirSync(path.join(__dirname, `../data/topics/${dir}`));
+  files.forEach(f => require(path.join(__dirname, `../data/topics/${dir}`, f)));
+});
 
 // 3. Load modules
 require("../data/modules.js");
@@ -66,20 +67,25 @@ require("../app.js");
 globalThis.location.hash = "#/overview";
 window.render();
 assert.ok(elements.main.innerHTML.includes("Learn French"), "Overview must render hero headline");
+assert.ok(elements.main.innerHTML.includes("Active Pathway"), "Overview must render pathway box");
+
+// Test level switching
+window.setUserLevel("intermediate");
+assert.strictEqual(localStorage.getItem("apprendre-io:user-level"), "intermediate");
+window.setUserLevel("beginner");
+assert.strictEqual(localStorage.getItem("apprendre-io:user-level"), "beginner");
 
 // Test practice render
 globalThis.location.hash = "#/practice";
 window.render();
 assert.ok(elements.main.innerHTML.includes("Active Recall Practice"), "Practice must render header");
 
-// Test lesson render (A1 Articles)
+// Test lesson render with video iframe (A1 Articles)
 globalThis.location.hash = "#/grammar/a1-articles";
 window.render();
 assert.ok(elements.main.innerHTML.includes("Articles & Gender of Nouns"), "Lesson must render topic title");
-assert.ok(elements.main.innerHTML.includes("Visual reference"), "Lesson must render stage 1");
-assert.ok(elements.main.innerHTML.includes("What actually matters here"), "Lesson must render stage 2");
-assert.ok(elements.main.innerHTML.includes("Check your memory"), "Lesson must render stage 3");
-assert.ok(elements.main.innerHTML.includes("Go further"), "Lesson must render stage 4");
+assert.ok(elements.main.innerHTML.includes("Featured Video"), "Lesson must render featured video section");
+assert.ok(elements.main.innerHTML.includes("<iframe"), "Lesson must render iframe embed");
 
 // Test gating progression
 const t1 = window.TOPICS["a1-articles"];
@@ -91,4 +97,4 @@ assert.strictEqual(window.Progress.isUnlocked(t2, window.Progress.loadProgress(l
 window.Progress.recordScore(localStorage, t1, 4);
 assert.strictEqual(window.Progress.isUnlocked(t2, window.Progress.loadProgress(localStorage)), true, "Topic 2 is unlocked after passing Topic 1");
 
-console.log("e2e-simulation.test.js: End-to-end routing, rendering, and gating simulation passed!");
+console.log("e2e-simulation.test.js: All end-to-end simulations passed!");

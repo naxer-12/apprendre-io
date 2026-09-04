@@ -38,6 +38,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "French Subject Pronouns Explained (je, tu, il, elle, nous, vous, ils, elles)",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/rK3u_u2Q53A",
+        "channel": "Learn French with Alexa",
+        "note": "Pronunciation, silent endings, and the difference between tu and vous."
+},
       read: [ { title: "Tex's French Grammar — pro1", url: "https://laits.utexas.edu/tex/gr/pro1.html", note: "Subject pronoun overview" } ],
       watchListen: []
     }

@@ -31,6 +31,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "Le Pass\u00e9 Compos\u00e9 avec AVOIR",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/mC-8L6x0m3o",
+        "channel": "Learn French with Alexa",
+        "note": "How to form past participles (-\u00e9, -i, -u) and conjugate with avoir."
+},
       read: [
         { title: "Tex's French Grammar — tap2", url: "https://laits.utexas.edu/tex/gr/tap2.html", note: "Formation + agreement rules" },
         { title: "Easy French Step-by-Step, Chapter 13", url: null, note: "Forms and Uses of the passé composé" }

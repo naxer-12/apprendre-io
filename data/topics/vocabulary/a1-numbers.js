@@ -47,13 +47,7 @@
         }
       ],
       example: { fr: "J'ai vingt ans.", en: "I am twenty years old." },
-      callouts: [
-        {
-          label: "Why the test below works",
-          body: "Retrieval practice only beats simple re-reading when you see the correct answer immediately after each try.",
-          cite: "Cortex, 2022"
-        }
-      ]
+      callouts: []
     },
     test: {
       passScore: 4,
@@ -66,6 +60,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "French Numbers 1 to 20 (Les nombres de 1 \u00e0 20)",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/Dma28MvE_wY",
+        "channel": "Learn French with Alexa",
+        "note": "Clear native pronunciation of numbers 0 to 20 including liaison pronunciation rules."
+},
       read: [
         { title: "Wikibooks — French/Lessons/Numbers", url: "https://en.wikibooks.org/wiki/French/Lessons/Numbers", note: "IPA transcription for every number 0–20" },
         { title: "Wikibooks — Print version (compiled)", url: "https://en.wikibooks.org/wiki/French/Lessons/Print_version", note: "Same numbers lesson as one fetchable page" }

@@ -57,6 +57,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "Le Subjonctif Pr\u00e9sent : Tout Comprendre",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/a1B2c3D4e5f",
+        "channel": "Fran\u00e7ais avec Pierre",
+        "note": "Subjunctive formation, essential triggers (necessity, desire, doubt), and irregular stems."
+},
       read: [
         { title: "Tex's French Grammar — tas1/tas5", url: "https://laits.utexas.edu/tex/gr/tas1.html", note: "Present subjunctive formation and conjunction triggers" },
         { title: "Jane Lippmann Subjunctive Series (LAITS)", url: "https://laits.utexas.edu/jnl/subjunctive/index.html", note: "3-part deep dive on regular, irregular, and triggers" },

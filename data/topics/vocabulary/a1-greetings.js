@@ -37,13 +37,7 @@
         }
       ],
       example: { fr: "Bonjour, comment allez-vous ?", en: "Hello, how are you? (formal)" },
-      callouts: [
-        {
-          label: "Why register matters early",
-          body: "A 16-week university comparison found app-only learners matched classroom learners on vocabulary and grammar, but fell about 2 points behind specifically on choosing tu vs. vous correctly — the one place real interaction beat solo app use.",
-          cite: "Cambridge Core, Studies in SLA"
-        }
-      ]
+      callouts: []
     },
     test: {
       passScore: 4,
@@ -56,6 +50,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "Basic French Greetings & Politeness",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/k8PBXEWH7Co",
+        "channel": "Learn French with Alexa",
+        "note": "Master Bonjour, Salut, Merci, and the crucial distinction between formal and informal greetings."
+},
       read: [
         { title: "Wikibooks — French/Lessons/Greetings", url: "https://en.wikibooks.org/wiki/French/Lessons/Greetings", note: "IPA transcription per phrase" },
         { title: "Wikivoyage — French phrasebook", url: "https://en.wikivoyage.org/wiki/French_phrasebook", note: "English respelling, e.g. \"Bonjour (bon-zhoor)\"" }

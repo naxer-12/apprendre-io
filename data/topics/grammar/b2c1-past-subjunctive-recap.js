@@ -55,6 +55,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "Le Subjonctif Pass\u00e9 et Synth\u00e8se Indicatif vs Subjonctif",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/g1H2i3J4k5l",
+        "channel": "Fran\u00e7ais avec Pierre",
+        "note": "Prior actions in the subjunctive mood and distinguishing nuance between belief and doubt."
+},
       read: [
         { title: "Tex's French Grammar — tas6", url: "https://laits.utexas.edu/tex/gr/tas6.html", note: "Subjonctif passé formation and sequence of tenses" },
         { title: "Tex's French Grammar — tas7", url: "https://laits.utexas.edu/tex/gr/tas7.html", note: "Comprehensive subjunctive vs indicative summary" }

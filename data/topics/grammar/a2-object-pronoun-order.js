@@ -31,6 +31,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "L'Ordre des Pronoms Compl\u00e9ments en Fran\u00e7ais",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/M3XoVb5_x4Q",
+        "channel": "Fran\u00e7ais avec Pierre",
+        "note": "Visual rules for placing multiple pronouns (me le, lui en, etc.) before the verb."
+},
       read: [
         { title: "Tex's French Grammar — pro9", url: "https://laits.utexas.edu/tex/gr/pro9.html", note: "Pronoun stacking order" },
         { title: "Easy French Step-by-Step, Chapter 14", url: null, note: "More about object pronouns" }

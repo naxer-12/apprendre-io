@@ -59,6 +59,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "Definite and Indefinite Articles in French (le, la, les, un, une, des)",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/8w1b8p0E9j4",
+        "channel": "Learn French with Alexa",
+        "note": "Understand noun genders, how articles agree, and how to spot feminine vs masculine nouns."
+},
       read: [
         { title: "Tex's French Grammar — det2 (Definite articles)", url: "https://laits.utexas.edu/tex/gr/det2.html", note: "le/la/les/l' article table" },
         { title: "Easy French Step-by-Step, Chapter 1", url: null, note: "Nouns, Articles, and Descriptive Adjectives" }

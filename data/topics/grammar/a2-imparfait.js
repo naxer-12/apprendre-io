@@ -33,6 +33,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "L'Imparfait en Fran\u00e7ais : Formation et Utilisation",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/hJqg6iPqj9A",
+        "channel": "Fran\u00e7ais avec Pierre",
+        "note": "Forming the imperfect tense and contrasting it with pass\u00e9 compos\u00e9."
+},
       read: [
         { title: "Tex's French Grammar — tap5/tap7", url: "https://laits.utexas.edu/tex/gr/tap5.html", note: "Formation, then idiomatic uses vs. passé composé" },
         { title: "Easy French Step-by-Step, Chapter 14", url: null, note: "The imparfait and past narration" }

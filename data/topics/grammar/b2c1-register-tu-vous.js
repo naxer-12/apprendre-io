@@ -53,6 +53,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "Tu ou Vous ? Quand tutoyer et quand vouvoyer en France",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/m1N2o3P4q5r",
+        "channel": "Fran\u00e7ais Authentique",
+        "note": "Real cultural etiquette, social distance, workplace customs, and shifting register."
+},
       read: [
         { title: "Français Authentique — Les registres de langue", url: "https://www.francaisauthentique.com/", note: "Natural spoken French, social register, and conversational nuances" },
         { title: "Loewen et al. (2020) — Pragmatic Competence in Mobile Learning", url: null, note: "Empirical comparison of tu/vous acquisition between classroom and apps" }

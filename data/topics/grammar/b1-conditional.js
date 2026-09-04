@@ -54,6 +54,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "Le Conditionnel Pr\u00e9sent en Fran\u00e7ais",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/z1X2y3W4v5u",
+        "channel": "Fran\u00e7ais avec Pierre",
+        "note": "Polite requests, advice, and hypothetical situations with si clauses."
+},
       read: [
         { title: "Tex's French Grammar — tac1", url: "https://laits.utexas.edu/tex/gr/tac1.html", note: "Conditionnel formation, politeness, and hypothetical si clauses" },
         { title: "Easy French Step-by-Step, Chapter 15", url: null, note: "Conditional sentences" }

@@ -57,6 +57,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "Le Futur Simple : R\u00e8gle, Terminaisons et Verbes Irr\u00e9guliers",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/F4qGg0X1v7o",
+        "channel": "Fran\u00e7ais avec Pierre",
+        "note": "Forming the simple future with stem modifications for high-frequency irregular verbs."
+},
       read: [
         { title: "Tex's French Grammar — taf2/taf3", url: "https://laits.utexas.edu/tex/gr/taf2.html", note: "Regular future formation & irregular stems" },
         { title: "Easy French Step-by-Step, Chapter 15", url: null, note: "Future tenses and predictions" }

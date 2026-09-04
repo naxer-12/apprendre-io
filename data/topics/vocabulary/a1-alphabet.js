@@ -53,13 +53,7 @@
         }
       ],
       example: { fr: "Ça s'écrit C-A-F-É.", en: "It's spelled C-A-F-E." },
-      callouts: [
-        {
-          label: "Why the test below works",
-          body: "Retrieval practice only beats simple re-reading when you see the correct answer immediately after each try.",
-          cite: "Cortex, 2022"
-        }
-      ]
+      callouts: []
     },
     test: {
       passScore: 4,
@@ -72,6 +66,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "The French Alphabet (L'alphabet fran\u00e7ais)",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/5auM5n_x9qU",
+        "channel": "Learn French with Alexa",
+        "note": "Listen to the complete French alphabet with standard pronunciation and mouth shapes."
+},
       read: [
         { title: "Wikibooks — French/Lessons/Alphabet", url: "https://en.wikibooks.org/wiki/French/Lessons/Alphabet", note: "3-column table: letter, name, IPA + simplified respelling" },
         { title: "About-France.com (PDF)", url: "https://about-france.com/tourism/french-phrases.pdf", note: "English respellings, e.g. \"Merci (mair-see)\"" },

@@ -31,6 +31,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "Le Pass\u00e9 Compos\u00e9 avec \u00caTRE (DR & MRS VANDERTRAMP)",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/N-0wXqU5Hl8",
+        "channel": "Learn French with Alexa",
+        "note": "Motion and state-change verbs that take \u00eatre with subject agreement."
+},
       read: [
         { title: "Tex's French Grammar — tap3", url: "https://laits.utexas.edu/tex/gr/tap3.html", note: "The \"Dr & Mrs Vandertramp\" verb set" },
         { title: "Easy French Step-by-Step, Chapter 13", url: null, note: "The passé composé with être" }

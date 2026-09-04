@@ -42,6 +42,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "Partitive Articles in French (du, de la, de l', des)",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/yF-4vR7gC18",
+        "channel": "Learn French with Alexa",
+        "note": "How to say 'some' or express unspecified food and drink quantities."
+},
       read: [
         { title: "Easy French Step-by-Step, Chapter 9", url: null, note: "The Partitive Article" },
         { title: "The French Experiment — Partitive Articles", url: "https://www.thefrenchexperiment.com/learn-french", note: "Beginner-focused lesson on du/de la/des" }

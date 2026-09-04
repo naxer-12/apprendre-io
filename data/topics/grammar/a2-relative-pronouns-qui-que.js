@@ -30,6 +30,13 @@
         { q: 'Before a vowel, "que" becomes:', opts: ["qu'", "qui", "qu", "que"], a: "qu'" }
       ]
     },
-    reference: { read: [ { title: "Tex's French Grammar — pror1", url: "https://laits.utexas.edu/tex/gr/pror1.html", note: "Basic relative clauses" } ], watchListen: [] }
+    reference: {
+      video: {
+        "title": "QUI ou QUE ? Les Pronoms Relatifs Simples",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/o0C5bI8Uq6Q",
+        "channel": "Fran\u00e7ais avec Pierre",
+        "note": "The definitive guide to distinguishing between subject qui and direct object que."
+},
+      read: [ { title: "Tex's French Grammar — pror1", url: "https://laits.utexas.edu/tex/gr/pror1.html", note: "Basic relative clauses" } ], watchListen: [] }
   };
 })();

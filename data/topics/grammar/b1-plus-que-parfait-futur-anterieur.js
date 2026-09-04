@@ -54,6 +54,12 @@
       ]
     },
     reference: {
+      video: {
+        "title": "Le Plus-que-Parfait et le Futur Ant\u00e9rieur",
+        "embedUrl": "https://www.youtube-nocookie.com/embed/d2X3y4W5v6u",
+        "channel": "Fran\u00e7ais avec Pierre",
+        "note": "Mastering compound past and future tenses along a timeline."
+},
       read: [
         { title: "Tex's French Grammar — tap9", url: "https://laits.utexas.edu/tex/gr/tap9.html", note: "Plus-que-parfait formation and timeline" },
         { title: "Tex's French Grammar — taf5", url: "https://laits.utexas.edu/tex/gr/taf5.html", note: "Futur antérieur formation and use after quand/dès que" },
