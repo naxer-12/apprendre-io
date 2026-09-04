@@ -46,7 +46,8 @@
     reference: {
       video: {
         "title": "Regular -ER, -IR, -RE Verbs in the Present Tense",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/9w_v0w0Kzfg",
+        "watchUrl": "https://www.youtube.com/watch?v=9w_v0w0Kzfg",
+        "videoId": "9w_v0w0Kzfg",
         "channel": "Learn French with Alexa",
         "note": "Learn regular verb conjugation endings step-by-step with examples."
 },

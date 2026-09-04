@@ -52,7 +52,8 @@
     reference: {
       video: {
         "title": "Basic French Greetings & Politeness",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/k8PBXEWH7Co",
+        "watchUrl": "https://www.youtube.com/watch?v=k8PBXEWH7Co",
+        "videoId": "k8PBXEWH7Co",
         "channel": "Learn French with Alexa",
         "note": "Master Bonjour, Salut, Merci, and the crucial distinction between formal and informal greetings."
 },

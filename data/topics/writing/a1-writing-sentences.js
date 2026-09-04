@@ -48,7 +48,8 @@
     reference: {
       video: {
         title: "How to Form French Sentences (SVO Word Order)",
-        embedUrl: "https://www.youtube-nocookie.com/embed/5aLhU7Gvhj8",
+        "watchUrl": "https://www.youtube.com/watch?v=5aLhU7Gvhj8",
+        "videoId": "5aLhU7Gvhj8",
         channel: "Français avec Pierre",
         note: "Learn sentence structure, connecting words, and common beginner writing mistakes."
       },

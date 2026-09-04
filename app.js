@@ -158,10 +158,10 @@
     return m ? m[1] : '';
   }
 
-  function renderVideoEmbed(video) {
+  function renderVideoCard(video) {
     if (!video) return '';
-    const videoId = video.videoId || extractYouTubeId(video.embedUrl || video.watchUrl);
-    const watchUrl = video.watchUrl || (videoId ? `https://www.youtube.com/watch?v=${videoId}` : (video.embedUrl || '#'));
+    const videoId = video.videoId || extractYouTubeId(video.watchUrl || video.embedUrl);
+    const watchUrl = video.watchUrl || (videoId ? `https://www.youtube.com/watch?v=${videoId}` : '#');
     const thumbUrl = videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '';
 
     return `
@@ -320,7 +320,7 @@
       <div class="stage" id="stage-reference">
         <div class="stage-kicker">4 · Reference &amp; Video</div>
         <h2>Watch, listen &amp; read</h2>
-        ${topic.reference && topic.reference.video ? renderVideoEmbed(topic.reference.video) : ''}
+        ${topic.reference && topic.reference.video ? renderVideoCard(topic.reference.video) : ''}
         ${topic.reference && topic.reference.read && topic.reference.read.length ? `<div class="section-label">Reading references</div>${renderRefGrid(topic.reference.read)}` : ''}
         ${topic.reference && topic.reference.watchListen && topic.reference.watchListen.length ? `<div class="section-label">External resources</div>${renderRefGrid(topic.reference.watchListen)}` : ''}
       </div>
@@ -381,7 +381,7 @@
     main.innerHTML = `
       <div class="hero">
         <h1>Learn French systematically from beginner to expert</h1>
-        <p>Pick a curriculum level below or explore modules in the sidebar. Each topic includes clear visual references, core explanations, an embedded video lesson, and a short test that gates your progression.</p>
+        <p>Pick a curriculum level below or explore modules in the sidebar. Each topic includes clear visual references, core explanations, a curated video lesson card, and a short test that gates your progression.</p>
         
         <div class="hero-level-box">
           <div>

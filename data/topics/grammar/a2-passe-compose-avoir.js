@@ -33,7 +33,8 @@
     reference: {
       video: {
         "title": "Le Pass\u00e9 Compos\u00e9 avec AVOIR",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/mC-8L6x0m3o",
+        "watchUrl": "https://www.youtube.com/watch?v=mC-8L6x0m3o",
+        "videoId": "mC-8L6x0m3o",
         "channel": "Learn French with Alexa",
         "note": "How to form past participles (-\u00e9, -i, -u) and conjugate with avoir."
 },

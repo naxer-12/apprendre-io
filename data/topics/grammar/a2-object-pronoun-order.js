@@ -33,7 +33,8 @@
     reference: {
       video: {
         "title": "L'Ordre des Pronoms Compl\u00e9ments en Fran\u00e7ais",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/M3XoVb5_x4Q",
+        "watchUrl": "https://www.youtube.com/watch?v=M3XoVb5_x4Q",
+        "videoId": "M3XoVb5_x4Q",
         "channel": "Fran\u00e7ais avec Pierre",
         "note": "Visual rules for placing multiple pronouns (me le, lui en, etc.) before the verb."
 },

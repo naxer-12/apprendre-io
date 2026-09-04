@@ -68,7 +68,8 @@
     reference: {
       video: {
         "title": "The French Alphabet (L'alphabet fran\u00e7ais)",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/5auM5n_x9qU",
+        "watchUrl": "https://www.youtube.com/watch?v=5auM5n_x9qU",
+        "videoId": "5auM5n_x9qU",
         "channel": "Learn French with Alexa",
         "note": "Listen to the complete French alphabet with standard pronunciation and mouth shapes."
 },

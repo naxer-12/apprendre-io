@@ -40,7 +40,8 @@
     reference: {
       video: {
         "title": "Le Futur Proche (Near Future Tense in French)",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/7X8m-M4_f8E",
+        "watchUrl": "https://www.youtube.com/watch?v=7X8m-M4_f8E",
+        "videoId": "7X8m-M4_f8E",
         "channel": "Learn French with Alexa",
         "note": "How to talk about upcoming plans easily using aller + infinitive."
 },

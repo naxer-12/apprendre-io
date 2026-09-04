@@ -146,7 +146,8 @@ Each topic file assigns directly into `window.TOPICS[id]`:
   reference: {
     video: {
       title: "Definite and Indefinite Articles in French",
-      embedUrl: "https://www.youtube-nocookie.com/embed/...",
+      watchUrl: "https://www.youtube.com/watch?v=...",
+      videoId: "...",
       channel: "Learn French with Alexa",
       note: "..."
     },

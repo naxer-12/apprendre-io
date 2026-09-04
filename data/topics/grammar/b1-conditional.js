@@ -56,7 +56,8 @@
     reference: {
       video: {
         "title": "Le Conditionnel Pr\u00e9sent en Fran\u00e7ais",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/z1X2y3W4v5u",
+        "watchUrl": "https://www.youtube.com/watch?v=z1X2y3W4v5u",
+        "videoId": "z1X2y3W4v5u",
         "channel": "Fran\u00e7ais avec Pierre",
         "note": "Polite requests, advice, and hypothetical situations with si clauses."
 },

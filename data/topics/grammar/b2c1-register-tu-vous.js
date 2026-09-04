@@ -55,7 +55,8 @@
     reference: {
       video: {
         "title": "Tu ou Vous ? Quand tutoyer et quand vouvoyer en France",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/m1N2o3P4q5r",
+        "watchUrl": "https://www.youtube.com/watch?v=m1N2o3P4q5r",
+        "videoId": "m1N2o3P4q5r",
         "channel": "Fran\u00e7ais Authentique",
         "note": "Real cultural etiquette, social distance, workplace customs, and shifting register."
 },

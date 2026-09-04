@@ -46,7 +46,8 @@
     reference: {
       video: {
         title: "French Listening Practice for Beginners (A1)",
-        embedUrl: "https://www.youtube-nocookie.com/embed/5a4GvhZ1u8g",
+        "watchUrl": "https://www.youtube.com/watch?v=5a4GvhZ1u8g",
+        "videoId": "5a4GvhZ1u8g",
         channel: "FrenchPod101",
         note: "Daily conversational listening scenarios with native audio and transcriptions."
       },

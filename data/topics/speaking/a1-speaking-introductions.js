@@ -48,7 +48,8 @@
     reference: {
       video: {
         title: "How to Introduce Yourself in French",
-        embedUrl: "https://www.youtube-nocookie.com/embed/6iWJcQG1b0s",
+        "watchUrl": "https://www.youtube.com/watch?v=6iWJcQG1b0s",
+        "videoId": "6iWJcQG1b0s",
         channel: "Learn French with Alexa",
         note: "Step-by-step pronunciation guide for introducing your name, origin, job, and hobbies."
       },

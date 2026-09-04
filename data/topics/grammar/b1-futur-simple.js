@@ -59,7 +59,8 @@
     reference: {
       video: {
         "title": "Le Futur Simple : R\u00e8gle, Terminaisons et Verbes Irr\u00e9guliers",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/F4qGg0X1v7o",
+        "watchUrl": "https://www.youtube.com/watch?v=F4qGg0X1v7o",
+        "videoId": "F4qGg0X1v7o",
         "channel": "Fran\u00e7ais avec Pierre",
         "note": "Forming the simple future with stem modifications for high-frequency irregular verbs."
 },

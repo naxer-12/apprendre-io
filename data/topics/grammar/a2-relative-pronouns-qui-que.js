@@ -33,7 +33,8 @@
     reference: {
       video: {
         "title": "QUI ou QUE ? Les Pronoms Relatifs Simples",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/o0C5bI8Uq6Q",
+        "watchUrl": "https://www.youtube.com/watch?v=o0C5bI8Uq6Q",
+        "videoId": "o0C5bI8Uq6Q",
         "channel": "Fran\u00e7ais avec Pierre",
         "note": "The definitive guide to distinguishing between subject qui and direct object que."
 },

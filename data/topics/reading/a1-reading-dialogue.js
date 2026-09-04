@@ -51,7 +51,8 @@
     reference: {
       video: {
         title: "Ordering Food & Drinks at a French Café",
-        embedUrl: "https://www.youtube-nocookie.com/embed/g_y6P51T3l0",
+        "watchUrl": "https://www.youtube.com/watch?v=g_y6P51T3l0",
+        "videoId": "g_y6P51T3l0",
         channel: "Learn French with Alexa",
         note: "Real café vocabulary, authentic dialogue pronunciation, and cultural etiquette."
       },

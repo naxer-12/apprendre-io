@@ -36,7 +36,8 @@
     reference: {
       video: {
         "title": "French Reflexive Verbs (Les Verbes Pronominaux)",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/T0mH8oE8fbc",
+        "watchUrl": "https://www.youtube.com/watch?v=T0mH8oE8fbc",
+        "videoId": "T0mH8oE8fbc",
         "channel": "Learn French with Alexa",
         "note": "Conjugating reflexive verbs like se lever, se laver, and everyday daily routines."
 },

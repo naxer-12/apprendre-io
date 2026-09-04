@@ -57,7 +57,8 @@
     reference: {
       video: {
         "title": "COD et COI : Ne faites plus l'erreur !",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/k5J6h7G8f9e",
+        "watchUrl": "https://www.youtube.com/watch?v=k5J6h7G8f9e",
+        "videoId": "k5J6h7G8f9e",
         "channel": "Fran\u00e7ais avec Pierre",
         "note": "Direct vs indirect pronouns, identifying verbs with \u00e0, and pronoun substitution."
 },

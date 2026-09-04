@@ -130,7 +130,8 @@ Persistence key in `localStorage`: `apprendre-io:theme`.
 - **Feedback 5 & Rollback:**
   - User inquired about fullstack backend/auth, but immediately instructed: *"please rollback this changes"*.
   - Clean rollback completed: experimental backend branch was deleted, returning repository to pure static client-side architecture.
-  - Finalized clean removal of all legacy iframe CSS, hardened thumbnail degradation, and documented takeover handoff.
+  - Finalized clean removal of all legacy iframe CSS and embed URLs. Converted all 28 topic data files to use `watchUrl` and `videoId`.
+  - Added cache-busting headers and query parameters (`?v=2`) across all scripts and stylesheets in `index.html` to prevent stale browser caching.
 
 ---
 

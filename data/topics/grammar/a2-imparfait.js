@@ -35,7 +35,8 @@
     reference: {
       video: {
         "title": "L'Imparfait en Fran\u00e7ais : Formation et Utilisation",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/hJqg6iPqj9A",
+        "watchUrl": "https://www.youtube.com/watch?v=hJqg6iPqj9A",
+        "videoId": "hJqg6iPqj9A",
         "channel": "Fran\u00e7ais avec Pierre",
         "note": "Forming the imperfect tense and contrasting it with pass\u00e9 compos\u00e9."
 },

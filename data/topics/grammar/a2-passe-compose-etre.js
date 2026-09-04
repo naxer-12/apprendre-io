@@ -33,7 +33,8 @@
     reference: {
       video: {
         "title": "Le Pass\u00e9 Compos\u00e9 avec \u00caTRE (DR & MRS VANDERTRAMP)",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/N-0wXqU5Hl8",
+        "watchUrl": "https://www.youtube.com/watch?v=N-0wXqU5Hl8",
+        "videoId": "N-0wXqU5Hl8",
         "channel": "Learn French with Alexa",
         "note": "Motion and state-change verbs that take \u00eatre with subject agreement."
 },

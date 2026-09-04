@@ -65,7 +65,7 @@ for (const [id, topic] of Object.entries(window.TOPICS)) {
   topic.test.questions.forEach((q, qi) => {
     assert.ok(q.opts.includes(q.a), `Topic ${id} Q${qi+1} answer '${q.a}' must be in opts`);
   });
-  assert.ok(topic.reference.video && topic.reference.video.embedUrl, `Topic ${id} must have a video embedUrl`);
+  assert.ok(topic.reference.video && topic.reference.video.watchUrl && topic.reference.video.videoId, `Topic ${id} must have a video watchUrl and videoId`);
 }
 
 // 3. Verify prerequisite chain for Grammar

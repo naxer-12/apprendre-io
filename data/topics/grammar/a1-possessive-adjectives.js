@@ -40,7 +40,8 @@
     reference: {
       video: {
         "title": "French Possessive Adjectives (mon, ma, mes, ton, ta, tes, etc.)",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/tM0N5vE1A6k",
+        "watchUrl": "https://www.youtube.com/watch?v=tM0N5vE1A6k",
+        "videoId": "tM0N5vE1A6k",
         "channel": "Learn French with Alexa",
         "note": "Understand how possessive adjectives match the noun's gender rather than the owner."
 },

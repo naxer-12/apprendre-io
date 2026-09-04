@@ -57,7 +57,8 @@
     reference: {
       video: {
         "title": "Le Subjonctif Pass\u00e9 et Synth\u00e8se Indicatif vs Subjonctif",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/g1H2i3J4k5l",
+        "watchUrl": "https://www.youtube.com/watch?v=g1H2i3J4k5l",
+        "videoId": "g1H2i3J4k5l",
         "channel": "Fran\u00e7ais avec Pierre",
         "note": "Prior actions in the subjunctive mood and distinguishing nuance between belief and doubt."
 },

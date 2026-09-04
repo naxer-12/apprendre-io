@@ -44,7 +44,8 @@
     reference: {
       video: {
         "title": "Partitive Articles in French (du, de la, de l', des)",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/yF-4vR7gC18",
+        "watchUrl": "https://www.youtube.com/watch?v=yF-4vR7gC18",
+        "videoId": "yF-4vR7gC18",
         "channel": "Learn French with Alexa",
         "note": "How to say 'some' or express unspecified food and drink quantities."
 },

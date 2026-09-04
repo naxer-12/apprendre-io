@@ -62,7 +62,8 @@
     reference: {
       video: {
         "title": "French Numbers 1 to 20 (Les nombres de 1 \u00e0 20)",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/Dma28MvE_wY",
+        "watchUrl": "https://www.youtube.com/watch?v=Dma28MvE_wY",
+        "videoId": "Dma28MvE_wY",
         "channel": "Learn French with Alexa",
         "note": "Clear native pronunciation of numbers 0 to 20 including liaison pronunciation rules."
 },

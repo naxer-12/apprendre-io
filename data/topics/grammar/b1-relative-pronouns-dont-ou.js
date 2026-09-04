@@ -55,7 +55,8 @@
     reference: {
       video: {
         "title": "Les Pronoms Relatifs DONT et O\u00d9",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/p1Q2r3S4t5u",
+        "watchUrl": "https://www.youtube.com/watch?v=p1Q2r3S4t5u",
+        "videoId": "p1Q2r3S4t5u",
         "channel": "Fran\u00e7ais avec Pierre",
         "note": "How to replace prepositional de phrases with dont, and express locations or time with o\u00f9."
 },

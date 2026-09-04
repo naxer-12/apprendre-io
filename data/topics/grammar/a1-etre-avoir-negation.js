@@ -55,7 +55,8 @@
     reference: {
       video: {
         "title": "The Verbs \u00caTRE and AVOIR in Present Tense + Negation",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/Jc6zH1m9qZg",
+        "watchUrl": "https://www.youtube.com/watch?v=Jc6zH1m9qZg",
+        "videoId": "Jc6zH1m9qZg",
         "channel": "Learn French with Alexa",
         "note": "Conjugation of \u00eatre & avoir, and how to form standard negation using ne...pas."
 },

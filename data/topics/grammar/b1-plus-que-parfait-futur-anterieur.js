@@ -56,7 +56,8 @@
     reference: {
       video: {
         "title": "Le Plus-que-Parfait et le Futur Ant\u00e9rieur",
-        "embedUrl": "https://www.youtube-nocookie.com/embed/d2X3y4W5v6u",
+        "watchUrl": "https://www.youtube.com/watch?v=d2X3y4W5v6u",
+        "videoId": "d2X3y4W5v6u",
         "channel": "Fran\u00e7ais avec Pierre",
         "note": "Mastering compound past and future tenses along a timeline."
 },
