@@ -6,7 +6,7 @@
     level: "A1",
     title: "Partitive Articles (du/de la/des)",
     order: 8,
-    requires: "a1-possessive-adjectives",
+    requires: "a1-articles",
     visual: {
       kind: "table",
       data: {

@@ -6,7 +6,7 @@
     level: "A1",
     title: "Articles & Gender of Nouns",
     order: 1,
-    requires: null,
+    requires: "a1-alphabet",
     visual: {
       kind: "card-grid",
       data: [

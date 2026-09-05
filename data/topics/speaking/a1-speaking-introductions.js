@@ -6,7 +6,7 @@
     level: "A1",
     title: "Self-Introductions & Spoken French",
     order: 1,
-    requires: null,
+    requires: "a1-greetings",
     visual: {
       kind: "card-grid",
       data: [

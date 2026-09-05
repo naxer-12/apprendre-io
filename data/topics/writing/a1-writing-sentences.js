@@ -6,7 +6,7 @@
     level: "A1",
     title: "Building Simple Sentences: Subject + Verb + Object",
     order: 1,
-    requires: null,
+    requires: "a1-reading-dialogue",
     visual: {
       kind: "table",
       data: {

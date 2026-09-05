@@ -1,10 +1,10 @@
 # Product Requirements Document (PRD) — Apprendre.io
 
 **Product Name:** Apprendre.io  
-**Document Version:** 2.0.0  
+**Document Version:** 3.0.0  
 **Status:** Approved & Implemented  
 **Target Audience:** Engineering Managers, Product Managers, Agentic Workers, Contributing Engineers  
-**Last Updated:** September 2026  
+**Last Updated:** September 2026 (Feedback 8: local auth, Beginner pathway reorg, original worksheets, streaks)  
 
 ---
 
@@ -49,12 +49,13 @@ The technical architecture is strictly **vanilla HTML/CSS/JavaScript with zero b
 ## 4. Feature Specifications
 
 ### 4.1 Pathway & Level Scoping (Feature F1)
-- **Description:** A prominent level selector (**Beginner**, **Intermediate**, **Expert**) available in the header and overview dashboard.
+- **Description:** A prominent level selector (**Beginner**, **Intermediate**, **Expert**) available in the header, and chosen once during onboarding right after sign-up.
 - **Behavior:**
   - Persisted in `localStorage` (`apprendre-io:user-level`).
   - Scopes curriculum badges, sidebar hierarchy, and overview metrics to the selected tier.
-  - When a user selects **Beginner**, the entire learning experience revolves around A1/A2 across all active modules (Vocabulary, Grammar, Reading, Writing, Speaking, Listening).
-  - Passing each topic's test sequentially unlocks the next topic; completing A1 unlocks A2 topics.
+  - When a user selects **Beginner**, the entire learning experience revolves around A1/A2 across all active modules (Vocabulary, Grammar, Reading, Writing, Speaking, Listening) — and, per ADR-011, the sidebar shows a cross-module **recommended pathway** (`data/pathways.js`) instead of the raw per-skill module tree.
+  - Intermediate and Expert still see the original per-module tree.
+  - Passing each topic's test sequentially unlocks the next topic per its `requires` chain (which, for Beginner, now follows the pathway order rather than a per-module order — see ADR-011).
 
 ### 4.2 Strict Progression Gating Engine (Feature F2)
 - **Engine File:** `progress.js` (pure function module, 100% test-covered in Node.js).
@@ -76,15 +77,22 @@ Every topic page implements a standardized 4-stage pedagogical loop:
 
 ### 4.4 Multi-Theme Accessibility System (Feature F4)
 - **Description:** 5 purpose-built, WCAG AAA compliant color themes selectable via a header dropdown and persisted in `localStorage` (`apprendre-io:theme`):
-  1. **Light (Clean Slate):** Deep charcoal ink (`#0F172A`) on crisp white (`#FFFFFF`) with slate borders, resolving all low-contrast visibility issues.
+  1. **Light (Warm, default):** Cream ground (`#FFFBF5`) with warm ink (`#2B2016`) and amber accent (`#B45309`) — redesigned per ADR-010 from the earlier cool-blue "documentation-like" look to a warmer, editorial feel.
   2. **Dark (OLED Midnight):** Pure deep dark background (`#090D16`) with high-contrast text and luminous blue accents.
   3. **Sepia (Warm Book Paper):** Gentle parchment ground (`#FAF6ED`) with espresso text (`#261F18`) and warm amber accents for strain-free reading.
   4. **Nordic (Arctic Slate Navy):** Deep navy (`#0F172A`) with frosty slate surfaces and sky-blue highlights.
   5. **Matcha (Forest Botanical):** Calming soft green ground (`#F4F7F4`) with deep forest ink (`#112217`) and emerald accents.
+- **Typography:** Fraunces (headings/brand), Inter (body/UI), Source Code Pro (mono/phonetics) across every theme.
 
-### 4.5 Active Recall Practice Mode (Feature F5)
-- **Route:** `#/practice`
-- **Description:** A dedicated flashcard study screen allowing users to tap and flip cards covering essential vocabulary, verb paradigms, and syntactic rules. Provides immediate feedback without passive recognition bias.
+### 4.5 Simulated Local Authentication & Onboarding (Feature F5)
+- **Description:** A basic sign-up/sign-in gate (username + password) blocks the app shell until a session exists. First-time accounts land on a one-time onboarding screen to pick their level (§4.1) before entering the app.
+- **Behavior:** Implemented entirely in `auth.js` against `localStorage` — passwords are hashed (SHA-256 via Web Crypto, non-cryptographic fallback off-`https`) but **this is not real security** (see ADR-011). No server, no database.
+
+### 4.6 Original Adult-Level Practice Worksheets (Feature F6)
+- **Description:** Each of the 3 Vocabulary topics links to an in-app worksheet page (`#/worksheet/:topicId`) with 5-7 original exercises plus a toggleable answer key, written for adults with prior language-learning experience (register/pragmatics, real numbers-in-context, spelling-and-dictation) rather than tracing/coloring exercises for children (see ADR-013).
+
+### 4.7 Learning Streak Tracking (Feature F7)
+- **Description:** Completing any topic's short test (pass or fail) records a day of activity. A header badge shows the current streak; the overview page shows a 7-day activity strip plus current/longest streak stats (see ADR-014).
 
 ---
 
@@ -93,27 +101,28 @@ Every topic page implements a standardized 4-stage pedagogical loop:
 ### 5.1 File Structure
 ```
 apprendre-io/
-├── index.html                     # Main application shell and script loader
+├── index.html                     # App shell, script loader (authRoot + #app)
 ├── styles.css                     # Complete multi-theme design system & component styles
-├── progress.js                    # Pure functional progress/gating engine (Node & browser compatible)
-├── app.js                         # Hash-based client router, rendering engine, and event handlers
+├── progress.js                    # Pure functional progress/gating/streak engine (Node & browser compatible)
+├── auth.js                        # Simulated local auth (localStorage only, no server — see ADR-010)
+├── app.js                         # Hash-based client router, rendering engine, auth-gated boot(), event handlers
+├── package.json                   # `npm test` / `npm start` scripts; zero dependencies
 ├── docs/
-│   ├── PRD.md                     # This document
-│   └── superpowers/
-│       ├── specs/                 # Architecture design specs
-│       └── plans/                 # Detailed task execution plans
+│   └── PRD.md                     # This document
 ├── data/
-│   ├── modules.js                 # Module metadata and topic sequence registry
+│   ├── modules.js                 # Module metadata and per-skill topic sequence registry
+│   ├── pathways.js                # Beginner cross-module recommended sidebar sequence (ADR-011)
 │   └── topics/
-│       ├── vocabulary/            # A1 Vocabulary topics (Alphabet, Numbers, Greetings)
+│       ├── vocabulary/            # A1 Vocabulary topics (Alphabet, Numbers, Greetings) — each has a worksheet
 │       ├── grammar/               # A1 -> C1 Grammar curriculum (21 topics)
 │       ├── reading/               # A1 Reading comprehension dialogues
 │       ├── writing/               # A1 Sentence construction & syntax
 │       ├── speaking/              # A1 Spoken French & self-introductions
 │       └── listening/             # A1 Audio comprehension & ear training
 └── test/
-    ├── progress.test.js           # Unit tests for gating and persistence
-    ├── data.test.js               # Data validation for all 28 topics and video embeds
+    ├── progress.test.js           # Unit tests for gating, persistence, and streaks
+    ├── auth.test.js               # Unit tests for simulated sign-up/sign-in/session
+    ├── data.test.js               # Data validation for all 28 topics, video embeds, prerequisite DAG, pathway coverage
     └── e2e-simulation.test.js     # End-to-end DOM, routing, and gating simulation
 ```
 
@@ -207,6 +216,31 @@ Each topic file assigns directly into `window.TOPICS[id]`:
 - **Decision:** Add a dedicated callout card in Stage 2 linking learners to Stage 4 ("where you can get more details for further topic and study") with smooth scrolling and highlight pulse animation. Concurrently, remove the Practice tab and quick practice CTA from the interface per user request.
 - **Rationale:** Clarifies the instructional architecture (Stage 2 covers the essential gist; Stage 4 provides exhaustive reference material) and streamlines navigation by focusing the learner on the sequential curriculum.
 
+### ADR-010: Warm Editorial Redesign (Fraunces / Inter / Source Code Pro)
+- **Date:** 2026-09-05
+- **Decision:** Replace the IBM Plex Sans/Mono + Manrope type system and cool-blue default palette with Fraunces (headings), Inter (body/UI), Source Code Pro (mono/phonetics), and a warm cream/amber default theme.
+- **Rationale:** User feedback described the prior look as reading like documentation rather than a guided course, and requested a redesign inspired by brilliant.org. Brilliant's actual fonts (CoFo Robert/CoFo Brilliant) are proprietary; Fraunces/Inter are the closest freely-licensable match to that serif-heading/sans-body pairing.
+
+### ADR-011: Simulated Local Authentication (Not a Real Backend)
+- **Date:** 2026-09-05
+- **Decision:** Add a sign-up/sign-in gate implemented entirely client-side (`auth.js`), storing hashed credentials in `localStorage`. Explicitly not a real backend or database.
+- **Rationale:** The user asked for "sign in and sign up... a basic authentication page... and that's it" — a UX gate and personalization mechanism, not production auth. This follows directly from ADR-002 and avoids repeating the Feedback 5 cycle (a real backend was built, then immediately rolled back). If real accounts are ever needed, this module should be replaced outright, not extended.
+
+### ADR-012: Beginner Cross-Module Recommended Pathway
+- **Date:** 2026-09-05
+- **Decision:** For `userLevel === 'beginner'` only, render the sidebar from `data/pathways.js` — 8 thematic units interleaving Vocabulary, Grammar, Reading, Writing, Speaking, and Listening — and update the affected topics' `requires` chains to match. Intermediate/Expert keep the original per-module tree.
+- **Rationale:** The prior structure gated all of a module's topics strictly within that module (e.g. all 8 A1 grammar topics in a row), and vocabulary's own order put "Greetings" third behind "Numbers" — contradicting common A1 course sequencing, where greetings/introductions come first. The new order follows patterns from published A1 syllabi (greetings → naming/articles → pronouns → core verbs → numbers → applied skills → A2 past tenses). Reading/Writing/Speaking/Listening's four A1 topics, previously ungated (`requires: null`, effectively optional extras), are now woven into the sequence.
+
+### ADR-013: Original Adult-Level Worksheets Replacing External Links
+- **Date:** 2026-09-05
+- **Decision:** Replace the 3 Vocabulary topics' external worksheet PDF links with original in-app exercises + answer key, rendered at `#/worksheet/:topicId`.
+- **Rationale:** The initially-linked external worksheets (letter-tracing PDFs, counting/coloring sheets) were correctly flagged by the user as written for children learning to read/write for the first time, not adults with prior language-learning experience. Authoring original content sidesteps both the register mismatch and the reachability/quality-control risk of external links (several otherwise-reasonable candidates returned HTTP 403 to verification tooling), consistent with the zero-unavailable-content spirit of ADR-007.
+
+### ADR-014: Learning Streak Tracking
+- **Date:** 2026-09-05
+- **Decision:** Extend `progress.js` with `recordActivity()`, tracking `current`/`longest` streak and a per-day `history` map, keyed off the same `localStorage` progress object. A completed quiz attempt (pass or fail) counts as a day of activity. Surfaced via a header flame badge and a 7-day activity strip on the overview page.
+- **Rationale:** Gives learners a lightweight, always-visible motivation signal without adding gamification mechanics (points, leaderboards) beyond what was asked for.
+
 ---
 
 ## 7. Implementation & Task Tracking Matrix
@@ -229,6 +263,10 @@ Each topic file assigns directly into `window.TOPICS[id]`:
 | **TSK-14** | Deep-Dive Links | Stage 2 to Stage 4 smooth scroll and study references | Completed | `test/e2e-simulation.test.js` (PASSED) |
 | **TSK-15** | UI Animations | Keyframe animations, hover transforms, and quiz feedback | Completed | Verified in styles.css & browser |
 | **TSK-16** | Practice Removal | Removal of Practice tab and CTA per user request | Completed | `test/e2e-simulation.test.js` (PASSED) |
+| **TSK-17** | Warm Redesign | Fraunces/Inter/Source Code Pro type system, warm palette, removal of the redundant Active Pathway card | Completed | Verified in browser & test suite |
+| **TSK-18** | Local Auth & Onboarding | `auth.js` sign-up/sign-in gate + one-time level-picker onboarding screen | Completed | `test/auth.test.js` (PASSED), verified in browser |
+| **TSK-19** | Beginner Pathway Reorg | `data/pathways.js` cross-module sidebar sequence + updated `requires` chains | Completed | `test/data.test.js` pathway/DAG assertions (PASSED) |
+| **TSK-20** | Original Worksheets & Streaks | In-app adult-level worksheets (`#/worksheet/:topicId`) and streak tracking (badge + 7-day strip) | Completed | `test/data.test.js`, `test/progress.test.js` (PASSED), verified in browser |
 
 ---
 
@@ -238,3 +276,4 @@ Each topic file assigns directly into `window.TOPICS[id]`:
 2. **Audio Dictation Input:** Leveraging the Web Speech API's `SpeechRecognition` for spoken voice grading in the Speaking module.
 3. **FSRS-Based Spaced Repetition Scheduling:** Reintroducing Practice mode powered by the Free Spaced Repetition Scheduler (FSRS) algorithm for optimal review intervals.
 4. **Data Export/Import:** Allowing users to backup and restore their `localStorage` learning history via JSON.
+5. **Extend the Pathway concept to Intermediate/Expert:** Currently only Beginner gets the cross-module recommended sidebar (ADR-012); Intermediate/Expert still use the per-module tree.

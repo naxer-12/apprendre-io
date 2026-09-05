@@ -6,7 +6,7 @@
     level: "A1",
     title: "First French Conversations: Audio Comprehension",
     order: 1,
-    requires: null,
+    requires: "a1-writing-sentences",
     visual: {
       kind: "card-grid",
       data: [

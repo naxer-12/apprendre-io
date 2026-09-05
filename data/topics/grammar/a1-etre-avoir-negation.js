@@ -6,7 +6,7 @@
     level: "A1",
     title: "Être, Avoir & Negation",
     order: 2,
-    requires: "a1-articles",
+    requires: "a1-speaking-introductions",
     visual: {
       kind: "table",
       data: {

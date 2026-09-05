@@ -6,7 +6,7 @@
     level: "A1",
     title: "Subject & Object Pronouns, Intro",
     order: 4,
-    requires: "a1-present-tense",
+    requires: "a1-partitive-articles",
     visual: {
       kind: "table",
       data: {

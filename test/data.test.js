@@ -8,6 +8,7 @@ globalThis.MODULES = [];
 
 require("../progress.js");
 require("../data/modules.js");
+require("../data/pathways.js");
 
 const vocabFiles = [
   "a1-alphabet.js", "a1-numbers.js", "a1-greetings.js"
@@ -66,14 +67,50 @@ for (const [id, topic] of Object.entries(window.TOPICS)) {
     assert.ok(q.opts.includes(q.a), `Topic ${id} Q${qi+1} answer '${q.a}' must be in opts`);
   });
   assert.ok(topic.reference.video && topic.reference.video.watchUrl && topic.reference.video.videoId, `Topic ${id} must have a video watchUrl and videoId`);
+
+  const worksheet = topic.reference.worksheet;
+  if (worksheet) {
+    assert.ok(worksheet.title, `Topic ${id} worksheet must have a title`);
+    assert.ok(Array.isArray(worksheet.exercises) && worksheet.exercises.length > 0, `Topic ${id} worksheet must have exercises`);
+    worksheet.exercises.forEach((ex, ei) => {
+      assert.ok(ex.q, `Topic ${id} worksheet exercise ${ei + 1} must have a question`);
+      assert.ok(ex.answer, `Topic ${id} worksheet exercise ${ei + 1} must have an answer`);
+    });
+  }
 }
 
-// 3. Verify prerequisite chain for Grammar
-let prevGrammarId = null;
-for (const topicId of grammarMod.topics) {
-  const topic = window.TOPICS[topicId];
-  assert.strictEqual(topic.requires, prevGrammarId, `Topic ${topicId} requires should be ${prevGrammarId}`);
-  prevGrammarId = topicId;
+// 3. Verify the prerequisite graph is valid: every `requires` points to a
+// real topic, and there are no cycles (each chain terminates at a root).
+// Topics can cross module boundaries (e.g. the Beginner pathway interleaves
+// vocabulary/grammar/reading/writing/speaking/listening), so this checks
+// graph validity rather than a fixed per-module order.
+for (const [id, topic] of Object.entries(window.TOPICS)) {
+  if (topic.requires === null) continue;
+  assert.ok(window.TOPICS[topic.requires], `Topic ${id} requires unknown topic '${topic.requires}'`);
+
+  const seen = new Set([id]);
+  let cursor = topic.requires;
+  while (cursor !== null) {
+    assert.ok(!seen.has(cursor), `Cycle detected in prerequisite chain starting at ${id}`);
+    seen.add(cursor);
+    const cursorTopic = window.TOPICS[cursor];
+    assert.ok(cursorTopic, `Topic ${id}'s prerequisite chain references unknown topic '${cursor}'`);
+    cursor = cursorTopic.requires;
+  }
 }
 
-console.log("data.test.js: All 28 topics and video references validated successfully!");
+// 4. Verify the Beginner pathway (data/pathways.js) only references real,
+// unique topic IDs and matches the 20 Beginner-scoped topics exactly.
+assert.ok(Array.isArray(window.PATHWAYS && window.PATHWAYS.beginner), "window.PATHWAYS.beginner must be an array");
+const pathwayTopicIds = window.PATHWAYS.beginner.flatMap(u => u.topics);
+assert.strictEqual(new Set(pathwayTopicIds).size, pathwayTopicIds.length, "Beginner pathway must not repeat a topic id");
+pathwayTopicIds.forEach(id => {
+  assert.ok(window.TOPICS[id], `Beginner pathway references unknown topic '${id}'`);
+});
+const beginnerScopedIds = Object.values(window.TOPICS)
+  .filter(t => t.level === 'A1' || t.level === 'A2')
+  .map(t => t.id)
+  .sort();
+assert.deepStrictEqual([...pathwayTopicIds].sort(), beginnerScopedIds, "Beginner pathway must cover exactly the A1+A2 topics");
+
+console.log("data.test.js: All 28 topics, video references, and the prerequisite/pathway graph validated successfully!");

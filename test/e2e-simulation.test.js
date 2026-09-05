@@ -48,8 +48,9 @@ globalThis.document = {
   addEventListener() {}
 };
 
-// 1. Load progress
+// 1. Load progress and auth
 require("../progress.js");
+require("../auth.js");
 
 // 2. Load all topics
 ["vocabulary", "grammar", "reading", "writing", "speaking", "listening"].forEach(dir => {
@@ -59,6 +60,7 @@ require("../progress.js");
 
 // 3. Load modules
 require("../data/modules.js");
+require("../data/pathways.js");
 
 // 4. Load app
 require("../app.js");
@@ -96,10 +98,11 @@ assert.ok(elements.main.innerHTML.includes('id="stage-reference"'), "Stage 4 mus
 // Test speech synthesis pronunciation engine
 assert.strictEqual(typeof window.speak, "function", "window.speak must be exported as a function");
 
-// Test gating progression
-const t1 = window.TOPICS["a1-articles"];
-const t2 = window.TOPICS["a1-etre-avoir-negation"];
-assert.strictEqual(window.Progress.isUnlocked(t1, window.Progress.loadProgress(localStorage)), true, "Topic 1 is initially unlocked");
+// Test gating progression along the Beginner pathway's actual root chain
+// (a1-greetings -> a1-speaking-introductions), not the old per-module order.
+const t1 = window.TOPICS["a1-greetings"];
+const t2 = window.TOPICS["a1-speaking-introductions"];
+assert.strictEqual(window.Progress.isUnlocked(t1, window.Progress.loadProgress(localStorage)), true, "Topic 1 (a1-greetings, the pathway root) is initially unlocked");
 assert.strictEqual(window.Progress.isUnlocked(t2, window.Progress.loadProgress(localStorage)), false, "Topic 2 is initially locked");
 
 // Passing topic 1 with score 4 unlocks topic 2

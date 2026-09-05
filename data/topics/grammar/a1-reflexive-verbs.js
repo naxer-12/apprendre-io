@@ -6,7 +6,7 @@
     level: "A1",
     title: "Reflexive / Pronominal Verbs",
     order: 6,
-    requires: "a1-futur-proche",
+    requires: "a1-present-tense",
     visual: {
       kind: "table",
       data: {

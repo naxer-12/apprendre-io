@@ -6,7 +6,7 @@
     level: "A1",
     title: "Greetings & Politeness",
     order: 3,
-    requires: "a1-numbers",
+    requires: null,
     visual: {
       kind: "card-grid",
       data: [
@@ -51,9 +51,17 @@
     },
     reference: {
       worksheet: {
-        title: "Se saluer & se présenter — Fiche d'exercices",
-        url: "https://www.podcastfrancaisfacile.com/wp-content/uploads/2019/06/se-presenter-_-fiche.pdf",
-        note: "Free A1 practice sheet from Podcast Français Facile — exercises on greeting people and introducing yourself."
+        title: "Register & Real Conversations for Adults",
+        subtitle: "Knowing \"hello\" isn't the hard part — knowing which \"hello\" is.",
+        intro: "The real skill in French greetings isn't memorizing words, it's reading the social situation and picking the right register — the same judgment call you already make instinctively in your own language. These exercises drill that judgment, plus the professional/formal register adults actually need (emails, meetings, strangers).",
+        exercises: [
+          { q: "Match the register to the situation: (a) texting a close friend (b) meeting your boss's boss for the first time (c) greeting a shop clerk (d) greeting a toddler nephew. Which situations call for informal (Salut/Ça va) vs formal (Bonjour/Comment allez-vous) register?", answer: "Informal: (a) close friend, (d) toddler nephew. Formal: (b) boss's boss, (c) shop clerk (neutral/formal default with strangers)." },
+          { q: "Rewrite this text message greeting in the FORMAL register suitable for a work email: \"Salut ! Ça va ?\"", answer: "Bonjour, comment allez-vous ?" },
+          { q: "Fill in the blanks in this formal email: \"___ Madame Girard, ... Je vous prie d'agréer, Madame, ___.\" (opening greeting; formal sign-off equivalent to \"Sincerely\")", answer: "Bonjour / mes salutations distinguées" },
+          { q: "You run into a former professor at a conference. Write a 2-line formal greeting exchange using \"vous\".", answer: "Example: \"Bonjour, Professeur, comment allez-vous ?\" — \"Bonjour ! Je vais très bien, merci, et vous ?\"" },
+          { q: "True or false: \"Salut\" is appropriate when greeting a job interviewer.", answer: "False — use \"Bonjour\" with a stranger in a professional context." },
+          { q: "What's the difference in formality between \"Ça va ?\" and \"Comment allez-vous ?\", and who would you use each with?", answer: "\"Ça va ?\" is informal, for people you know well. \"Comment allez-vous ?\" is formal, for strangers, elders, or professional contexts." }
+        ]
       },
       video: {
         "title": "Greetings in French! Hello, Hi, and Goodbye in French!",

@@ -6,7 +6,7 @@
     level: "A2",
     title: "Passé Composé with avoir",
     order: 10,
-    requires: "a2-relative-pronouns-qui-que",
+    requires: "a1-listening-comprehension",
     visual: {
       kind: "table",
       data: {

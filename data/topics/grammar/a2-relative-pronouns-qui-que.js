@@ -6,7 +6,7 @@
     level: "A2",
     title: "Relative Pronouns: qui / que",
     order: 9,
-    requires: "a1-partitive-articles",
+    requires: "a2-object-pronoun-order",
     visual: {
       kind: "table",
       data: {

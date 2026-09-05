@@ -6,7 +6,7 @@
     level: "A1",
     title: "Au Café: Reading & Dialogue Comprehension",
     order: 1,
-    requires: null,
+    requires: "a1-futur-proche",
     visual: {
       kind: "table",
       data: {

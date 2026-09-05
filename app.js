@@ -13,6 +13,7 @@
   const lockIcon = '<svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V8a4 4 0 018 0v3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
   const dotIcon = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="currentColor"/></svg>';
   const chevIcon = '<svg class="chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const flameIcon = '<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2c1 3-2 4-2 7a3 3 0 0 0 6 0c1 1 2 3 2 5a6 6 0 1 1-12 0c0-4 3-6 4-9 .5-1.5.7-2.3 2-3z"/></svg>';
 
   const LEVEL_KEY = 'apprendre-io:user-level';
   const THEME_KEY = 'apprendre-io:theme';
@@ -197,10 +198,10 @@
     `;
   }
 
-  function renderWorksheetCard(worksheet) {
-    if (!worksheet || !worksheet.url) return '';
+  function renderWorksheetCard(worksheet, topicId) {
+    if (!worksheet || !worksheet.exercises || !worksheet.exercises.length) return '';
     return `
-      <a class="worksheet-link-card" href="${worksheet.url}" target="_blank" rel="noopener noreferrer" aria-label="Open practice worksheet: ${worksheet.title}">
+      <a class="worksheet-link-card" href="#/worksheet/${topicId}" aria-label="Open practice worksheet: ${worksheet.title}">
         <div class="worksheet-card-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -212,11 +213,47 @@
         <div class="worksheet-card-content">
           <span class="worksheet-card-label">Practice worksheet</span>
           <h3 class="worksheet-card-title">${worksheet.title}</h3>
-          ${worksheet.note ? `<p class="worksheet-card-desc">${worksheet.note}</p>` : ''}
+          ${worksheet.subtitle ? `<p class="worksheet-card-desc">${worksheet.subtitle}</p>` : ''}
         </div>
-        <span class="worksheet-cta-btn">Open worksheet ↗</span>
+        <span class="worksheet-cta-btn">Open worksheet →</span>
       </a>
     `;
+  }
+
+  function renderWorksheet(topic) {
+    const worksheet = topic.reference && topic.reference.worksheet;
+    const main = document.getElementById('main');
+    if (!worksheet) {
+      location.hash = `#/${topic.module}/${topic.id}`;
+      return;
+    }
+
+    main.innerHTML = `
+      <a class="worksheet-back" href="#/${topic.module}/${topic.id}">← Back to ${topic.title}</a>
+      <div class="crumb">PRACTICE WORKSHEET</div>
+      <h1 class="lesson-title">${worksheet.title}</h1>
+      ${worksheet.subtitle ? `<p class="lesson-sub worksheet-subtitle">${worksheet.subtitle}</p>` : ''}
+      ${worksheet.intro ? `<p class="stage-desc worksheet-intro">${worksheet.intro}</p>` : ''}
+
+      <ol class="worksheet-exercise-list">
+        ${worksheet.exercises.map(ex => `<li>${ex.q}</li>`).join('')}
+      </ol>
+
+      <div class="worksheet-answer-key">
+        <button class="btn ghost" id="toggleAnswerKey">Show answer key</button>
+        <ol class="worksheet-answer-list" id="answerList" hidden>
+          ${worksheet.exercises.map(ex => `<li>${ex.answer}</li>`).join('')}
+        </ol>
+      </div>
+
+      <footer class="foot">Original practice material written for this course — not an external download.</footer>
+    `;
+
+    document.getElementById('toggleAnswerKey').addEventListener('click', (e) => {
+      const list = document.getElementById('answerList');
+      list.hidden = !list.hidden;
+      e.target.textContent = list.hidden ? 'Show answer key' : 'Hide answer key';
+    });
   }
 
   function scrollToReference(e) {
@@ -341,7 +378,7 @@
         <h2>Check your knowledge</h2>
         <p class="stage-desc">${topic.test.questions.length} questions. Score ${topic.test.passScore}/${topic.test.questions.length} to pass.</p>
         <div id="quizMount"></div>
-        ${topic.reference && topic.reference.worksheet ? renderWorksheetCard(topic.reference.worksheet) : ''}
+        ${topic.reference && topic.reference.worksheet ? renderWorksheetCard(topic.reference.worksheet, topic.id) : ''}
       </div>
 
       <div class="stage" id="stage-reference">
@@ -368,7 +405,9 @@
     document.getElementById('visualMount').appendChild(strToNode(renderVisual(topic)));
     document.getElementById('quizMount').appendChild(renderQuiz(topic, (score) => {
       window.Progress.recordScore(localStorage, topic, score);
+      window.Progress.recordActivity(localStorage);
       renderSidebar();
+      renderHeader();
       const updatedProgress = window.Progress.loadProgress(localStorage);
       const nextBtn = document.getElementById('nextBtn');
       if (next && nextBtn && window.Progress.isUnlocked(next, updatedProgress)) {
@@ -396,6 +435,38 @@
     return div.firstElementChild || div;
   }
 
+  function renderStreakPanel(streak) {
+    const days = [];
+    const todayD = new Date();
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date(todayD);
+      d.setDate(d.getDate() - i);
+      const key = d.toISOString().slice(0, 10);
+      days.push({
+        active: Boolean(streak.history[key]),
+        isToday: i === 0,
+        label: d.toLocaleDateString('en-US', { weekday: 'narrow' })
+      });
+    }
+    return `
+      <div class="streak-panel">
+        <div class="streak-panel-head">
+          <div class="streak-panel-count">${flameIcon}<span>${streak.current}</span><b>day${streak.current === 1 ? '' : 's'} streak</b></div>
+          <div class="streak-panel-best">Longest streak: ${streak.longest} day${streak.longest === 1 ? '' : 's'}</div>
+        </div>
+        <div class="streak-strip">
+          ${days.map(d => `
+            <div class="streak-day ${d.active ? 'active' : ''} ${d.isToday ? 'is-today' : ''}" title="${d.active ? 'Practiced' : 'No activity'}">
+              <span class="streak-day-label">${d.label}</span>
+              <span class="streak-day-dot">${d.active ? flameIcon : ''}</span>
+            </div>
+          `).join('')}
+        </div>
+        <p class="streak-hint">Complete any topic's short test to keep your streak alive — even a retry counts.</p>
+      </div>
+    `;
+  }
+
   function renderOverview() {
     const progress = window.Progress.loadProgress(localStorage);
     const userLevel = getUserLevel();
@@ -411,30 +482,40 @@
         <p>You're on the <b style="color:var(--accent);">${getLevelLabel(userLevel)}</b> pathway — switch levels anytime from the header. Each topic includes clear visual references, core explanations, a curated video lesson card, and a short test that gates your progression.</p>
 
         <div class="cta-row">
-          <button class="btn" id="startGrammarBtn">Start Grammar Course</button>
-          <button class="btn ghost" id="startVocabBtn">Start Vocabulary</button>
+          ${userLevel === 'beginner'
+            ? `<button class="btn" id="startPathwayBtn">Start Learning</button>`
+            : `<button class="btn" id="startGrammarBtn">Start Grammar Course</button>
+               <button class="btn ghost" id="startVocabBtn">Start Vocabulary</button>`}
         </div>
       </div>
 
+      ${renderStreakPanel(progress.streak)}
+
       <div style="display:flex;align-items:center;justify-content:space-between;margin-top:40px;flex-wrap:wrap;gap:12px;">
         <h2 style="font-size:1.4rem;">Curriculum Modules (${getLevelLabel(userLevel)})</h2>
-        <div style="font-family:'IBM Plex Mono';font-size:0.85rem;color:var(--ink-soft);font-weight:700;">
+        <div class="mono" style="font-size:0.85rem;color:var(--ink-soft);font-weight:700;">
           Pathway Completion: ${completedInLevel} / ${levelTopics.length} topics
         </div>
       </div>
 
       <div class="module-grid" id="moduleGrid"></div>
-      <footer class="foot">Apprendre.io — Built for mastery. No build step, no accounts required; your progress stays in your browser.</footer>
+      <footer class="foot">Apprendre.io — Built for mastery. No build step, no server; your account and progress stay in this browser.</footer>
     `;
 
-    document.getElementById('startGrammarBtn').addEventListener('click', () => {
-      if (userLevel === 'expert') location.hash = '#/grammar/b2c1-present-subjunctive';
-      else if (userLevel === 'intermediate') location.hash = '#/grammar/b1-futur-simple';
-      else location.hash = '#/grammar/a1-articles';
-    });
-    document.getElementById('startVocabBtn').addEventListener('click', () => {
-      location.hash = '#/vocabulary/a1-alphabet';
-    });
+    if (userLevel === 'beginner') {
+      document.getElementById('startPathwayBtn').addEventListener('click', () => {
+        const firstTopicId = window.PATHWAYS.beginner[0].topics[0];
+        const firstTopic = window.TOPICS[firstTopicId];
+        location.hash = `#/${firstTopic.module}/${firstTopic.id}`;
+      });
+    } else {
+      document.getElementById('startGrammarBtn').addEventListener('click', () => {
+        location.hash = userLevel === 'expert' ? '#/grammar/b2c1-present-subjunctive' : '#/grammar/b1-futur-simple';
+      });
+      document.getElementById('startVocabBtn').addEventListener('click', () => {
+        location.hash = '#/vocabulary/a1-alphabet';
+      });
+    }
 
     const grid = document.getElementById('moduleGrid');
     window.MODULES.forEach(mod => {
@@ -462,19 +543,29 @@
     });
   }
 
-  function renderSidebar() {
-    const progress = window.Progress.loadProgress(localStorage);
-    const userLevel = getUserLevel();
-    const [, currentTopicId] = currentRoute();
-    const sidebar = document.getElementById('sidebar');
-    
-    sidebar.innerHTML = `
-      <div class="side-title">
-        <span>Curriculum</span>
-        <span class="level-badge">${userLevel.toUpperCase()}</span>
-      </div>
-    `;
+  function makeTopicItemBtn(t, mod, progress, currentTopicId, extraLabel) {
+    const unlocked = window.Progress.isUnlocked(t, progress);
+    const isDone = Boolean(progress.completed[t.id]);
+    const isCurrent = t.id === currentTopicId;
 
+    const btn = document.createElement('button');
+    btn.className = 'topic-item ' + (isDone ? 'done' : isCurrent ? 'current' : unlocked ? '' : 'locked');
+    btn.innerHTML = `
+      <span class="dot">${isDone ? checkIcon : isCurrent ? dotIcon : unlocked ? '' : lockIcon}</span>
+      ${extraLabel ? `<span class="topic-mod-ico" title="${mod.name}">${ICONS[mod.icon] || ''}</span>` : ''}
+      <span>${t.title}</span>
+    `;
+    if (unlocked) {
+      btn.addEventListener('click', () => {
+        location.hash = `#/${mod.id}/${t.id}`;
+      });
+    } else {
+      btn.disabled = true;
+    }
+    return btn;
+  }
+
+  function renderModuleTreeSidebar(sidebar, userLevel, progress, currentTopicId) {
     window.MODULES.forEach(mod => {
       const allModTopics = topicsForModule(mod.id);
       const scopedTopics = filterTopicsByLevel(allModTopics, userLevel);
@@ -484,7 +575,7 @@
 
       const wrap = document.createElement('div');
       wrap.className = 'mod' + (isCurrentMod || mod.id === 'grammar' || mod.id === 'vocabulary' ? ' open' : '');
-      
+
       const head = document.createElement('button');
       head.className = 'mod-head';
       head.innerHTML = `
@@ -514,24 +605,7 @@
           block.innerHTML = `<div class="lvl-head">${level} <span>${levelDone}/${byLevel[level].length}</span></div>`;
 
           byLevel[level].forEach(t => {
-            const unlocked = window.Progress.isUnlocked(t, progress);
-            const isDone = Boolean(progress.completed[t.id]);
-            const isCurrent = t.id === currentTopicId;
-
-            const btn = document.createElement('button');
-            btn.className = 'topic-item ' + (isDone ? 'done' : isCurrent ? 'current' : unlocked ? '' : 'locked');
-            btn.innerHTML = `
-              <span class="dot">${isDone ? checkIcon : isCurrent ? dotIcon : unlocked ? '' : lockIcon}</span>
-              <span>${t.title}</span>
-            `;
-            if (unlocked) {
-              btn.addEventListener('click', () => {
-                location.hash = `#/${mod.id}/${t.id}`;
-              });
-            } else {
-              btn.disabled = true;
-            }
-            block.appendChild(btn);
+            block.appendChild(makeTopicItemBtn(t, mod, progress, currentTopicId, false));
           });
           body.appendChild(block);
         });
@@ -553,6 +627,70 @@
       sidebar.appendChild(wrap);
       sidebar.appendChild(body);
     });
+  }
+
+  function renderPathwaySidebar(sidebar, units, progress, currentTopicId) {
+    const note = document.createElement('div');
+    note.className = 'pathway-note';
+    note.textContent = 'Recommended order — blends vocabulary, grammar & skills practice.';
+    sidebar.appendChild(note);
+
+    units.forEach((unit, ui) => {
+      const unitTopics = unit.topics.map(id => window.TOPICS[id]).filter(Boolean);
+      const done = unitTopics.filter(t => Boolean(progress.completed[t.id])).length;
+      const isCurrentUnit = unitTopics.some(t => t.id === currentTopicId);
+
+      const wrap = document.createElement('div');
+      wrap.className = 'mod' + (isCurrentUnit || ui === 0 ? ' open' : '');
+
+      const head = document.createElement('button');
+      head.className = 'mod-head';
+      head.title = unit.desc || '';
+      head.innerHTML = `
+        <span class="unit-num">${ui + 1}</span>
+        <span>${unit.unit}</span>
+        <span class="mod-frac">${done}/${unitTopics.length}</span>
+        ${chevIcon}
+      `;
+      wrap.appendChild(head);
+
+      const body = document.createElement('div');
+      body.className = 'mod-body';
+      if (!isCurrentUnit && ui !== 0) body.hidden = true;
+
+      unitTopics.forEach(t => {
+        const mod = window.MODULES.find(m => m.id === t.module) || { id: t.module, name: t.module, icon: '' };
+        body.appendChild(makeTopicItemBtn(t, mod, progress, currentTopicId, true));
+      });
+
+      head.addEventListener('click', () => {
+        wrap.classList.toggle('open');
+        body.hidden = !wrap.classList.contains('open');
+      });
+
+      sidebar.appendChild(wrap);
+      sidebar.appendChild(body);
+    });
+  }
+
+  function renderSidebar() {
+    const progress = window.Progress.loadProgress(localStorage);
+    const userLevel = getUserLevel();
+    const [, currentTopicId] = currentRoute();
+    const sidebar = document.getElementById('sidebar');
+
+    sidebar.innerHTML = `
+      <div class="side-title">
+        <span>Curriculum</span>
+        <span class="level-badge">${userLevel.toUpperCase()}</span>
+      </div>
+    `;
+
+    if (userLevel === 'beginner' && window.PATHWAYS && window.PATHWAYS.beginner) {
+      renderPathwaySidebar(sidebar, window.PATHWAYS.beginner, progress, currentTopicId);
+    } else {
+      renderModuleTreeSidebar(sidebar, userLevel, progress, currentTopicId);
+    }
 
     const stat = document.createElement('div');
     stat.className = 'stat-card';
@@ -567,13 +705,21 @@
   function renderHeader() {
     const userLevel = getUserLevel();
     const currentTheme = getStoredTheme() || 'light';
+    const session = window.Auth.getSession(localStorage);
+    const streak = window.Progress.loadProgress(localStorage).streak;
+    const streakActiveToday = streak.lastActiveDate === new Date().toISOString().slice(0, 10);
     const header = document.getElementById('header');
-    
+
     header.innerHTML = `
       <div class="brand" id="brandBtn">
         <div class="brand-mark">A</div>
         <div class="brand-name">Apprendre.io</div>
       </div>
+
+      <button class="streak-badge ${streakActiveToday ? 'active' : ''}" id="streakBadge" title="${streak.current} day${streak.current === 1 ? '' : 's'} streak · longest ${streak.longest}">
+        ${flameIcon}
+        <span>${streak.current}</span>
+      </button>
       
       <div class="header-nav">
         <button class="nav-tab on" id="navLearn">Learn</button>
@@ -595,6 +741,11 @@
             <option value="matcha" ${currentTheme === 'matcha' ? 'selected' : ''}>Matcha</option>
           </select>
         </div>
+
+        <div class="auth-chip">
+          <span class="auth-chip-name">${session || ''}</span>
+          <button class="auth-signout" id="signOutBtn" title="Sign out">Sign out</button>
+        </div>
       </div>
     `;
 
@@ -603,6 +754,13 @@
     });
     document.getElementById('navLearn').addEventListener('click', () => {
       location.hash = '#/overview';
+    });
+    document.getElementById('streakBadge').addEventListener('click', () => {
+      location.hash = '#/overview';
+    });
+    document.getElementById('signOutBtn').addEventListener('click', () => {
+      window.Auth.signOut(localStorage);
+      boot();
     });
 
     header.querySelectorAll('.lvl-btn').forEach(b => {
@@ -650,6 +808,8 @@
     if (moduleId === 'practice') {
       location.hash = '#/overview';
       return;
+    } else if (moduleId === 'worksheet' && topicId && window.TOPICS && window.TOPICS[topicId]) {
+      renderWorksheet(window.TOPICS[topicId]);
     } else if (topicId && window.TOPICS && window.TOPICS[topicId]) {
       renderLesson(window.TOPICS[topicId]);
     } else {
@@ -659,8 +819,126 @@
   }
   window.render = render;
 
-  window.addEventListener('hashchange', render);
-  window.addEventListener('DOMContentLoaded', () => {
+  function renderAuthScreen(mode) {
+    const authRoot = document.getElementById('authRoot');
+    const isSignup = mode === 'signup';
+    authRoot.innerHTML = `
+      <div class="auth-wrap">
+        <div class="auth-card">
+          <div class="auth-brand">
+            <div class="brand-mark">A</div>
+            <div class="brand-name">Apprendre.io</div>
+          </div>
+          <h1 class="display">${isSignup ? 'Create your account' : 'Welcome back'}</h1>
+          <p class="auth-sub">${isSignup
+            ? 'A simple local account to save your level and progress on this device.'
+            : 'Sign in to continue your French pathway.'}</p>
+          <form id="authForm" class="auth-form" novalidate>
+            <label>Username
+              <input type="text" id="authUsername" autocomplete="username" minlength="3" required />
+            </label>
+            <label>Password
+              <input type="password" id="authPassword" autocomplete="${isSignup ? 'new-password' : 'current-password'}" minlength="4" required />
+            </label>
+            <div class="auth-error" id="authError" hidden></div>
+            <button type="submit" class="btn auth-submit">${isSignup ? 'Sign up' : 'Sign in'}</button>
+          </form>
+          <p class="auth-switch">
+            ${isSignup ? "Already have an account?" : "New here?"}
+            <button type="button" class="linklike" id="authSwitch">${isSignup ? 'Sign in' : 'Create an account'}</button>
+          </p>
+          <p class="auth-note">Local demo authentication — your username &amp; password are stored only in this browser (not on a server).</p>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('authSwitch').addEventListener('click', () => {
+      renderAuthScreen(isSignup ? 'signin' : 'signup');
+    });
+
+    document.getElementById('authForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('authUsername').value;
+      const password = document.getElementById('authPassword').value;
+      const errorEl = document.getElementById('authError');
+      const submitBtn = e.target.querySelector('.auth-submit');
+      submitBtn.disabled = true;
+      const result = isSignup
+        ? await window.Auth.signUp(localStorage, username, password)
+        : await window.Auth.signIn(localStorage, username, password);
+      submitBtn.disabled = false;
+
+      if (!result.ok) {
+        errorEl.textContent = result.error;
+        errorEl.hidden = false;
+        return;
+      }
+      boot();
+    });
+  }
+
+  function completeOnboarding(level) {
+    setUserLevel(level);
+    window.Auth.setOnboarded(localStorage);
+    boot();
+  }
+  window.completeOnboarding = completeOnboarding;
+
+  function renderOnboardingScreen() {
+    const authRoot = document.getElementById('authRoot');
+    const session = window.Auth.getSession(localStorage);
+    authRoot.innerHTML = `
+      <div class="auth-wrap">
+        <div class="auth-card onboarding-card">
+          <h1 class="display">Welcome${session ? ', ' + session : ''}. What's your French level?</h1>
+          <p class="auth-sub">Pick a starting point — you can change this anytime from the header.</p>
+          <div class="onboard-options">
+            <button class="onboard-card" data-lvl="beginner">
+              <b>Beginner</b>
+              <span>A1 → A2 · New to French, or shaky basics</span>
+            </button>
+            <button class="onboard-card" data-lvl="intermediate">
+              <b>Intermediate</b>
+              <span>A2 → B1 · Comfortable with basics, ready to narrate</span>
+            </button>
+            <button class="onboard-card" data-lvl="expert">
+              <b>Expert</b>
+              <span>B2 → C1 · Exam-level precision &amp; nuance</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    authRoot.querySelectorAll('.onboard-card').forEach(btn => {
+      btn.addEventListener('click', () => completeOnboarding(btn.dataset.lvl));
+    });
+  }
+
+  function boot() {
+    const authRoot = document.getElementById('authRoot');
+    const appEl = document.getElementById('app');
+    const session = window.Auth.getSession(localStorage);
+
+    if (!session) {
+      appEl.hidden = true;
+      renderAuthScreen('signin');
+      return;
+    }
+    if (!window.Auth.isOnboarded(localStorage)) {
+      appEl.hidden = true;
+      renderOnboardingScreen();
+      return;
+    }
+    appEl.hidden = false;
+    authRoot.innerHTML = '';
     render();
+  }
+  window.boot = boot;
+
+  window.addEventListener('hashchange', () => {
+    if (window.Auth.getSession(localStorage) && window.Auth.isOnboarded(localStorage)) render();
+  });
+  window.addEventListener('DOMContentLoaded', () => {
+    boot();
   });
 })();

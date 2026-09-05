@@ -6,7 +6,7 @@
     level: "A1",
     title: "Possessive Adjectives",
     order: 7,
-    requires: "a1-reflexive-verbs",
+    requires: "a1-pronouns-intro",
     visual: {
       kind: "table",
       data: {

@@ -6,7 +6,7 @@
     level: "A1",
     title: "Futur Proche (aller + infinitive)",
     order: 5,
-    requires: "a1-pronouns-intro",
+    requires: "a1-numbers",
     visual: {
       kind: "table",
       data: {

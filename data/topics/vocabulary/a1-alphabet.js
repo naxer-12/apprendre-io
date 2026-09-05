@@ -6,7 +6,7 @@
     level: "A1",
     title: "The French Alphabet",
     order: 1,
-    requires: null,
+    requires: "a1-etre-avoir-negation",
     visual: {
       kind: "card-grid",
       data: [
@@ -67,9 +67,18 @@
     },
     reference: {
       worksheet: {
-        title: "French Alphabet Tracing Worksheets (A–Z)",
-        url: "https://atozworksheet.com/wp-content/uploads/french-alphabet-tracing-worksheets.pdf",
-        note: "Free 26-page printable PDF — uppercase & lowercase tracing practice with pronunciation guide for every letter."
+        title: "Spelling & Dictation for Adult Learners",
+        subtitle: "No tracing — this assumes you already read and write; the challenge is French letter names.",
+        intro: "Adults already know how to spell in their own language. What's new in French is that the letter names sound nothing like English (\"H\" is [ahsh], not \"aitch\"). These exercises drill the skill you'll actually use: spelling your name over the phone, decoding a spelled-out word, and reading French letter names back into words.",
+        exercises: [
+          { q: "Spell your own first name aloud using French letter names, then write it out here the way you said it (e.g. \"Sam\" → esse – a – emme).", answer: "Answers vary — check each letter against the French Alphabet reference table above (e.g. S=esse, A=a, M=emme)." },
+          { q: "Decode this word, spelled out letter-by-letter in French: \"cé – a – effe – é\"", answer: "café" },
+          { q: "Decode this word: \"bé – o – enne – ji – o – u – erre\"", answer: "bonjour" },
+          { q: "A colleague asks \"Comment ça s'écrit ?\" about your email address \"dupont@societe.fr\". Write out \"dupont\" using French letter names.", answer: "dé – u – pé – o – enne – té" },
+          { q: "True or false: the letter \"H\" is always silent at the start of a French word.", answer: "True" },
+          { q: "True or false: the letter \"W\" (double-vé) is common in native French vocabulary.", answer: "False — it's rare in native French words, mostly seen in borrowed words." },
+          { q: "Fill in the missing French letter name: \"té, u, ___ (V), double-vé\"", answer: "vé" }
+        ]
       },
       video: {
         "title": "The French Alphabet with Learn French With Alexa",

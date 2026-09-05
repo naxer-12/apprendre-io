@@ -6,7 +6,7 @@
     level: "B1",
     title: "Futur Simple",
     order: 14,
-    requires: "a2-object-pronoun-order",
+    requires: "a2-relative-pronouns-qui-que",
     visual: {
       kind: "table",
       data: {
