@@ -6,7 +6,7 @@
     level: "A2",
     title: "Passé Composé with avoir",
     order: 10,
-    requires: "a1-listening-comprehension",
+    requires: null,
     visual: {
       kind: "table",
       data: {

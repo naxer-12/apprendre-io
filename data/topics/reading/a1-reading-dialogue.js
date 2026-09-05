@@ -5,8 +5,8 @@
     module: "reading",
     level: "A1",
     title: "Au Café: Reading & Dialogue Comprehension",
-    order: 1,
-    requires: "a1-futur-proche",
+    order: 28,
+    requires: "a1-body-health",
     visual: {
       kind: "table",
       data: {

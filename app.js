@@ -100,17 +100,17 @@
   }
 
   function getLevelLabel(levelCode) {
-    if (levelCode === 'beginner') return 'Beginner (A1 → A2)';
-    if (levelCode === 'intermediate') return 'Intermediate (A2 → B1)';
-    if (levelCode === 'expert') return 'Expert (B2 → C1)';
-    return 'Beginner (A1 → A2)';
+    if (levelCode === 'beginner') return 'Beginner (A1)';
+    if (levelCode === 'intermediate') return 'Intermediate (A2)';
+    if (levelCode === 'expert') return 'Expert (B1 → B2/C1, partial)';
+    return 'Beginner (A1)';
   }
 
   function filterTopicsByLevel(topics, userLevel) {
     if (userLevel === 'beginner') {
-      return topics.filter(t => t.level === 'A1' || t.level === 'A2');
+      return topics.filter(t => t.level === 'A1');
     } else if (userLevel === 'intermediate') {
-      return topics.filter(t => t.level === 'A2' || t.level === 'B1');
+      return topics.filter(t => t.level === 'A2');
     } else if (userLevel === 'expert') {
       return topics.filter(t => t.level === 'B1' || t.level === 'B2-C1');
     }
@@ -527,8 +527,8 @@
   function renderLesson(topic) {
     const mod = (window.MODULES || []).find(m => m.id === topic.module) || { name: topic.module, id: topic.module };
     const userLevel = getUserLevel();
-    const pathwayFlat = userLevel === 'beginner' && window.PATHWAYS && window.PATHWAYS.beginner
-      ? flattenPathway(window.PATHWAYS.beginner)
+    const pathwayFlat = window.PATHWAYS && window.PATHWAYS[userLevel]
+      ? flattenPathway(window.PATHWAYS[userLevel])
       : null;
     const pathwayIdx = pathwayFlat ? pathwayFlat.findIndex(t => t.id === topic.id) : -1;
 
@@ -575,7 +575,7 @@
             <span class="example-en">— ${topic.content.example.en}</span>
           </div>` : ''}
         ${(topic.content.callouts || []).map(c => `
-          <div class="callout" style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:16px;">
+          <div class="callout" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px;margin-top:16px;">
             <h3 style="margin:0 0 6px;">${c.label}</h3>
             <p style="margin:0;color:var(--ink-soft);line-height:1.5;">${c.body}${c.cite ? ` — <cite style="font-weight:700;color:var(--accent);">${c.cite}</cite>` : ''}</p>
           </div>`).join('')}
@@ -700,11 +700,9 @@
         <p>You're on the <b style="color:var(--accent);">${getLevelLabel(userLevel)}</b> pathway — switch levels anytime from the header. Each topic includes clear visual references, core explanations, a curated video lesson card, and a short test that gates your progression.</p>
 
         <div class="cta-row">
-          ${userLevel === 'beginner'
-            ? `<button class="btn" id="startPathwayBtn">Start Learning</button>`
-            : `<button class="btn" id="startGrammarBtn">Start Grammar Course</button>
-               <button class="btn ghost" id="startVocabBtn">Start Vocabulary</button>`}
+          <button class="btn" id="startPathwayBtn">${completedInLevel ? 'Continue Learning' : 'Start Learning'}</button>
         </div>
+        ${userLevel === 'expert' ? `<p class="pathway-note" style="margin-top:12px;">This pathway currently covers advanced grammar only (B1 → B2/C1) — vocabulary, reading, writing, listening & speaking content for this level is coming soon.</p>` : ''}
       </div>
 
       ${renderStreakPanel(progress.streak)}
@@ -720,43 +718,40 @@
       <footer class="foot">Apprendre.io — Built for mastery. No build step, no server; your account and progress stay in this browser.</footer>
     `;
 
-    if (userLevel === 'beginner') {
-      document.getElementById('startPathwayBtn').addEventListener('click', () => {
-        const firstTopicId = window.PATHWAYS.beginner[0].topics[0];
-        const firstTopic = window.TOPICS[firstTopicId];
-        location.hash = `#/${firstTopic.module}/${firstTopic.id}`;
-      });
-    } else {
-      document.getElementById('startGrammarBtn').addEventListener('click', () => {
-        location.hash = userLevel === 'expert' ? '#/grammar/b2c1-present-subjunctive' : '#/grammar/b1-futur-simple';
-      });
-      document.getElementById('startVocabBtn').addEventListener('click', () => {
-        location.hash = '#/vocabulary/a1-alphabet';
-      });
-    }
+    document.getElementById('startPathwayBtn').addEventListener('click', () => {
+      const units = window.PATHWAYS && window.PATHWAYS[userLevel];
+      if (!units || !units.length) return;
+      const flat = flattenPathway(units);
+      const firstUnfinished = flat.find(t => !progress.completed[t.id]) || flat[0];
+      if (!firstUnfinished) return;
+      location.hash = `#/${firstUnfinished.module}/${firstUnfinished.id}`;
+    });
 
     const grid = document.getElementById('moduleGrid');
     window.MODULES.forEach(mod => {
       const allModTopics = topicsForModule(mod.id);
-      const scopedTopics = filterTopicsByLevel(allModTopics, userLevel);
-      const displayTopics = scopedTopics.length ? scopedTopics : allModTopics;
+      const displayTopics = filterTopicsByLevel(allModTopics, userLevel);
       const done = displayTopics.filter(t => Boolean(progress.completed[t.id])).length;
+      const comingSoon = !displayTopics.length;
 
       const card = document.createElement('button');
-      card.className = 'module-card';
+      card.className = 'module-card' + (comingSoon ? ' disabled' : '');
       card.innerHTML = `
         <div class="top">
           <div class="ico">${ICONS[mod.icon] || ''}</div>
-          <span class="frac">${displayTopics.length ? `${done}/${displayTopics.length}` : '0/0'}</span>
+          <span class="frac">${comingSoon ? 'Coming soon' : `${done}/${displayTopics.length}`}</span>
         </div>
         <b>${mod.name}</b>
         <div class="sub">${mod.description}</div>
       `;
-      card.addEventListener('click', () => {
-        if (!displayTopics.length) return;
-        const first = displayTopics.find(t => !progress.completed[t.id]) || displayTopics[0];
-        location.hash = `#/${mod.id}/${first.id}`;
-      });
+      if (comingSoon) {
+        card.disabled = true;
+      } else {
+        card.addEventListener('click', () => {
+          const first = displayTopics.find(t => !progress.completed[t.id]) || displayTopics[0];
+          location.hash = `#/${mod.id}/${first.id}`;
+        });
+      }
       grid.appendChild(card);
     });
   }
@@ -904,17 +899,18 @@
       </div>
     `;
 
-    if (userLevel === 'beginner' && window.PATHWAYS && window.PATHWAYS.beginner) {
-      renderPathwaySidebar(sidebar, window.PATHWAYS.beginner, progress, currentTopicId);
+    if (window.PATHWAYS && window.PATHWAYS[userLevel]) {
+      renderPathwaySidebar(sidebar, window.PATHWAYS[userLevel], progress, currentTopicId);
     } else {
       renderModuleTreeSidebar(sidebar, userLevel, progress, currentTopicId);
     }
 
     const stat = document.createElement('div');
     stat.className = 'stat-card';
-    const totalDone = Object.keys(progress.completed).length;
+    const levelTopics = filterTopicsByLevel(allTopics(), userLevel);
+    const totalDoneInLevel = levelTopics.filter(t => Boolean(progress.completed[t.id])).length;
     stat.innerHTML = `
-      <div class="stat-row"><span class="k">Completed Topics</span><span class="v">${totalDone} / 28</span></div>
+      <div class="stat-row"><span class="k">Completed Topics</span><span class="v">${totalDoneInLevel} / ${levelTopics.length}</span></div>
       <div class="stat-row"><span class="k">Curriculum Track</span><span class="v">${userLevel.toUpperCase()}</span></div>
     `;
     sidebar.appendChild(stat);
@@ -922,7 +918,7 @@
 
   function renderHeader() {
     const userLevel = getUserLevel();
-    const currentTheme = getStoredTheme() || 'light';
+    const currentTheme = getStoredTheme() || 'dark';
     const session = window.Auth.getSession(localStorage);
     const streak = window.Progress.loadProgress(localStorage).streak;
     const streakActiveToday = streak.lastActiveDate === new Date().toISOString().slice(0, 10);
@@ -945,18 +941,18 @@
 
       <div class="header-right">
         <div class="level-picker">
-          <button class="lvl-btn ${userLevel === 'beginner' ? 'active' : ''}" data-lvl="beginner" title="Beginner: A1 to A2">Beginner</button>
-          <button class="lvl-btn ${userLevel === 'intermediate' ? 'active' : ''}" data-lvl="intermediate" title="Intermediate: A2 to B1">Intermediate</button>
-          <button class="lvl-btn ${userLevel === 'expert' ? 'active' : ''}" data-lvl="expert" title="Expert: B2 to C1">Expert</button>
+          <button class="lvl-btn ${userLevel === 'beginner' ? 'active' : ''}" data-lvl="beginner" title="Beginner: A1">Beginner</button>
+          <button class="lvl-btn ${userLevel === 'intermediate' ? 'active' : ''}" data-lvl="intermediate" title="Intermediate: A2">Intermediate</button>
+          <button class="lvl-btn ${userLevel === 'expert' ? 'active' : ''}" data-lvl="expert" title="Expert: B1 to B2/C1 grammar (partial)">Expert</button>
         </div>
 
         <div class="theme-selector-wrap">
           <select class="theme-select" id="themeSelect" aria-label="Select theme">
-            <option value="light" ${currentTheme === 'light' ? 'selected' : ''}>Light</option>
-            <option value="dark" ${currentTheme === 'dark' ? 'selected' : ''}>Dark</option>
+            <option value="dark" ${currentTheme === 'dark' ? 'selected' : ''}>Dark (OLED)</option>
+            <option value="nordic" ${currentTheme === 'nordic' ? 'selected' : ''}>Nordic Slate</option>
             <option value="sepia" ${currentTheme === 'sepia' ? 'selected' : ''}>Sepia</option>
-            <option value="nordic" ${currentTheme === 'nordic' ? 'selected' : ''}>Nordic</option>
             <option value="matcha" ${currentTheme === 'matcha' ? 'selected' : ''}>Matcha</option>
+            <option value="light" ${currentTheme === 'light' ? 'selected' : ''}>Light</option>
           </select>
         </div>
 
@@ -1114,15 +1110,15 @@
           <div class="onboard-options">
             <button class="onboard-card" data-lvl="beginner">
               <b>Beginner</b>
-              <span>A1 → A2 · New to French, or shaky basics</span>
+              <span>A1 · New to French, or shaky basics</span>
             </button>
             <button class="onboard-card" data-lvl="intermediate">
               <b>Intermediate</b>
-              <span>A2 → B1 · Comfortable with basics, ready to narrate</span>
+              <span>A2 · Comfortable with basics, ready to narrate</span>
             </button>
             <button class="onboard-card" data-lvl="expert">
               <b>Expert</b>
-              <span>B2 → C1 · Exam-level precision &amp; nuance</span>
+              <span>B1 → B2/C1 · Advanced grammar (full skills coverage coming soon)</span>
             </button>
           </div>
         </div>

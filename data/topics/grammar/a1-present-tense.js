@@ -5,8 +5,8 @@
     module: "grammar",
     level: "A1",
     title: "Present Tense: Regular -er/-ir/-re Verbs",
-    order: 3,
-    requires: "a1-possessive-adjectives",
+    order: 11,
+    requires: "a1-personal-identity",
     visual: {
       kind: "table",
       data: {

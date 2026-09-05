@@ -6,7 +6,7 @@
     level: "B1",
     title: "Plus-que-parfait & Futur Antérieur",
     order: 16,
-    requires: "b1-conditional",
+    requires: null,
     visual: {
       kind: "table",
       data: {

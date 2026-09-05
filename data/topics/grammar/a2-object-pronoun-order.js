@@ -5,8 +5,8 @@
     module: "grammar",
     level: "A2",
     title: "Object Pronoun Order",
-    order: 13,
-    requires: "a2-imparfait",
+    order: 26,
+    requires: "a2-housing-neighborhood",
     visual: {
       kind: "table",
       data: {

@@ -5,8 +5,8 @@
     module: "writing",
     level: "A1",
     title: "Building Simple Sentences: Subject + Verb + Object",
-    order: 1,
-    requires: "a1-reading-dialogue",
+    order: 34,
+    requires: "a1-registration-forms",
     visual: {
       kind: "table",
       data: {

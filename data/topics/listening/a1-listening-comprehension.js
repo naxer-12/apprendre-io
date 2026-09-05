@@ -5,8 +5,8 @@
     module: "listening",
     level: "A1",
     title: "First French Conversations: Audio Comprehension",
-    order: 1,
-    requires: "a1-writing-sentences",
+    order: 39,
+    requires: "a1-daily-routine-writing",
     visual: {
       kind: "card-grid",
       data: [

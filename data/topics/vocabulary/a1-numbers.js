@@ -5,8 +5,8 @@
     module: "vocabulary",
     level: "A1",
     title: "Numbers 0–20",
-    order: 2,
-    requires: "a1-reflexive-verbs",
+    order: 15,
+    requires: "a1-daily-routine",
     visual: {
       kind: "card-grid",
       data: [

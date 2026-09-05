@@ -3,9 +3,9 @@
   window.TOPICS["b1-conditional"] = {
     id: "b1-conditional",
     module: "grammar",
-    level: "B1",
+    level: "A2",
     title: "Conditionnel Présent",
-    order: 15,
+    order: 17,
     requires: "b1-futur-simple",
     visual: {
       kind: "table",

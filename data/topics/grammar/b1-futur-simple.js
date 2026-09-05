@@ -3,10 +3,10 @@
   window.TOPICS["b1-futur-simple"] = {
     id: "b1-futur-simple",
     module: "grammar",
-    level: "B1",
+    level: "A2",
     title: "Futur Simple",
-    order: 14,
-    requires: "a2-relative-pronouns-qui-que",
+    order: 16,
+    requires: "a2-recent-past-immediate-future",
     visual: {
       kind: "table",
       data: {
