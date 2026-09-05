@@ -324,17 +324,39 @@
     return el;
   }
 
+  function flattenPathway(units) {
+    return units.flatMap(u => u.topics).map(id => window.TOPICS[id]).filter(Boolean);
+  }
+
   function renderLesson(topic) {
     const mod = (window.MODULES || []).find(m => m.id === topic.module) || { name: topic.module, id: topic.module };
-    const modTopics = topicsForModule(topic.module);
-    const idx = modTopics.findIndex(t => t.id === topic.id);
-    const prev = idx > 0 ? modTopics[idx - 1] : null;
-    const next = idx < modTopics.length - 1 ? modTopics[idx + 1] : null;
+    const userLevel = getUserLevel();
+    const pathwayFlat = userLevel === 'beginner' && window.PATHWAYS && window.PATHWAYS.beginner
+      ? flattenPathway(window.PATHWAYS.beginner)
+      : null;
+    const pathwayIdx = pathwayFlat ? pathwayFlat.findIndex(t => t.id === topic.id) : -1;
+
+    let prev, next, crumbLabel;
+    if (pathwayFlat && pathwayIdx !== -1) {
+      // Beginner pathway: prev/next follow the cross-module recommended
+      // order, not each topic's own module array — otherwise "Next Topic"
+      // gets stuck disabled at the end of every module (e.g. Greetings is
+      // Vocabulary's last topic, but the pathway continues into Speaking).
+      prev = pathwayIdx > 0 ? pathwayFlat[pathwayIdx - 1] : null;
+      next = pathwayIdx < pathwayFlat.length - 1 ? pathwayFlat[pathwayIdx + 1] : null;
+      crumbLabel = `${mod.name.toUpperCase()} · ${topic.level} · PATHWAY STEP ${pathwayIdx + 1} OF ${pathwayFlat.length}`;
+    } else {
+      const modTopics = topicsForModule(topic.module);
+      const idx = modTopics.findIndex(t => t.id === topic.id);
+      prev = idx > 0 ? modTopics[idx - 1] : null;
+      next = idx < modTopics.length - 1 ? modTopics[idx + 1] : null;
+      crumbLabel = `${mod.name.toUpperCase()} · ${topic.level} · TOPIC ${idx + 1} OF ${modTopics.length}`;
+    }
     const progress = window.Progress.loadProgress(localStorage);
 
     const main = document.getElementById('main');
     main.innerHTML = `
-      <div class="crumb">${mod.name.toUpperCase()} · ${topic.level} · TOPIC ${idx + 1} OF ${modTopics.length}</div>
+      <div class="crumb">${crumbLabel}</div>
       <h1 class="lesson-title">${topic.title}</h1>
       <p class="lesson-sub">Pass this topic's short test with ${topic.test.passScore}/${topic.test.questions.length} or higher to unlock the next topic.</p>
       
