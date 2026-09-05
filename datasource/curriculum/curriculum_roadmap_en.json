@@ -1,0 +1,329 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Apprendre.io French Curriculum Roadmap (A1 to B2)",
+  "description": "Comprehensive CEFR-aligned French curriculum roadmap based on Beacco ch. 6 (Council of Europe / Didier), Eaquals/CIEP 2015, and France Éducation international DELF standards. Primary labels are in English for adult learners.",
+  "version": "1.0.0",
+  "levels": [
+    {
+      "code": "A1",
+      "name": "Beginner / Discovery",
+      "cefrDescription": "Can understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type. Can introduce him/herself and others and can ask and answer questions about personal details.",
+      "modules": {
+        "vocabulary": {
+          "title": "Vocabulary & Everyday Lexicon",
+          "topics": [
+            { "id": "A1.V1", "title": "The French Alphabet, Spelling & Accents", "scope": "Letters, accents (é, è, ê, ç), basic nasal vowels, spelling names" },
+            { "id": "A1.V2", "title": "Greetings & Social Etiquette", "scope": "Bonjour, au revoir, s'il vous plaît, merci, basic tu vs. vous markers" },
+            { "id": "A1.V3", "title": "Personal Identity & Civil Status", "scope": "Name, age, nationality, profession, address, contact details" },
+            { "id": "A1.V4", "title": "Numbers, Time, Calendar & Seasons", "scope": "Numbers 0 to 100, telling time, days, months, seasons, weather" },
+            { "id": "A1.V5", "title": "Family & Close Relationships", "scope": "Parents, children, siblings, marital status, relatives" },
+            { "id": "A1.V6", "title": "Physical Appearance & Basic Character Traits", "scope": "Height, build, hair, eyes, core personality descriptors" },
+            { "id": "A1.V7", "title": "Housing, Rooms & Furniture", "scope": "Apartment vs house, rooms, essential furniture and appliances" },
+            { "id": "A1.V8", "title": "Daily Routine & Everyday Life", "scope": "Morning to evening activities, daily timetable, routine verbs" },
+            { "id": "A1.V9", "title": "Food, Drinks & Dining", "scope": "Staple groceries, fruits, vegetables, café orders, dining out" },
+            { "id": "A1.V10", "title": "Clothing, Colors & Sizes", "scope": "Everyday wardrobe, color adjectives, shoe and clothing sizes" },
+            { "id": "A1.V11", "title": "The City, Public Places & Directions", "scope": "Stations, shops, museums, asking for and giving directions" },
+            { "id": "A1.V12", "title": "The Human Body & Basic Health", "scope": "Body parts, physical sensations (hunger, thirst, pain, illness)" }
+          ],
+          "exerciseFormats": [
+            "[EXAM] 3-option lexical MCQ (TCF/TEF Lexique format)",
+            "[CLASS] Picture-word matching, thematic categorization, spelling/number dictations"
+          ]
+        },
+        "grammar": {
+          "title": "Grammar & Morphosyntax",
+          "topics": [
+            { "id": "A1.G1", "title": "Articles & Gender of Nouns", "scope": "Definite (le, la, les), indefinite (un, une, des), masculine/feminine rules" },
+            { "id": "A1.G2", "title": "Subject Pronouns & Stress Pronouns", "scope": "Je, tu, il, elle, on... and emphatic moi, toi, lui, elle" },
+            { "id": "A1.G3", "title": "Core Verbs in Present: Être & Avoir", "scope": "Full conjugation, age, identity, physical states, possession" },
+            { "id": "A1.G4", "title": "Basic Negation (Ne... pas)", "scope": "Bracketed verb negation, n' elision before vowels, common spoken shifts" },
+            { "id": "A1.G5", "title": "Present Tense: Regular -ER Verbs", "scope": "Endings -e, -es, -e, -ons, -ez, -ent, pronunciation and sound shifts" },
+            { "id": "A1.G6", "title": "Common Irregular Verbs in Present", "scope": "Aller, faire, venir, prendre, pouvoir, vouloir, devoir" },
+            { "id": "A1.G7", "title": "Presenters: C'est vs. Il est / Voici / Voilà", "scope": "Identification vs description of people and objects" },
+            { "id": "A1.G8", "title": "Qualifying Adjectives: Agreement & Placement", "scope": "Gender/number agreement, pre-nominal BANGS adjectives" },
+            { "id": "A1.G9", "title": "Possessive & Demonstrative Adjectives", "scope": "Mon/ma/mes, ton/ta/tes... ce/cet/cette/ces" },
+            { "id": "A1.G10", "title": "Simple Questions & Interrogation", "scope": "Intonation, est-ce que, question words (où, quand, comment, qui)" },
+            { "id": "A1.G11", "title": "Prepositions of Place & Time", "scope": "À, en, chez, dans, sur, sous; de... à, en + month/season" },
+            { "id": "A1.G12", "title": "Partitive Articles & Expressions of Quantity", "scope": "Du, de la, de l', des; un peu de, beaucoup de, pas de" },
+            { "id": "A1.G13", "title": "Near Future & Present Continuous", "scope": "Aller + infinitive; être en train de + infinitive; il faut + inf." },
+            { "id": "A1.G14", "title": "Introduction to Passé Composé", "scope": "Auxiliary avoir + regular -é past participles (parlé, mangé)" }
+          ],
+          "exerciseFormats": [
+            "[CLASS] Conjugation cloze tables, gender/number transformation, sentence reordering",
+            "[EXAM] Grammatical structure 4-choice MCQ (TCF Structure format)"
+          ]
+        },
+        "reading": {
+          "title": "Reading Comprehension (Compréhension Écrite)",
+          "topics": [
+            { "id": "A1.R1", "title": "Signs, Posters & Public Notices", "scope": "Short instructions, pictograms, basic permissions and prohibitions" },
+            { "id": "A1.R2", "title": "Restaurant Menus & Receipts", "scope": "Daily specials, staple ingredients, euro prices, bill totals" },
+            { "id": "A1.R3", "title": "Travel Timetables & Tickets", "scope": "Train/bus departures, platform numbers, simple connections" },
+            { "id": "A1.R4", "title": "Postcards & Friendly Notes", "scope": "Holiday greetings, weather notes, simple vacation activities" },
+            { "id": "A1.R5", "title": "Registration Forms & Informational Cards", "scope": "Membership fields: name, DOB, occupation, contact details" }
+          ],
+          "exerciseFormats": [
+            "[EXAM] DELF A1 4 short authentic documents with 3-option MCQs & True/False",
+            "[CLASS] Document-to-situation matching and visual scanning tasks"
+          ]
+        },
+        "writing": {
+          "title": "Written Production (Expression Écrite)",
+          "topics": [
+            { "id": "A1.W1", "title": "Filling Out a Personal Information Form", "scope": "Hotel, library, or sports club form (10 standardized fields)" },
+            { "id": "A1.W2", "title": "Writing a Holiday Postcard (40+ words)", "scope": "Sharing simple news, describing weather and current activity" },
+            { "id": "A1.W3", "title": "Composing Short Invitation & Appointment Notes", "scope": "Setting time/place, accepting or apologizing politely" },
+            { "id": "A1.W4", "title": "Describing Daily Routine in Simple Sentences", "scope": "Chaining 4-5 actions with chronological connectors (d'abord, puis)" }
+          ],
+          "exerciseFormats": [
+            "[EXAM] DELF A1 Exam: Part 1 Form filling + Part 2 Friendly note (40-50 words minimum)",
+            "[CLASS] Picture captioning and guided sentence transformation"
+          ]
+        },
+        "listening": {
+          "title": "Listening Comprehension (Compréhension Orale)",
+          "topics": [
+            { "id": "A1.L1", "title": "Recognizing Numbers, Prices, Times & Phone Numbers", "scope": "Identifying digits in buying and communication contexts" },
+            { "id": "A1.L2", "title": "Station & Public Space Announcements", "scope": "Platform, destination, simple safety notifications" },
+            { "id": "A1.L3", "title": "Voicemail Messages & Phone Prompts", "scope": "Caller identity, timestamp, purpose of call, callback number" },
+            { "id": "A1.L4", "title": "Everyday Short Dialogues", "scope": "Exchanges at the bakery, market, café, street greetings" }
+          ],
+          "exerciseFormats": [
+            "[EXAM] DELF A1 CO: 4 short recordings (≤3 min total, 2 listenings, 3-choice MCQ)",
+            "[CLASS] Chronological image ordering and number recognition drills"
+          ]
+        },
+        "speaking": {
+          "title": "Spoken Production (Expression Orale)",
+          "topics": [
+            { "id": "A1.S1", "title": "Guided Interview: Introducing Yourself", "scope": "Name, age, nationality, occupation, home, tastes, family" },
+            { "id": "A1.S2", "title": "Information Exchange: Asking Questions", "scope": "Formulating questions from stimulus word-cards (price, time, place)" },
+            { "id": "A1.S3", "title": "Simulated Role-Play: Everyday Shopping & Dining", "scope": "Purchasing goods, asking prices, ordering drinks, paying" }
+          ],
+          "exerciseFormats": [
+            "[EXAM] DELF A1 PO 3-part simulation: Interview (1m) + Questions (2m) + Role-play (2m)",
+            "[CLASS] Speech-synthesis guided pronunciation and phonetic accuracy self-checks"
+          ]
+        }
+      }
+    },
+    {
+      "code": "A2",
+      "name": "Elementary / Intermediate Everyday",
+      "cefrDescription": "Can understand sentences and frequently used expressions related to areas of most immediate relevance (e.g. basic personal and family information, shopping, local geography, employment). Can communicate in simple and routine tasks.",
+      "modules": {
+        "vocabulary": {
+          "title": "Extended Everyday Vocabulary",
+          "topics": [
+            { "id": "A2.V1", "title": "Memories, Biography & Past Events", "scope": "Life stages, childhood, schooling, diplomas, milestones" },
+            { "id": "A2.V2", "title": "Habits, Daily Life & Extended Leisure", "scope": "Sports activities, cinema/theater outings, frequencies (souvent, parfois)" },
+            { "id": "A2.V3", "title": "Health, Doctor Visits & Pharmacy", "scope": "Common ailments (fever, cough), medical consultation, prescriptions" },
+            { "id": "A2.V4", "title": "Shopping, Specialized Stores & Simple Returns", "scope": "Payment methods, sales, exchanging merchandise, basic claims" },
+            { "id": "A2.V5", "title": "Public Services: Post Office, Bank & City Hall", "scope": "Sending packages, opening bank accounts, administrative forms" },
+            { "id": "A2.V6", "title": "Vacations, Long-Distance Travel & Lodging", "scope": "Hotels, campsites, gîtes, travel paperwork, flight delays" },
+            { "id": "A2.V7", "title": "The World of Work & Professions", "scope": "Office environment, colleagues, daily tasks, basic CV sections" },
+            { "id": "A2.V8", "title": "Housing, Neighborhood & Moving", "scope": "Real estate listings, rent, utilities, neighbor relations" },
+            { "id": "A2.V9", "title": "Feelings, Emotions & Basic Opinions", "scope": "Joy, disappointment, surprise, polite agreement and disagreement" },
+            { "id": "A2.V10", "title": "Social Life, Celebrations & Invitations", "scope": "Holidays, formal and friendly invitations, polite declines" },
+            { "id": "A2.V11", "title": "Detailed Weather, Climate & Landscapes", "scope": "Weather phenomena (thunderstorms, snow), sea, mountain, countryside" }
+          ]
+        },
+        "grammar": {
+          "title": "Narrative Structures & Pronouns",
+          "topics": [
+            { "id": "A2.G1", "title": "Passé Composé with Être & Participle Agreement", "scope": "Movement verbs (Maison d'Être), required subject-participle agreement" },
+            { "id": "A2.G2", "title": "Recent Past & Immediate Future", "scope": "Venir de + infinitive; être sur le point de + infinitive" },
+            { "id": "A2.G3", "title": "L'Imparfait: Formation & Descriptive Uses", "scope": "Formation on nous stem, past descriptions, ongoing states, habits" },
+            { "id": "A2.G4", "title": "Passé Composé vs. Imparfait Interplay", "scope": "Background context (imparfait) vs punctual plot events (PC)" },
+            { "id": "A2.G5", "title": "Reflexive Verbs in Present & Past Tenses", "scope": "Se réveiller, se souvenir, reflexive pronoun placement & agreement" },
+            { "id": "A2.G6", "title": "Futur Simple: Formation & Usage", "scope": "Regular and irregular stems (-ai, -as, -a...), future plans and predictions" },
+            { "id": "A2.G7", "title": "Conditional of Politeness & Wishes", "scope": "Je voudrais, j'aimerais, pourriez-vous, softening requests" },
+            { "id": "A2.G8", "title": "Modal & Semi-Auxiliary Verbs", "scope": "Devoir, pouvoir, vouloir, savoir + infinitive" },
+            { "id": "A2.G9", "title": "Direct Object Pronouns (COD: le, la, les)", "scope": "Noun replacement, placement before conjugated verb and in compound tenses" },
+            { "id": "A2.G10", "title": "Indirect Object Pronouns (COI: lui, leur)", "scope": "Distinction with COD, verbs governing à (parler à, téléphoner à)" },
+            { "id": "A2.G11", "title": "Adverbial Pronouns Y & EN", "scope": "Y replacing location or à + thing; EN replacing quantity or de + thing" },
+            { "id": "A2.G12", "title": "Simple Relative Pronouns: Qui, Que, Où", "scope": "Qui (subject), que (direct object), où (location and time)" },
+            { "id": "A2.G13", "title": "Comparative & Superlative Forms", "scope": "Plus/moins/aussi... que; le plus / le moins; meilleur vs mieux" },
+            { "id": "A2.G14", "title": "Expanded Negations & Chronological Connectors", "scope": "Ne... plus, jamais, rien, personne; d'abord, ensuite, alors, donc" }
+          ]
+        },
+        "reading": {
+          "title": "Everyday & Functional Reading",
+          "topics": [
+            { "id": "A2.R1", "title": "Personal & Professional Short Emails", "scope": "Order confirmations, landlord updates, peer messages" },
+            { "id": "A2.R2", "title": "Tourist Brochures & Activity Schedules", "scope": "Selecting excursions according to time, budget, and audience" },
+            { "id": "A2.R3", "title": "Classified Ads & Job Postings", "scope": "Profile requirements, location, skills, rental terms" },
+            { "id": "A2.R4", "title": "News Briefs & Everyday Incident Reports", "scope": "Chronology of human interest stories, weather events, rescue operations" }
+          ]
+        },
+        "writing": {
+          "title": "Narrative & Interactive Writing",
+          "topics": [
+            { "id": "A2.W1", "title": "Recounting a Past Event or Trip (60-80 words)", "scope": "Articulating passé composé and imparfait to share memories" },
+            { "id": "A2.W2", "title": "Replying to Messages: Inviting, Thanking, Apologizing", "scope": "Functional email replies with appropriate etiquette" },
+            { "id": "A2.W3", "title": "Comparing Two Places, Homes, or Products", "scope": "Mobilizing comparative and superlative structures" }
+          ]
+        },
+        "listening": {
+          "title": "Everyday Listening Comprehension",
+          "topics": [
+            { "id": "A2.L1", "title": "Weather Bulletins & Brief News Flashes", "scope": "Temperatures, storms, traffic disruptions" },
+            { "id": "A2.L2", "title": "Practical Instructions & Counter Guidance", "scope": "Instructions at ticket counters, pharmacies, customer service" },
+            { "id": "A2.L3", "title": "Phone Dialogues & Schedule Confirmations", "scope": "Appointments, visit confirmations, rescheduling" },
+            { "id": "A2.L4", "title": "Street Interviews & Simple Opinion Polls", "scope": "Everyday surveys regarding holiday preferences and leisure habits" }
+          ]
+        },
+        "speaking": {
+          "title": "Spoken Interaction & Continuity",
+          "topics": [
+            { "id": "A2.S1", "title": "Guided Interview: Career Background & Future Projects", "scope": "Schooling, career, aspirations (1.5 min)" },
+            { "id": "A2.S2", "title": "Prepared Monologue: Presenting an Event or Plan", "scope": "Random topic prompt, speaking continuously for 2 min" },
+            { "id": "A2.S3", "title": "Interactive Role-Play: Resolving an Unexpected Issue", "scope": "Exchanging a damaged product, resolving a booking error (3 min)" }
+          ]
+        }
+      }
+    },
+    {
+      "code": "B1",
+      "name": "Threshold / Independent User",
+      "cefrDescription": "Can understand the main points of clear standard input on familiar matters regularly encountered in work, school, leisure, etc. Can deal with most situations likely to arise whilst travelling in an area where the language is spoken. Can produce simple connected text on topics which are familiar or of personal interest.",
+      "modules": {
+        "vocabulary": {
+          "title": "Societal Themes & Public Discussion",
+          "topics": [
+            { "id": "B1.V1", "title": "Education, Training & Language Learning", "scope": "School systems, online learning, professional upskilling, multilingualism" },
+            { "id": "B1.V2", "title": "Workplace Dynamics, Recruitment & Labor Conditions", "scope": "Job interviews, remote work, salary negotiations, employee rights" },
+            { "id": "B1.V3", "title": "Health, Well-being & Responsible Nutrition", "scope": "Organic foods, junk food, stress management, sleep, sedentary habits" },
+            { "id": "B1.V4", "title": "Environment, Ecology & Climate Transition", "scope": "Recycling, renewables, carbon footprints, biodiversity, global warming" },
+            { "id": "B1.V5", "title": "Sustainable Transport & Urban Mobility", "scope": "Carpooling, bike lanes, public transit efficiency, road safety" },
+            { "id": "B1.V6", "title": "Digital Technology & Social Networks", "scope": "Privacy, screen time impact, algorithms, cyberbullying, smartphones" },
+            { "id": "B1.V7", "title": "Media, Information & the Press", "scope": "Fake news, online outlets, journalistic independence, public polls" },
+            { "id": "B1.V8", "title": "Arts, Culture, Cinema & Heritage", "scope": "Festivals, theater outings, museums, film and book reviews" },
+            { "id": "B1.V9", "title": "Consumer Trends & Advertising", "scope": "Fair trade, waste reduction, second-hand goods, consumerism" },
+            { "id": "B1.V10", "title": "Civic Engagement & Community Associations", "scope": "Volunteering, citizenship, intergenerational mutual aid" },
+            { "id": "B1.V11", "title": "Nuances of Opinion, Judgment & Polite Hesitation", "scope": "Stating reservations, moderate agreement, respectful refutations" }
+          ]
+        },
+        "grammar": {
+          "title": "Subjunctive, Hypotheses & Discourse Flow",
+          "topics": [
+            { "id": "B1.G1", "title": "Plus-Que-Parfait: Formation & Past Anteriority", "scope": "Past actions completed prior to other past actions (j'avais déjà mangé)" },
+            { "id": "B1.G2", "title": "Past Narrative Architecture (PC, Imparfait, PQP)", "scope": "Harmonizing composite tenses for rich narrative depth" },
+            { "id": "B1.G3", "title": "Present Conditional: Advice, Desires & Polite Suggestions", "scope": "Future stem + imparfait endings, modal values, hypothetical scenarios" },
+            { "id": "B1.G4", "title": "Present Subjunctive: Formation & Core Triggers", "scope": "Stem of ils in present, verbs of will, necessity, obligation, emotion" },
+            { "id": "B1.G5", "title": "Indicative vs. Subjunctive: Certainty vs. Doubt/Opinion", "scope": "Penser/croire que + ind. vs ne pas penser/croire que + subj." },
+            { "id": "B1.G6", "title": "Hypotheses & Conditions with 'Si' (Types 1 & 2)", "scope": "Si + présent → futur / impératif; Si + imparfait → conditionnel présent" },
+            { "id": "B1.G7", "title": "The Gerund (Le Gérondif): Formation & Roles", "scope": "En + present participle: simultaneity, cause, manner, condition" },
+            { "id": "B1.G8", "title": "Double Pronoun Placement & Syntax", "scope": "Strict ordering (me/te before le/la before lui/leur before y before en)" },
+            { "id": "B1.G9", "title": "Relative Pronoun DONT", "scope": "Noun complements, adjective complements, verbs governing de (se souvenir de)" },
+            { "id": "B1.G10", "title": "Reported Speech in the Present Tense", "scope": "Reporting statements and questions without backshifting" },
+            { "id": "B1.G11", "title": "Cause, Consequence & Purpose Connectors", "scope": "Grâce à / à cause de / puisque; tellement... que / donc; pour que + subj." },
+            { "id": "B1.G12", "title": "Opposition & Concession Connectors", "scope": "Alors que / tandis que; pourtant / cependant / mais; même si + ind." },
+            { "id": "B1.G13", "title": "Introduction to the Passive Voice", "scope": "Être + past participle + par, alongside active alternatives with 'on'" }
+          ]
+        },
+        "reading": {
+          "title": "Analytical & Press Reading",
+          "topics": [
+            { "id": "B1.R1", "title": "Multi-Criteria Document Selection", "scope": "Evaluating 4 offers/programs to meet 3 constrained applicant profiles" },
+            { "id": "B1.R2", "title": "Informational Press Articles (~350 words)", "scope": "Extracting key findings, data points, and proposed solutions" },
+            { "id": "B1.R3", "title": "Letters to the Editor & Opinion Pieces", "scope": "Distinguishing objective reporting from author biases and editorial stances" }
+          ]
+        },
+        "writing": {
+          "title": "Argumentative Essays & Formal Letters",
+          "topics": [
+            { "id": "B1.W1", "title": "Argumentative Essay / Reader Letter (160+ words)", "scope": "Stating structured points of view with connectors and personal evidence" },
+            { "id": "B1.W2", "title": "Formal Letter of Request or Complaint", "scope": "Observing French epistolary norms (object, salutations, formal body)" },
+            { "id": "B1.W3", "title": "Online Debate & Forum Contributions", "scope": "Responding to peers, qualifying statements, offering compromise" }
+          ]
+        },
+        "listening": {
+          "title": "Public Radio & Interviews",
+          "topics": [
+            { "id": "B1.L1", "title": "Radio Chronicles & Public Podcasts", "scope": "Society segments, cultural and environmental programming (France Inter/RFI)" },
+            { "id": "B1.L2", "title": "Thematic Interviews & Professional Profiles", "scope": "Career journeys, motivations, guest responses" },
+            { "id": "B1.L3", "title": "Moderated Roundtables & Discussion Panels", "scope": "Identifying speakers, disagreements, and supporting rationales" }
+          ]
+        },
+        "speaking": {
+          "title": "Debate & Argumentative Monologues",
+          "topics": [
+            { "id": "B1.S1", "title": "Extended Interview: Personal Values & Experiences", "scope": "Spontaneous dialogue with examiner (2-3 min)" },
+            { "id": "B1.S2", "title": "Interactive Negotiation: Persuading an Interlocutor", "scope": "Overcoming reluctance, negotiating compromise (3-4 min)" },
+            { "id": "B1.S3", "title": "Argumentative Monologue from Stimulus Text", "scope": "Identifying theme, defending stance with 2 arguments + examples (3 min)" }
+          ]
+        }
+      }
+    },
+    {
+      "code": "B2",
+      "name": "Vantage / Advanced Independent",
+      "cefrDescription": "Can understand the main ideas of complex text on both concrete and abstract topics, including technical discussions in his/her field of specialisation. Can interact with a degree of fluency and spontaneity that makes regular interaction with native speakers quite possible without strain for either party.",
+      "modules": {
+        "vocabulary": {
+          "title": "Societal Debates & Critical Nuance",
+          "topics": [
+            { "id": "B2.V1", "title": "Labor Mutations, Management & Emerging Work Patterns", "scope": "Telework, gig economy, career pivots, labor relations, burnout" },
+            { "id": "B2.V2", "title": "Public Health Ethics & Healthcare Systems", "scope": "Genetics, end-of-life care, medical deserts, equitable access" },
+            { "id": "B2.V3", "title": "Ecological Transition & Circular Economy", "scope": "Decarbonization, climate justice, degrowth vs green growth" },
+            { "id": "B2.V4", "title": "Artificial Intelligence, Big Data & Digital Sovereignty", "scope": "Automation, algorithmic bias, deepfakes, privacy governance" },
+            { "id": "B2.V5", "title": "Contemporary Family, Gender Equality & Inclusion", "scope": "Modern parenting, gender parity, anti-discrimination policies" },
+            { "id": "B2.V6", "title": "Globalization, Purchasing Power & Social Economics", "scope": "Inflation, industrial reshoring, worker cooperatives, fair trade" },
+            { "id": "B2.V7", "title": "Cultural Policies, Artistic Freedom & Heritage", "scope": "State funding, censorship debates, pop vs high culture" },
+            { "id": "B2.V8", "title": "Urbanism, Smart Cities & Future Transit", "scope": "Gentrification, urban sprawl, eco-neighborhoods, zero-emission transit" },
+            { "id": "B2.V9", "title": "Citizenship, Participatory Democracy & Justice", "scope": "Abstention, citizen referendums, civic disobedience, institutions" },
+            { "id": "B2.V10", "title": "Language Registers, Idioms & Stylistic Irony", "scope": "Formal language, journalistic metaphors, understatement, double entendres" }
+          ]
+        },
+        "grammar": {
+          "title": "Advanced Structures & Stylistic Precision",
+          "topics": [
+            { "id": "B2.G1", "title": "Past Subjunctive & Nuanced Mood Uses", "scope": "Aie/sois fait, negative/interrogative opinion verbs, superlative triggers" },
+            { "id": "B2.G2", "title": "Past Conditional: Regret, Reproach & Unverified News", "scope": "Aurais/serais fait, journalistic caution and retrospective reflection" },
+            { "id": "B2.G3", "title": "Unreal Past Hypotheses (Si + PQP → Cond. Passé)", "scope": "Past counterfactual reasoning, variations without si" },
+            { "id": "B2.G4", "title": "Full Passive Voice & Stylistic Alternatives", "scope": "Impersonal passive, pronominal passive (cela se comprend), se faire + inf." },
+            { "id": "B2.G5", "title": "Present Participle vs. Verbal Adjective", "scope": "Orthographic and syntactic distinctions (communicant vs communiquant)" },
+            { "id": "B2.G6", "title": "Past Infinitive: Anteriority & Sentence Economy", "scope": "Après avoir fait, après être parti; past infinitive as subject" },
+            { "id": "B2.G7", "title": "Complex Relative Pronouns (Lequel, Auquel, Duquel)", "scope": "Gender/number forms, compounding with prepositions (pour lequel, avec lesquels)" },
+            { "id": "B2.G8", "title": "Cleft Sentences & Stylistic Emphasis", "scope": "C'est... qui/que; ce qui... c'est; extraction and rhetorical inversion" },
+            { "id": "B2.G9", "title": "Reported Speech in Past & Tense Backshifting", "scope": "Present → imparfait, passé composé → PQP, futur → conditionnel" },
+            { "id": "B2.G10", "title": "Advanced Concession & Restriction Clauses", "scope": "Bien que / quoique + subj.; malgré + noun; avoir beau + inf.; quand bien même + cond." },
+            { "id": "B2.G11", "title": "Nominalization & Formal Academic Register", "scope": "Transforming verb clauses into dense, authoritative noun phrases" },
+            { "id": "B2.G12", "title": "Abstract Logical Connectors & Rhetorical Flow", "scope": "En revanche, néanmoins, dès lors, d'autant plus que, nonobstant" }
+          ]
+        },
+        "reading": {
+          "title": "Critical & Editorial Reading",
+          "topics": [
+            { "id": "B2.R1", "title": "Major In-Depth Press Articles (450-500 words)", "scope": "Identifying implicit thesis, argumentative progression, counterarguments" },
+            { "id": "B2.R2", "title": "Editorials & Polemical Essays", "scope": "Decoding rhetorical devices, irony, advocacy, polemical tone" },
+            { "id": "B2.R3", "title": "Synthesizing Opposing Forum Viewpoints", "scope": "Cross-analyzing divergent positions of 3 citizens on complex projects" }
+          ]
+        },
+        "writing": {
+          "title": "Dialectical Essays & Formal Advocacy",
+          "topics": [
+            { "id": "B2.W1", "title": "Formal Advocacy & Protest Letter (250+ words)", "scope": "Addressing city mayors or directors: legal, ethical, and practical arguments" },
+            { "id": "B2.W2", "title": "Critical Dialectical Essay (Thesis / Antithesis / Synthesis)", "scope": "Rigorous 3-part argumentation with nuanced synthesis (250+ words)" },
+            { "id": "B2.W3", "title": "Engaged Opinion Article / Press Column", "scope": "Catchy headline, reader engagement, concrete proposals, refined style" }
+          ]
+        },
+        "listening": {
+          "title": "Academic Lectures & Contradictory Debates",
+          "topics": [
+            { "id": "B2.L1", "title": "University Lectures & Long Audio Documentaries", "scope": "4-6 minute recordings: fine conceptual understanding and nuances" },
+            { "id": "B2.L2", "title": "Fast-Paced Contradictory Radio Debates", "scope": "Detecting oral concessions, interruptions, innuendos, refutations" }
+          ]
+        },
+        "speaking": {
+          "title": "Structured Oral Exposé & Rebuttal Defense",
+          "topics": [
+            { "id": "B2.S1", "title": "Structured Argumentative Exposé (10-minute speech)", "scope": "Problem statement, 2-3 part outline, clear evidence, open conclusion" },
+            { "id": "B2.S2", "title": "Contradictory Defense & Debate with Examiner (10 min)", "scope": "Defending stance against strong objections, polite concessions" }
+          ]
+        }
+      }
+    }
+  ]
+}

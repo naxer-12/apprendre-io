@@ -4,7 +4,10 @@
   "private": true,
   "description": "Evidence-backed French-learning web app — zero-dependency static site, no build step.",
   "scripts": {
-    "test": "node test/progress.test.js && node test/auth.test.js && node test/data.test.js && node test/e2e-simulation.test.js",
-    "start": "python3 -m http.server 8085"
+    "test": "node test/progress.test.js && node test/auth.test.js && node test/data.test.js && node test/worksheets.test.js && node test/e2e-simulation.test.js",
+    "start": "node scripts/server.js --mode=prod --port=8085",
+    "start:prod": "node scripts/server.js --mode=prod --port=8085",
+    "dev": "node scripts/server.js --mode=dev --port=8086",
+    "start:dev": "node scripts/server.js --mode=dev --port=8086"
   }
 }

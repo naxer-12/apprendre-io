@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apprendre.io — Roadmap Curriculaire A1 à B2 (Arborescence Interactive)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FFFBF5;
+      --card-bg: #FFFFFF;
+      --border: #E8DFD1;
+      --text: #2B2016;
+      --text-muted: #736758;
+      --primary: #B45309;
+      --primary-light: #FEF3C7;
+      --primary-dark: #92400E;
+      --accent: #0284C7;
+      --accent-light: #E0F2FE;
+      --success: #15803D;
+      --success-light: #DCFCE7;
+      --shadow-sm: 0 1px 3px rgba(43, 32, 22, 0.05);
+      --shadow-md: 0 4px 12px rgba(43, 32, 22, 0.08);
+      --shadow-lg: 0 10px 24px rgba(43, 32, 22, 0.12);
+      --radius: 12px;
+      --font-heading: 'Fraunces', Georgia, serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'Source Code Pro', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      padding: 32px 20px 80px;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      margin-bottom: 36px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 24px;
+    }
+
+    .badge-bar {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-primary { background: var(--primary-light); color: var(--primary-dark); }
+    .badge-accent { background: var(--accent-light); color: #0369A1; }
+    .badge-success { background: var(--success-light); color: var(--success); }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: 2.3rem;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.25;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 880px;
+      line-height: 1.55;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      gap: 16px;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-bg);
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      background: var(--bg);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+    }
+
+    .search-box svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      fill: var(--text-muted);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    button.btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    button.btn:hover {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border-color: var(--primary);
+    }
+
+    /* Level Tabs */
+    .level-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .level-tab {
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-align: left;
+    }
+
+    .level-tab:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .level-tab.active {
+      border-color: var(--primary);
+      background: #FFF9F0;
+      box-shadow: var(--shadow-md);
+    }
+
+    .level-tab-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .level-tag {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .level-descriptor {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+    }
+
+    .level-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Tree View Container */
+    .level-section {
+      display: none;
+    }
+
+    .level-section.active {
+      display: block;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
+      gap: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .level-tabs { grid-template-columns: 1fr 1fr; }
+      .modules-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Module Node / Card */
+    .module-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s;
+    }
+
+    .module-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .module-header {
+      padding: 16px 20px;
+      background: #FAF6EF;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .module-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .module-icon {
+      font-size: 1.3rem;
+    }
+
+    .module-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .module-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .count-pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(43, 32, 22, 0.07);
+      color: var(--text);
+    }
+
+    .toggle-arrow {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: transform 0.2s ease;
+    }
+
+    .module-card.collapsed .toggle-arrow {
+      transform: rotate(-90deg);
+    }
+
+    .module-card.collapsed .module-body {
+      display: none;
+    }
+
+    /* Topic Tree List */
+    .module-body {
+      padding: 18px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tree-list {
+      list-style: none;
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    .tree-list::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 14px;
+      width: 2px;
+      background: #E8DFD1;
+    }
+
+    .tree-item {
+      position: relative;
+      margin-bottom: 12px;
+      padding-left: 14px;
+    }
+
+    .tree-item::before {
+      content: '';
+      position: absolute;
+      left: -14px;
+      top: 11px;
+      width: 14px;
+      height: 2px;
+      background: #E8DFD1;
+    }
+
+    .tree-item-content {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      transition: all 0.15s ease;
+    }
+
+    .tree-item-content:hover {
+      background: #FFFFFF;
+      border-color: var(--primary);
+      box-shadow: 0 2px 6px rgba(180, 83, 9, 0.08);
+      transform: translateX(2px);
+    }
+
+    .topic-id {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      padding: 1px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+
+    .topic-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .topic-details {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Exercise Node */
+    .exercise-box {
+      margin-top: auto;
+      border-radius: 8px;
+      background: #FFF9F0;
+      border: 1px dashed var(--primary);
+      padding: 14px 16px;
+    }
+
+    .exercise-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .exercise-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--primary);
+      color: #FFF;
+    }
+
+    .exercise-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .exercise-list {
+      list-style: none;
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .exercise-list li {
+      margin-bottom: 4px;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .tag-exam {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      background: #EDE9FE;
+      color: #6D28D9;
+      padding: 1px 5px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .tag-class {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      background: #E0F2FE;
+      color: #0369A1;
+      padding: 1px 5px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    /* Research Reference Footer */
+    footer {
+      margin-top: 50px;
+      padding: 24px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    footer strong { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="badge-bar">
+        <span class="badge badge-primary">Curriculum Roadmap A1 → B2</span>
+        <span class="badge badge-accent">Framework Beacco / Eaquals / FEI</span>
+        <span class="badge badge-success">4 Niveaux · 6 Modules · 128 Topics</span>
+      </div>
+      <h1>Apprendre.io — Arborescence Complète du Curriculum</h1>
+      <p class="subtitle">
+        Modèle arborescent interactif inspiré des plateformes d'apprentissage structurées (Khan Academy, Coursera). 
+        Cette structure intègre le lexique thématique (Beacco ch. 6), la grammaire cumulative (Eaquals/CIEP 2015), 
+        et la typologie d'évaluation officielle des examens DELF / TCF / TEF.
+      </p>
+    </header>
+
+    <!-- Controls Bar -->
+    <div class="controls-bar">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        <input type="text" id="searchInput" placeholder="Filtrer un sujet (ex: subjonctif, passé composé, alimentation, lettre)...">
+      </div>
+      <div class="btn-group">
+        <button class="btn" id="btnExpandAll">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8l8 8 8-8"/></svg> Tout Déplier
+        </button>
+        <button class="btn" id="btnCollapseAll">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 16l8-8 8 8"/></svg> Tout Replier
+        </button>
+      </div>
+    </div>
+
+    <!-- Level Tabs -->
+    <div class="level-tabs">
+      <div class="level-tab active" data-level="a1">
+        <div class="level-tab-header">
+          <span class="level-tag">A1</span>
+          <span class="level-descriptor">Découverte</span>
+        </div>
+        <div class="level-desc">Sphère personnelle immédiate, survie touristique, repères fondamentaux.</div>
+      </div>
+      <div class="level-tab" data-level="a2">
+        <div class="level-tab-header">
+          <span class="level-tag">A2</span>
+          <span class="level-descriptor">Intermédiaire Usuel</span>
+        </div>
+        <div class="level-desc">Récits passés, vie quotidienne élargie, services publics, dialogues usuels.</div>
+      </div>
+      <div class="level-tab" data-level="b1">
+        <div class="level-tab-header">
+          <span class="level-tag">B1</span>
+          <span class="level-descriptor">Autonomie Seuil</span>
+        </div>
+        <div class="level-desc">Expression d'opinion, thèmes sociétaux, hypothèses, subjonctif, débat modéré.</div>
+      </div>
+      <div class="level-tab" data-level="b2">
+        <div class="level-tab-header">
+          <span class="level-tag">B2</span>
+          <span class="level-descriptor">Avancé / Indépendant</span>
+        </div>
+        <div class="level-desc">Argumentation dialectique, esprit critique, nuances, registre soutenu, épreuves FEI.</div>
+      </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- NIVEAU A1 -->
+    <!-- ================================================================= -->
+    <div class="level-section active" id="sec-a1">
+      <div class="modules-grid">
+
+        <!-- A1 VOCABULARY -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">📚</span>
+              <span class="module-title">A1 · Vocabulaire (Lexique Spécifique)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">12 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.V1</span><span class="topic-title">L'Alphabet, l'Épellation & les Accents</span><span class="topic-details">Lettres, accents (é, è, ê, ç), son des voyelles nasales de base</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.V2</span><span class="topic-title">Salutations & Formules de Politesse</span><span class="topic-details">Bonjour, au revoir, s'il vous plaît, merci, registres tu/vous premiers repères</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.V3</span><span class="topic-title">Identification Personnelle & État Civil</span><span class="topic-details">Nom, prénom, âge, nationalité, profession, adresse, contact</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.V4</span><span class="topic-title">Nombres, Date, Heure & Saisons</span><span class="topic-details">Nombres 0 à 100, dire l'heure, jours, mois, météo élémentaire</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.V5</span><span class="topic-title">La Famille & les Relations Proches</span><span class="topic-details">Parents, enfants, fratrie, statut familial, personnes de l'entourage</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.V6</span><span class="topic-title">Description Physique & Traits Simples</span><span class="topic-details">Taille, corpulence, cheveux, yeux, 5 traits de caractère basiques</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.V7</span><span class="topic-title">Logement, Pièces & Mobilier</span><span class="topic-details">Types d'habitation (appartement, maison), pièces, meubles courants</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.V8</span><span class="topic-title">Vie Quotidienne & Routine</span><span class="topic-details">Moments de la journée, actions du matin au soir, heures fixes</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.V9</span><span class="topic-title">Alimentation, Boissons & Repas</span><span class="topic-details">Produits de base, fruits, légumes, au café/restaurant, faire les courses</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.V10</span><span class="topic-title">Vêtements, Couleurs & Tailles</span><span class="topic-details">Garde-robe courante, couleurs, notions de taille et pointure</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.V11</span><span class="topic-title">Ville, Lieux Publics & Itinéraires</span><span class="topic-details">Gare, commerces, musée, demander son chemin (droite, gauche, tout droit)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.V12</span><span class="topic-title">Corps Humain & Santé de Base</span><span class="topic-details">Parties principales du corps, sensations (faim, soif, chaud, froid, mal à)</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice A1.V</span>
+                <span class="exercise-title">Suite d'Évaluation & Pratique Lexicale</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> QCM d'identification lexicale à 3 options (Format TCF/TEF Lexique).</li>
+                <li><span class="tag-class">[CLASS]</span> Appariement image-mot, catégorisation par thème, dictée de nombres et épellation.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- A1 GRAMMAR -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">📐</span>
+              <span class="module-title">A1 · Grammaire (Morphosyntaxe)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">14 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.G1</span><span class="topic-title">Articles Définis, Indéfinis & Genre des Noms</span><span class="topic-details">Le/la/les, un/une/des, régularités masculin/féminin, singulier/pluriel</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.G2</span><span class="topic-title">Pronoms Sujets & Pronoms Toniques</span><span class="topic-details">Je, tu, il, elle, on... et renforcement : moi, toi, lui, elle</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.G3</span><span class="topic-title">Verbes Fondamentaux : Être & Avoir au Présent</span><span class="topic-details">Conjugaison complète, emplois d'identification, âge et possession</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.G4</span><span class="topic-title">La Négation Simple (Ne... pas)</span><span class="topic-details">Structure encadrante, élision n' devant voyelle, omission informelle</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.G5</span><span class="topic-title">Présent des Verbes Réguliers en -ER</span><span class="topic-details">Terminaisons (-e, -es, -e, -ons, -ez, -ent), verbes réflexifs usuels</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.G6</span><span class="topic-title">Verbes Usuels du 3e Groupe au Présent</span><span class="topic-details">Aller, faire, venir, prendre, vouloir, pouvoir, devoir au présent</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.G7</span><span class="topic-title">Présentateurs : C'est vs Il est / Voici / Voilà</span><span class="topic-details">Présentation vs description, identification de personnes et d'objets</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.G8</span><span class="topic-title">Adjectifs Qualificatifs : Accord & Place</span><span class="topic-details">Accord en genre/nombre, adjectifs antéposés fréquents (grand, petit, beau)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.G9</span><span class="topic-title">Adjectifs Possessifs & Démonstratifs</span><span class="topic-details">Mon/ma/mes, ton/ta/tes... ce/cet/cette/ces</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.G10</span><span class="topic-title">L'Interrogation Simple</span><span class="topic-details">Intonation montante, est-ce que, mots interrogatifs (où, quand, comment, qui)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.G11</span><span class="topic-title">Prépositions de Lieu & de Temps de Base</span><span class="topic-details">À, chez, dans, en, sur, sous, devant, derrière ; de... à, en + mois/saison</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.G12</span><span class="topic-title">Articles Partitifs & Expression de la Quantité</span><span class="topic-details">Du, de la, des, un peu de, beaucoup de, pas de (négation)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.G13</span><span class="topic-title">Le Futur Proche & Le Présent Progressif</span><span class="topic-details">Aller + infinitif ; être en train de + infinitif ; il faut + infinitif</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.G14</span><span class="topic-title">Introduction au Passé Composé (Avoir)</span><span class="topic-details">Auxiliaire avoir + participe passé régulier en -é (j'ai parlé, j'ai mangé)</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice A1.G</span>
+                <span class="exercise-title">Pratique Grammaticale Fondamentale</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-class">[CLASS]</span> Tableaux de conjugaison à trous, transformation masc/fém, singulier/pluriel.</li>
+                <li><span class="tag-exam">[EXAM]</span> QCM de structures grammaticales (4 choix, format épreuves TCF).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- A1 READING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">📖</span>
+              <span class="module-title">A1 · Compréhension Écrite (Lecture)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">5 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.R1</span><span class="topic-title">Panneaux, Affiches & Signalétique</span><span class="topic-details">Instructions courtes, pictogrammes, interdictions et autorisations simples</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.R2</span><span class="topic-title">Menus de Restaurant & Tickets de Caisse</span><span class="topic-details">Formules du jour, ingrédients courants, prix en euros, total de commande</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.R3</span><span class="topic-title">Horaires & Billets de Transport</span><span class="topic-details">Horaires de train/bus, numéro de quai, correspondances simples</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.R4</span><span class="topic-title">Cartes Postales & Messages Courts</span><span class="topic-details">Salutations de vacances, météo, activités de séjour simples</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.R5</span><span class="topic-title">Formulaires d'Inscription & Fiches Pratiques</span><span class="topic-details">Rubriques d'adhésion : nom, date de naissance, profession, coordonnées</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice A1.R</span>
+                <span class="exercise-title">Épreuve Type DELF A1 Compréhension Écrite</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> 4 documents quotidiens très courts avec QCM à 3 options & Vrai/Faux.</li>
+                <li><span class="tag-class">[CLASS]</span> Appariement de messages courts à leur situation de communication.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- A1 WRITING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">✍️</span>
+              <span class="module-title">A1 · Expression Écrite (Rédaction)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">4 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.W1</span><span class="topic-title">Remplir une Fiche de Renseignements</span><span class="topic-details">Formulaire d'hôtel, bibliothèque ou club sportif (10 items standardisés)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.W2</span><span class="topic-title">Rédiger une Carte Postale de Vacances</span><span class="topic-details">Donner des nouvelles simples, décrire le lieu et le temps (40+ mots)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.W3</span><span class="topic-title">Écrire un Message de Rendez-vous ou d'Invitation</span><span class="topic-details">Fixer une heure et un lieu, accepter ou décliner avec politesse</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.W4</span><span class="topic-title">Décrire sa Routine Quotidienne en Phrases Simples</span><span class="topic-details">Enchaîner 4 à 5 actions avec des connecteurs temporels de base</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice A1.W</span>
+                <span class="exercise-title">Épreuve Type DELF A1 Production Écrite</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> Partie 1 : Remplir une fiche de renseignements (10 informations personnelles).</li>
+                <li><span class="tag-exam">[EXAM]</span> Partie 2 : Rédiger un message amical de 40 à 50 mots minimum avec consigne.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- A1 LISTENING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">🎧</span>
+              <span class="module-title">A1 · Compréhension Orale (Écoute)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">4 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.L1</span><span class="topic-title">Repérage de Nombres, Prix, Heures & Téléphones</span><span class="topic-details">Reconnaissance de chiffres en contexte d'achat ou de communication</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.L2</span><span class="topic-title">Annonces Publiques en Gare & Magasin</span><span class="topic-details">Identifier la voie, la destination, les consignes simples de sécurité</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.L3</span><span class="topic-title">Messages Courts sur Répondeur Téléphonique</span><span class="topic-details">Identifier qui appelle, l'heure du message et le motif de l'appel</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.L4</span><span class="topic-title">Dialogues Simples de la Vie Courante</span><span class="topic-details">Échanges au guichet, au marché, salutations et demandes de prix</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice A1.L</span>
+                <span class="exercise-title">Épreuve Type DELF A1 Compréhension Orale</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> 4 courts enregistrements (≤3 min total), 2 écoutes, QCM 3 options.</li>
+                <li><span class="tag-class">[CLASS]</span> Remettre des images dans l'ordre chronologique de l'histoire entendue.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- A1 SPEAKING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">🗣️</span>
+              <span class="module-title">A1 · Expression Orale (Parler)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">3 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.S1</span><span class="topic-title">Entretien Dirigé : Se Présenter Spontanément</span><span class="topic-details">Nom, âge, nationalité, profession, domicile, goûts et famille</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.S2</span><span class="topic-title">Échange d'Informations : Poser des Questions</span><span class="topic-details">Formuler des questions à partir de cartes-mots stimuli (prix, heure, lieu)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A1.S3</span><span class="topic-title">Jeu de Rôle : Situation Usuelle en Commerce</span><span class="topic-details">Acheter un bien, demander un prix, commander à boire, payer</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice A1.S</span>
+                <span class="exercise-title">Épreuve Type DELF A1 Production Orale</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> Épreuve en 3 parties : Entretien dirigé (1 min) + Échange (2 min) + Dialogue simulé (2 min).</li>
+                <li><span class="tag-class">[CLASS]</span> Pratique audio assistée par reconnaissance vocale et grille de critères phonétiques.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- NIVEAU A2 -->
+    <!-- ================================================================= -->
+    <div class="level-section" id="sec-a2">
+      <div class="modules-grid">
+
+        <!-- A2 VOCABULARY -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">📚</span>
+              <span class="module-title">A2 · Vocabulaire (Extension Quotidienne)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">11 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.V1</span><span class="topic-title">Souvenirs, Biographie & Événements Passés</span><span class="topic-details">Étapes de la vie, enfance, scolarité, diplômes, moments marquants</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.V2</span><span class="topic-title">Habitudes, Rythmes & Loisirs Élargis</span><span class="topic-details">Activités sportives, sorties cinéma/théâtre, fréquences (parfois, souvent)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.V3</span><span class="topic-title">Santé, Consultation Médicale & Pharmacie</span><span class="topic-details">Symptômes courants (fièvre, toux), chez le médecin, ordonnances et posologies</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.V4</span><span class="topic-title">Achats, Magasins Spécialisés & Réclamations</span><span class="topic-details">Modes de paiement, soldes, échanges de marchandise, réclamation basique</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.V5</span><span class="topic-title">Services Publics : Poste, Banque & Mairie</span><span class="topic-details">Envoyer un colis, ouvrir un compte, démarches d'état civil, formulaires</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.V6</span><span class="topic-title">Vacances, Transports Longs & Hébergements</span><span class="topic-details">Hôtel, camping, gîte, formalités de voyage, billets d'avion et retards</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.V7</span><span class="topic-title">Monde Professionnel & Métiers Variés</span><span class="topic-details">Environnement de travail, collègues, tâches quotidiennes, rubriques d'un CV</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.V8</span><span class="topic-title">Logement Approfondi, Quartier & Déménagement</span><span class="topic-details">Annonces immobilières, loyer, charges, relation avec le voisinage</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.V9</span><span class="topic-title">Sentiments, Émotions & Avis Simples</span><span class="topic-details">Joie, déception, surprise, exprimer son accord ou son désaccord poli</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.V10</span><span class="topic-title">Vie Sociale, Fêtes & Invitations</span><span class="topic-details">Fêtes calendaires, inviter formellement/amicalement, excuses polies</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.V11</span><span class="topic-title">Météo Détaillée, Climat & Paysages</span><span class="topic-details">Phénomènes climatiques (orage, vent, neige), mer, montagne, campagne</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice A2.V</span>
+                <span class="exercise-title">Pratique Lexicale Contextualisée</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> QCM de sélection lexicale en contexte (Phrases lacunaires TEF/TCF).</li>
+                <li><span class="tag-class">[CLASS]</span> Rédaction de fiches de vocabulaire thématiques et exercices d'antonymes.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- A2 GRAMMAR -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">📐</span>
+              <span class="module-title">A2 · Grammaire (Structures Temporelles & Pronoms)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">14 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.G1</span><span class="topic-title">Passé Composé Complet avec Être & Accords</span><span class="topic-details">Verbes de la maison d'être, accord obligatoire du participe passé avec le sujet</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.G2</span><span class="topic-title">Le Passé Récent & Le Futur Immédiat</span><span class="topic-details">Venir de + infinitif ; être sur le point de + infinitif</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.G3</span><span class="topic-title">L'Imparfait : Morphologie & Usages</span><span class="topic-details">Formation sur radical de nous au présent, description passée, habitudes et état</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.G4</span><span class="topic-title">Alternance Passé Composé vs Imparfait</span><span class="topic-details">Décor/contexte d'arrière-plan (imparfait) vs action ponctuelle/rupture (PC)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.G5</span><span class="topic-title">Verbes Pronominaux au Présent & aux Temps Passés</span><span class="topic-details">Se réveiller, se promener, accord du participe passé avec le pronom réfléchi</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.G6</span><span class="topic-title">Le Futur Simple : Morphologie & Emploi</span><span class="topic-details">Terminaisons (-ai, -as, -a, -ons, -ez, -ont), projets d'avenir et prévisions</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.G7</span><span class="topic-title">Conditionnel Présent de Politesse & de Souhait</span><span class="topic-details">Je voudrais, j'aimerais, pourriez-vous, formes usuelles d'atténuation</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.G8</span><span class="topic-title">Verbes Semi-Auxiliaires & Modaux</span><span class="topic-details">Devoir, pouvoir, vouloir, savoir + infinitif (obligation, capacité, volonté)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.G9</span><span class="topic-title">Pronoms Compléments d'Objet Direct (COD)</span><span class="topic-details">Le, la, les, l' : remplacement et place devant le verbe conjugué</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.G10</span><span class="topic-title">Pronoms Compléments d'Objet Indirect (COI)</span><span class="topic-details">Lui, leur : différence avec COD, verbes avec préposition à (parler à, téléphoner à)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.G11</span><span class="topic-title">Pronoms Adverbiaux Y & EN</span><span class="topic-details">Y remplace lieu ou à + chose ; EN remplace quantité ou de + chose</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.G12</span><span class="topic-title">Pronoms Relatifs Simples : Qui, Que, Où</span><span class="topic-details">Qui (sujet), que (COD avec élision qu'), où (lieu et moment temporel)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.G13</span><span class="topic-title">La Comparaison & Le Superlatif</span><span class="topic-details">Plus/moins/aussi... que ; le plus / le moins ; meilleur vs mieux</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.G14</span><span class="topic-title">Négations Élargies & Connecteurs Temporels</span><span class="topic-details">Ne... plus, jamais, rien, personne ; d'abord, ensuite, alors, parce que, donc</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice A2.G</span>
+                <span class="exercise-title">Pratique Grammaticale Intermédiaire</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-class">[CLASS]</span> Exercices de transformation présent → passé (PC/imparfait), substitution pronominale.</li>
+                <li><span class="tag-exam">[EXAM]</span> QCM de structures morphosyntaxiques complexes (TCF Maîtrise des structures).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- A2 READING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">📖</span>
+              <span class="module-title">A2 · Compréhension Écrite (Lecture)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">4 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.R1</span><span class="topic-title">Courriels Personnels & Professionnels Simples</span><span class="topic-details">Confirmations de commande, messages de propriétaires, courriels de collègues</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.R2</span><span class="topic-title">Brochures Touristiques & Activités Régionales</span><span class="topic-details">Sélectionner une excursion selon des contraintes de dates, de prix et de public</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.R3</span><span class="topic-title">Petites Annonces & Offres d'Emploi Simples</span><span class="topic-details">Exigences de profil, localisation, compétences requises, loyers et charges</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.R4</span><span class="topic-title">Faits Divers & Brèves de Presse</span><span class="topic-details">Structure chronologique d'un événement insolite, météo marquante, secours</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice A2.R</span>
+                <span class="exercise-title">Épreuve Type DELF A2 Compréhension Écrite</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> 3–4 documents courts (lettres, annonces, brèves) avec QCM 3 options & appariements.</li>
+                <li><span class="tag-class">[CLASS]</span> Repérage d'informations ciblées (scanning) et chronologie des faits.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- A2 WRITING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">✍️</span>
+              <span class="module-title">A2 · Expression Écrite (Rédaction)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">3 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.W1</span><span class="topic-title">Raconter un Événement ou un Voyage (60–80 mots)</span><span class="topic-details">Articuler passé composé et imparfait pour raconter une expérience vécue</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.W2</span><span class="topic-title">Répondre à un Message : Inviter, Remercier, S'Excuser</span><span class="topic-details">Courriel de réponse fonctionnelle avec formules de politesse adaptées</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.W3</span><span class="topic-title">Décrire & Comparer deux Lieux ou Objets</span><span class="topic-details">Mobiliser le comparatif, le superlatif et des adjectifs variés</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice A2.W</span>
+                <span class="exercise-title">Épreuve Type DELF A2 Production Écrite</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> Exercice 1 : Récit créatif d'expérience vécue (60 à 80 mots).</li>
+                <li><span class="tag-exam">[EXAM]</span> Exercice 2 : Courriel interactif (remercier, féliciter, s'excuser — 60 à 80 mots).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- A2 LISTENING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">🎧</span>
+              <span class="module-title">A2 · Compréhension Orale (Écoute)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">4 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.L1</span><span class="topic-title">Bulletins Météorologiques & Flashes Info Simples</span><span class="topic-details">Températures, alertes météo, perturbations de trafic</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.L2</span><span class="topic-title">Instructions Pratiques & Consignes Administratives</span><span class="topic-details">Consignes au guichet, à la pharmacie, démarches auprès d'un agent</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.L3</span><span class="topic-title">Conversations Téléphoniques & Rendez-vous</span><span class="topic-details">Confirmer une visite, changer un horaire, s'accorder sur un lieu</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.L4</span><span class="topic-title">Micro-Trottoirs & Interviews d'Opinion Simple</span><span class="topic-details">Sondages rapides sur les habitudes des Français et leurs projets</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice A2.L</span>
+                <span class="exercise-title">Épreuve Type DELF A2 Compréhension Orale</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> 4 exercices (~14 courts enregistrements, ≤1 min chacun, 2 écoutes).</li>
+                <li><span class="tag-class">[CLASS]</span> Courtes dictées de phrases temporelles et repérage de connecteurs.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- A2 SPEAKING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">🗣️</span>
+              <span class="module-title">A2 · Expression Orale (Parler)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">3 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.S1</span><span class="topic-title">Entretien Dirigé : Raconter son Parcours & ses Projets</span><span class="topic-details">Parler de son passé, de sa profession et de ses aspirations (1 min 30)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.S2</span><span class="topic-title">Monologue Suivi : Présenter un Événement ou Projet</span><span class="topic-details">Tirer un sujet au sort, parler en continu pendant 2 minutes avec préparation</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">A2.S3</span><span class="topic-title">Jeu de Rôle en Interaction : Résoudre une Situation Imprévue</span><span class="topic-details">Échanger un article, régler un problème de réservation ou de voisinage</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice A2.S</span>
+                <span class="exercise-title">Épreuve Type DELF A2 Production Orale</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> Épreuve 3 parties : Entretien (1 min 30) + Monologue suivi (2 min) + Interaction (3 min).</li>
+                <li><span class="tag-class">[CLASS]</span> Enregistrement audio chronométré avec auto-évaluation guidée.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- NIVEAU B1 -->
+    <!-- ================================================================= -->
+    <div class="level-section" id="sec-b1">
+      <div class="modules-grid">
+
+        <!-- B1 VOCABULARY -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">📚</span>
+              <span class="module-title">B1 · Vocabulaire (Thèmes Sociétaux & Débats)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">11 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.V1</span><span class="topic-title">Éducation, Formation & Apprentissage des Langues</span><span class="topic-details">Systèmes scolaires, cours en ligne, compétences professionnelles, bilinguisme</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.V2</span><span class="topic-title">Monde du Travail, Recrutement & Conditions</span><span class="topic-details">Entretien d'embauche, télétravail, salaire, droits des salariés, équilibre de vie</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.V3</span><span class="topic-title">Santé, Bien-Être & Alimentation Responsable</span><span class="topic-details">Alimentation bio, malbouffe, sommeil, lutte contre la sédentarité, addictions</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.V4</span><span class="topic-title">Environnement, Écologie & Climat</span><span class="topic-details">Tri sélectif, énergies renouvelables, pollution, biodiversité, réchauffement</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.V5</span><span class="topic-title">Transports Durables & Mobilité Urbaine</span><span class="topic-details">Covoiturage, pistes cyclables, transports en commun, sécurité routière</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.V6</span><span class="topic-title">Nouvelles Technologies & Réseaux Sociaux</span><span class="topic-details">Vie privée, impact des écrans, algorithmes, cyberharcèlement, smartphones</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.V7</span><span class="topic-title">Médias, Information & Presse Écrite</span><span class="topic-details">Fake news, journaux en ligne, indépendance journalistique, sondages</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.V8</span><span class="topic-title">Culture, Arts, Cinéma & Patrimoine</span><span class="topic-details">Festivals, sorties culturelles, musées, critique d'un spectacle ou d'un livre</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.V9</span><span class="topic-title">Modes de Consommation & Publicité</span><span class="topic-details">Commerce équitable, gaspillage, seconde main, surconsommation</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.V10</span><span class="topic-title">Vie Associative, Citoyenneté & Solidarité</span><span class="topic-details">Bénévolat, engagement civique, entraide entre générations</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.V11</span><span class="topic-title">Nuances d'Opinion, Jugement & Doute</span><span class="topic-details">Formuler une réserve, approuver avec modération, réfuter poliment</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice B1.V</span>
+                <span class="exercise-title">Lexique Argumentatif DELF B1</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> QCM de précision lexicale dans des extraits de presse (TEF/TCF).</li>
+                <li><span class="tag-class">[CLASS]</span> Exercices de dérivation (préfixes/suffixes) et familles de mots thématiques.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- B1 GRAMMAR -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">📐</span>
+              <span class="module-title">B1 · Grammaire (Subjonctif, Hypothèses & Articulation)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">13 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.G1</span><span class="topic-title">Le Plus-Que-Parfait : Formation & Valeur</span><span class="topic-details">Antériorité dans le passé par rapport à un autre fait passé (j'avais déjà mangé)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.G2</span><span class="topic-title">L'Architecture Temporelle du Récit au Passé</span><span class="topic-details">Harmonisation Passé composé, Imparfait et Plus-que-parfait dans la narration</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.G3</span><span class="topic-title">Le Conditionnel Présent : Conseils & Souhaits</span><span class="topic-details">Radical du futur + terminaisons de l'imparfait, expression de l'hypothèse réalisable</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.G4</span><span class="topic-title">Subjonctif Présent : Formation & Déclencheurs Réguliers</span><span class="topic-details">Radical de ils au présent, volonté (vouloir que), obligation (il faut que), sentiment</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.G5</span><span class="topic-title">Indicatif vs Subjonctif : Certitude vs Doute & Opinion</span><span class="topic-details">Je pense que + ind. vs je ne pense pas que + subj. ; le cas particulier d'espérer que</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.G6</span><span class="topic-title">Hypothèse & Condition avec "Si" (Types 1 & 2)</span><span class="topic-details">Si + présent → futur / impératif ; Si + imparfait → conditionnel présent</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.G7</span><span class="topic-title">Le Gérondif : Formation & Fonctions</span><span class="topic-details">En + participe présent : simultanéité, cause, manière et condition</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.G8</span><span class="topic-title">La Double Pronominalisation & Ordre des Pronoms</span><span class="topic-details">Placement strict (me/te/se avant le/la avant lui/leur avant y avant en)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.G9</span><span class="topic-title">Le Pronom Relatif DONT</span><span class="topic-details">Complément de nom, verbes avec de (se souvenir de, parler de, avoir besoin de)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.G10</span><span class="topic-title">Le Discours Indirect au Présent</span><span class="topic-details">Il dit que / il demande si / il me demande de faire (sans recul temporel)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.G11</span><span class="topic-title">Cause, Conséquence & But</span><span class="topic-details">Grâce à / à cause de / puisque ; tellement... que / si bien que ; pour que + subj.</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.G12</span><span class="topic-title">Opposition & Concession</span><span class="topic-details">Alors que / tandis que ; pourtant / cependant / mais ; même si + indicatif</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.G13</span><span class="topic-title">Initiation à la Voix Passive & Formes Équivalentes</span><span class="topic-details">Construction avec être + participe passé + par, et tournure active avec "on"</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice B1.G</span>
+                <span class="exercise-title">Pratique Morphosyntaxique B1</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-class">[CLASS]</span> Choix raisonné indicatif/subjonctif, réécriture au discours indirect, cloze de connecteurs.</li>
+                <li><span class="tag-exam">[EXAM]</span> QCM de structures syntaxiques complexes (Section Structure TCF).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- B1 READING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">📖</span>
+              <span class="module-title">B1 · Compréhension Écrite (Lecture)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">3 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.R1</span><span class="topic-title">Sélection Multi-Critères de Documents</span><span class="topic-details">Comparer 4 offres/activités pour satisfaire 3 profils sous contraintes</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.R2</span><span class="topic-title">Articles de Presse d'Information (~350 mots)</span><span class="topic-details">Comprendre la problématique, les chiffres clés et les solutions envisagées</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.R3</span><span class="topic-title">Courriers des Lecteurs & Prises de Position</span><span class="topic-details">Distinguer les faits vérifiables des jugements de valeur de l'auteur</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice B1.R</span>
+                <span class="exercise-title">Épreuve Type DELF B1 Compréhension Écrite</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> 3 exercices : sélection d'offres + 2 articles avec QCM et justifications exactes du texte.</li>
+                <li><span class="tag-class">[CLASS]</span> Techniques de repérage rapide (skimming/scanning) et recherche d'arguments.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- B1 WRITING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">✍️</span>
+              <span class="module-title">B1 · Expression Écrite (Rédaction)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">3 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.W1</span><span class="topic-title">Essai & Courrier des Lecteurs Argumenté (160+ mots)</span><span class="topic-details">Donner son point de vue sur un sujet général avec connecteurs et exemples personnels</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.W2</span><span class="topic-title">Lettre Formelle de Réclamation ou de Demande</span><span class="topic-details">Respect des normes épistolaires : objet, formule d'appel, corps argumenté, salutations</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.W3</span><span class="topic-title">Contribution à un Forum de Débat en Ligne</span><span class="topic-details">Rebondir sur l'avis d'autres internautes, modérer ses propos, proposer une issue</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice B1.W</span>
+                <span class="exercise-title">Épreuve Type DELF B1 Production Écrite</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> Rédaction continue d'un texte d'opinion argumentée de 160 mots minimum.</li>
+                <li><span class="tag-class">[CLASS]</span> Structuration de paragraphes argumentatifs (idée directrice + argument + exemple).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- B1 LISTENING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">🎧</span>
+              <span class="module-title">B1 · Compréhension Orale (Écoute)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">3 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.L1</span><span class="topic-title">Émissions de Radio Grand Public & Podcasts</span><span class="topic-details">Chroniques de société, émissions sur l'environnement et la culture sur France Inter / RFI</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.L2</span><span class="topic-title">Entretiens & Interviews Thématiques</span><span class="topic-details">Comprendre le parcours d'un invité, ses motivations et ses réponses</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.L3</span><span class="topic-title">Tables Rondes & Débats Audio Modérés</span><span class="topic-details">Identifier les intervenants, leurs désaccords et leurs arguments respectifs</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice B1.L</span>
+                <span class="exercise-title">Épreuve Type DELF B1 Compréhension Orale</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> 3 enregistrements (1 dialogue + 2 émissions de radio, 2 écoutes), QCM de synthèse.</li>
+                <li><span class="tag-class">[CLASS]</span> Prise de notes synthétique à l'écoute d'un extrait de 2 minutes.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- B1 SPEAKING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">🗣️</span>
+              <span class="module-title">B1 · Expression Orale (Parler)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">3 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.S1</span><span class="topic-title">Entretien Dirigé Élargi : Expériences & Opinions</span><span class="topic-details">Échange spontané avec l'examinateur sur ses valeurs et expériences (2–3 min)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.S2</span><span class="topic-title">Exercice en Interaction : Négocier & Convaincre</span><span class="topic-details">Jeu de rôle à enjeu : convaincre un collègue ou un proche réticent (3–4 min)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B1.S3</span><span class="topic-title">Monologue Argumenté à Partir d'un Document Déclencheur</span><span class="topic-details">Dégager le thème d'un court texte, donner son avis avec arguments et exemples (3 min)</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice B1.S</span>
+                <span class="exercise-title">Épreuve Type DELF B1 Production Orale</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> Épreuve 3 parties (10 min préparation) : Entretien + Interaction + Monologue argumenté.</li>
+                <li><span class="tag-class">[CLASS]</span> Pratique de l'argumentation orale structurée (accroche, 2 arguments, conclusion).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- NIVEAU B2 -->
+    <!-- ================================================================= -->
+    <div class="level-section" id="sec-b2">
+      <div class="modules-grid">
+
+        <!-- B2 VOCABULARY -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">📚</span>
+              <span class="module-title">B2 · Vocabulaire (Débats de Société & Analyse Critique)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">10 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.V1</span><span class="topic-title">Mutations du Travail, Emploi & Nouvelles Organisations</span><span class="topic-details">Télétravail, ubérisation, reconversion, dialogue social, souffrance au travail</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.V2</span><span class="topic-title">Santé Publique, Bioéthique & Systèmes de Soins</span><span class="topic-details">Génétique, fin de vie, déserts médicaux, équité d'accès aux soins</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.V3</span><span class="topic-title">Transition Écologique, Décroissance & Économie Circulaire</span><span class="topic-details">Décarbonation, justice climatique, surconsommation, transition énergétique</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.V4</span><span class="topic-title">Intelligence Artificielle, Données & Médias Numériques</span><span class="topic-details">Automatisation, souveraineté numérique, infobésité, deepfakes, algorithmes</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.V5</span><span class="topic-title">Famille Contemporaine, Égalité & Inclusion</span><span class="topic-details">Nouvelles parentalités, parité hommes-femmes, lutte contre les discriminations</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.V6</span><span class="topic-title">Mondialisation, Pouvoir d'Achat & Économie Sociale</span><span class="topic-details">Inflation, relocalisation industrielle, coopératives, commerce équitable</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.V7</span><span class="topic-title">Politiques Culturelles, Patrimoine & Création Artistique</span><span class="topic-details">Subventions publiques, liberté de création, culture populaire vs académique</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.V8</span><span class="topic-title">Urbanisme, Villes Durables & Mobilité du Futur</span><span class="topic-details">Gentrification, étalement urbain, écoquartiers, transports zéro émission</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.V9</span><span class="topic-title">Citoyenneté, Démocratie Participative & Justice</span><span class="topic-details">Abstentionnisme, référendum d'initiative citoyenne, institutions républicaines</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.V10</span><span class="topic-title">Registres de Langue, Euphémisme & Idiomatismes</span><span class="topic-details">Langage soutenu, métaphores de la presse, ironie, litote et double sens</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice B2.V</span>
+                <span class="exercise-title">Précision Sémantique & Stylistique</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> QCM de phrases lacunaires à forte complexité lexicale (Format TEF Lexique).</li>
+                <li><span class="tag-class">[CLASS]</span> Exercices de paraphrase, nominalisation de slogans et détection de tonalité.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- B2 GRAMMAR -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">📐</span>
+              <span class="module-title">B2 · Grammaire (Structures Avancées & Style)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">12 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.G1</span><span class="topic-title">Le Subjonctif Passé & Emplois Nuancés du Subjonctif</span><span class="topic-details">Aie/sois fait, verbes d'opinion interrogatifs/négatifs, subjonctif après superlatifs</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.G2</span><span class="topic-title">Le Conditionnel Passé : Regret, Reproche & Information Douteuse</span><span class="topic-details">Formation aurais/serais fait, fonctions journalistiques de précaution d'information</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.G3</span><span class="topic-title">L'Hypothèse Irréelle dans le Passé</span><span class="topic-details">Si + plus-que-parfait → conditionnel passé (si j'avais su, je serais venu)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.G4</span><span class="topic-title">Voix Passive Complète & Alternatives Stylistiques</span><span class="topic-details">Passif impersonnel, pronominal passif (cela se comprend), se faire + infinitif</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.G5</span><span class="topic-title">Participe Présent vs Adjectif Verbal</span><span class="topic-details">Distinction syntaxique et orthographique (adhérant/adhérent, communicant/communiquant)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.G6</span><span class="topic-title">L'Infinitif Passé : Antériorité & Économie de Phrase</span><span class="topic-details">Après avoir terminé, après être parti ; infinitif passé sujet (avoir agi ainsi l'a sauvé)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.G7</span><span class="topic-title">Les Pronoms Relatifs Composés</span><span class="topic-details">Lequel, laquelle, auxquels, desquelles, avec lequel, pour laquelle...</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.G8</span><span class="topic-title">Mise en Relief & Procédés d'Emphase</span><span class="topic-details">C'est... qui/que ; ce qui... c'est ; ce dont il s'agit, c'est ; inversion stylistique</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.G9</span><span class="topic-title">Discours Indirect au Passé & Concordance des Temps</span><span class="topic-details">Recul temporel systématique (présent → imparfait, passé composé → PQP, futur → cond.)</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.G10</span><span class="topic-title">Concession & Restriction Avancées</span><span class="topic-details">Bien que / quoique + subj. ; malgré + nom ; avoir beau + inf. ; quand bien même + cond.</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.G11</span><span class="topic-title">La Nominalisation & Le Style Administratif / Journalistique</span><span class="topic-details">Transformation de propositions verbales en syntagmes nominaux denses</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.G12</span><span class="topic-title">Connecteurs Logiques Abstraits & Rhétorique</span><span class="topic-details">En revanche, néanmoins, dès lors, d'autant plus que, nonobstant, en somme</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice B2.G</span>
+                <span class="exercise-title">Maîtrise Grammaticale & Réécriture Stylistique</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-class">[CLASS]</span> Exercices de réécriture formelle, transposition au discours indirect au passé.</li>
+                <li><span class="tag-exam">[EXAM]</span> QCM d'excellence grammaticale (Épreuves FEI TCF / TEF niveau B2).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- B2 READING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">📖</span>
+              <span class="module-title">B2 · Compréhension Écrite (Lecture)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">3 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.R1</span><span class="topic-title">Grands Articles de Presse d'Analyse (450–500 mots)</span><span class="topic-details">Identifier la thèse implicite, la progression de l'argumentation et les contre-arguments</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.R2</span><span class="topic-title">Éditoriaux & Essais Polémiques</span><span class="topic-details">Décrypter le ton (ironie, plaidoyer, réquisitoire) et les figures de rhétorique</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.R3</span><span class="topic-title">Synthèse de Points de Vue Opposés sur Forum</span><span class="topic-details">Analyser les positions convergentes et divergentes de 3 citoyens sur un projet</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice B2.R</span>
+                <span class="exercise-title">Épreuve Type DELF B2 Compréhension Écrite</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> 3 textes argumentatifs (450–500 mots) avec questionnaires à choix multiple analytiques.</li>
+                <li><span class="tag-class">[CLASS]</span> Analyse de la structure argumentative et repérage des sophismes.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- B2 WRITING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">✍️</span>
+              <span class="module-title">B2 · Expression Écrite (Rédaction)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">3 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.W1</span><span class="topic-title">Lettre Formelle d'Argumentation & de Protestation (250+ mots)</span><span class="topic-details">S'adresser à un maire ou directeur : argumentation juridique, éthique et propositions</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.W2</span><span class="topic-title">Essai Critique selon le Plan Dialectique (250+ mots)</span><span class="topic-details">Thèse, Antithèse, Synthèse/Dépassement avec transitions et exemples rigoureux</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.W3</span><span class="topic-title">Article d'Opinion Engagé ou Tribune de Presse</span><span class="topic-details">Titre percutant, interpellation du lecteur, solutions d'avenir et style soigné</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice B2.W</span>
+                <span class="exercise-title">Épreuve Type DELF B2 Production Écrite</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> Production écrite d'au moins 250 mots (lettre formelle ou essai argumenté).</li>
+                <li><span class="tag-class">[CLASS]</span> Élaboration de plans dialectiques détaillés et exercices de transition logique.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- B2 LISTENING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">🎧</span>
+              <span class="module-title">B2 · Compréhension Orale (Écoute)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">2 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.L1</span><span class="topic-title">Conférence Universitaire ou Grand Reportage Audio</span><span class="topic-details">Enregistrement long (4 à 6 minutes) : compréhension fine des concepts et nuances</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.L2</span><span class="topic-title">Débat Contradictoire Radiophonique à Débit Rapide</span><span class="topic-details">Repérer les concessions orales, interruptions, sous-entendus et arguments réfutés</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice B2.L</span>
+                <span class="exercise-title">Épreuve Type DELF B2 Compréhension Orale</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> 2 longs documents audio (exposé + débat), 2 écoutes, QCM d'analyse fine.</li>
+                <li><span class="tag-class">[CLASS]</span> Prise de notes universitaire sous forme d'arborescence logique.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- B2 SPEAKING -->
+        <div class="module-card">
+          <div class="module-header">
+            <div class="module-title-wrap">
+              <span class="module-icon">🗣️</span>
+              <span class="module-title">B2 · Expression Orale (Parler)</span>
+            </div>
+            <div class="module-meta">
+              <span class="count-pill">2 Topics</span>
+              <span class="toggle-arrow">▼</span>
+            </div>
+          </div>
+          <div class="module-body">
+            <ul class="tree-list">
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.S1</span><span class="topic-title">L'Exposé Argumenté Structuré (10 min de présentation)</span><span class="topic-details">Introduction avec problématique, plan en 2 ou 3 parties, argumentation et conclusion</span></div></li>
+              <li class="tree-item"><div class="tree-item-content"><span class="topic-id">B2.S2</span><span class="topic-title">Débat Contradictoire avec l'Examinateur (10 min)</span><span class="topic-details">Défendre sa position face à des objections fortes, concéder avec élégance</span></div></li>
+            </ul>
+            <div class="exercise-box">
+              <div class="exercise-header">
+                <span class="exercise-badge">Exercice B2.S</span>
+                <span class="exercise-title">Épreuve Type DELF B2 Production Orale</span>
+              </div>
+              <ul class="exercise-list">
+                <li><span class="tag-exam">[EXAM]</span> Épreuve complète : 30 min de préparation, exposé de 10 min puis débat de 10 min.</li>
+                <li><span class="tag-class">[CLASS]</span> Entraînement à la réfutation d'arguments et formules d'atténuation.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Footer Documentation Note -->
+    <footer>
+      <p>
+        <strong>Apprendre.io Curriculum Architecture (A1–B2)</strong> · Conçu selon les référentiels officiels du 
+        <em>Conseil de l'Europe (Beacco ch. 6)</em>, du <em>CIEP / Eaquals (Inventaire des contenus clés 2015)</em>, 
+        et de <em>France Éducation international (DELF/TCF/TEF)</em>.
+      </p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Tab switching
+    const tabs = document.querySelectorAll('.level-tab');
+    const sections = document.querySelectorAll('.level-section');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const lvl = tab.getAttribute('data-level');
+        tabs.forEach(t => t.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        tab.classList.add('active');
+        const targetSec = document.getElementById('sec-' + lvl);
+        if (targetSec) targetSec.classList.add('active');
+      });
+    });
+
+    // Module collapse / expand
+    const moduleCards = document.querySelectorAll('.module-card');
+    moduleCards.forEach(card => {
+      const header = card.querySelector('.module-header');
+      header.addEventListener('click', () => {
+        card.classList.toggle('collapsed');
+      });
+    });
+
+    // Expand / Collapse all
+    document.getElementById('btnExpandAll').addEventListener('click', () => {
+      moduleCards.forEach(card => card.classList.remove('collapsed'));
+    });
+
+    document.getElementById('btnCollapseAll').addEventListener('click', () => {
+      moduleCards.forEach(card => card.classList.add('collapsed'));
+    });
+
+    // Search filter across topics
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      
+      if (!query) {
+        // Reset view
+        document.querySelectorAll('.tree-item').forEach(el => el.style.display = '');
+        document.querySelectorAll('.module-card').forEach(el => el.style.display = '');
+        return;
+      }
+
+      // Show all sections during search
+      sections.forEach(s => s.classList.add('active'));
+
+      moduleCards.forEach(card => {
+        let matchCount = 0;
+        const items = card.querySelectorAll('.tree-item');
+        items.forEach(item => {
+          const text = item.textContent.toLowerCase();
+          if (text.includes(query)) {
+            item.style.display = '';
+            matchCount++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        if (matchCount > 0) {
+          card.style.display = '';
+          card.classList.remove('collapsed');
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

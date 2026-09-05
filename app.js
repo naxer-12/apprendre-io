@@ -198,62 +198,258 @@
     `;
   }
 
+  function escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
   function renderWorksheetCard(worksheet, topicId) {
-    if (!worksheet || !worksheet.exercises || !worksheet.exercises.length) return '';
+    const sheets = (window.PRACTICE_WORKSHEETS && window.PRACTICE_WORKSHEETS[topicId]) ||
+                   (worksheet && worksheet.exercises ? [worksheet] : []);
+    if (!sheets || !sheets.length) return '';
+    const totalQ = sheets.reduce((sum, s) => sum + (s.exercises ? s.exercises.length : 0), 0);
+
     return `
-      <a class="worksheet-link-card" href="#/worksheet/${topicId}" aria-label="Open practice worksheet: ${worksheet.title}">
-        <div class="worksheet-card-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-            <line x1="8" y1="13" x2="16" y2="13"></line>
-            <line x1="8" y1="17" x2="13" y2="17"></line>
-          </svg>
+      <div class="worksheet-section-card">
+        <div class="worksheet-section-header">
+          <div class="worksheet-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="8" y1="13" x2="16" y2="13"></line>
+              <line x1="8" y1="17" x2="13" y2="17"></line>
+            </svg>
+          </div>
+          <div class="worksheet-card-content">
+            <div class="worksheet-badge-row">
+              <span class="worksheet-card-label">Curated Practice System</span>
+              <span class="worksheet-count-badge">${sheets.length} Sheets · ${totalQ} Questions</span>
+              <span class="worksheet-level-badge">Adult FLE</span>
+            </div>
+            <h3 class="worksheet-card-title">Practice &amp; Application Worksheets</h3>
+            <p class="worksheet-card-desc">Strengthen grammar retention and sentence formation with ${sheets.length} graded worksheets tailored for adult learners (with complete self-check answer keys).</p>
+          </div>
         </div>
-        <div class="worksheet-card-content">
-          <span class="worksheet-card-label">Practice worksheet</span>
-          <h3 class="worksheet-card-title">${worksheet.title}</h3>
-          ${worksheet.subtitle ? `<p class="worksheet-card-desc">${worksheet.subtitle}</p>` : ''}
+
+        <div class="worksheet-sheets-preview">
+          ${sheets.map((s, idx) => `
+            <a class="worksheet-preview-pill" href="#/worksheet/${topicId}/${idx + 1}" title="${escapeHtml(s.title)}">
+              <div class="pill-head">
+                <span class="pill-num">Sheet ${idx + 1}</span>
+                <span class="pill-badge">${s.exercises ? s.exercises.length : 20} Q</span>
+              </div>
+              <span class="pill-title">${escapeHtml(s.title.replace(/^Sheet \d+:\s*/, ''))}</span>
+            </a>
+          `).join('')}
         </div>
-        <span class="worksheet-cta-btn">Open worksheet →</span>
-      </a>
+
+        <div class="worksheet-card-footer">
+          <a class="btn primary worksheet-open-all-btn" href="#/worksheet/${topicId}/1">Start Practice Sheet 1 →</a>
+          <span class="worksheet-hint">Instant answer reveal &amp; print-ready layout</span>
+        </div>
+      </div>
     `;
   }
 
-  function renderWorksheet(topic) {
-    const worksheet = topic.reference && topic.reference.worksheet;
+  function renderWorksheet(topic, activeSheetNum = 1) {
+    const sheets = (window.PRACTICE_WORKSHEETS && window.PRACTICE_WORKSHEETS[topic.id]) ||
+                   (topic.reference && topic.reference.worksheet ? [topic.reference.worksheet] : []);
     const main = document.getElementById('main');
-    if (!worksheet) {
+    if (!sheets || !sheets.length) {
       location.hash = `#/${topic.module}/${topic.id}`;
       return;
     }
 
+    let sheetIdx = parseInt(activeSheetNum, 10) - 1;
+    if (isNaN(sheetIdx) || sheetIdx < 0 || sheetIdx >= sheets.length) {
+      sheetIdx = 0;
+    }
+    const currentSheet = sheets[sheetIdx];
+    const totalQuestionsInTopic = sheets.reduce((sum, s) => sum + (s.exercises ? s.exercises.length : 0), 0);
+
     main.innerHTML = `
-      <a class="worksheet-back" href="#/${topic.module}/${topic.id}">← Back to ${topic.title}</a>
-      <div class="crumb">PRACTICE WORKSHEET</div>
-      <h1 class="lesson-title">${worksheet.title}</h1>
-      ${worksheet.subtitle ? `<p class="lesson-sub worksheet-subtitle">${worksheet.subtitle}</p>` : ''}
-      ${worksheet.intro ? `<p class="stage-desc worksheet-intro">${worksheet.intro}</p>` : ''}
+      <div class="worksheet-page-wrap">
+        <div class="worksheet-nav-header">
+          <a class="worksheet-back" href="#/${topic.module}/${topic.id}">← Back to Lesson: ${escapeHtml(topic.title)}</a>
+          <div class="worksheet-meta-tags">
+            <span class="chip-badge">${escapeHtml(topic.level || 'FLE')}</span>
+            <span class="chip-badge module-badge">${escapeHtml(topic.module.toUpperCase())}</span>
+            <span class="chip-badge count-badge">${sheets.length} Sheets · ${totalQuestionsInTopic} Questions</span>
+          </div>
+        </div>
 
-      <ol class="worksheet-exercise-list">
-        ${worksheet.exercises.map(ex => `<li>${ex.q}</li>`).join('')}
-      </ol>
+        <div class="crumb">PRACTICE SYSTEM · ADULT FLE CURRICULUM</div>
+        <h1 class="lesson-title">${escapeHtml(topic.title)}: Practice Worksheets</h1>
+        <p class="lesson-sub worksheet-subtitle">
+          Adult French Learning Curriculum · ${sheets.length} Graded Practice Sheets (${currentSheet.exercises.length} Questions in this sheet) · Answer Keys Included
+        </p>
 
-      <div class="worksheet-answer-key">
-        <button class="btn ghost" id="toggleAnswerKey">Show answer key</button>
-        <ol class="worksheet-answer-list" id="answerList" hidden>
-          ${worksheet.exercises.map(ex => `<li>${ex.answer}</li>`).join('')}
-        </ol>
+        <!-- 3-Sheet Tab Selector -->
+        <div class="worksheet-tab-nav" role="tablist" aria-label="Practice Sheets">
+          ${sheets.map((s, idx) => `
+            <a class="worksheet-tab-btn ${idx === sheetIdx ? 'active' : ''}" href="#/worksheet/${topic.id}/${idx + 1}" role="tab" aria-selected="${idx === sheetIdx}">
+              <span class="tab-badge">Sheet ${idx + 1}</span>
+              <span class="tab-label">${escapeHtml(s.title.replace(/^Sheet \d+:\s*/, ''))}</span>
+              <span class="tab-count">${s.exercises ? s.exercises.length : 20} Questions</span>
+            </a>
+          `).join('')}
+        </div>
+
+        <!-- Active Sheet Card -->
+        <div class="worksheet-sheet-card">
+          <div class="worksheet-sheet-header">
+            <div>
+              <div class="sheet-kicker">Practice Sheet ${sheetIdx + 1} of ${sheets.length}</div>
+              <h2 class="sheet-title">${escapeHtml(currentSheet.title)}</h2>
+              ${currentSheet.subtitle ? `<p class="sheet-subtitle">${escapeHtml(currentSheet.subtitle)}</p>` : ''}
+              ${currentSheet.intro ? `<p class="stage-desc sheet-intro">${escapeHtml(currentSheet.intro)}</p>` : ''}
+            </div>
+            <div class="worksheet-sheet-actions">
+              <button class="btn secondary sm" id="toggleAllAnswersBtn" type="button">Reveal All Answers</button>
+              <button class="btn ghost sm" id="printSheetBtn" type="button">Print Sheet</button>
+              <button class="btn ghost sm" id="downloadSheetBtn" type="button">Download Text</button>
+            </div>
+          </div>
+
+          <!-- Exercises List -->
+          <div class="worksheet-questions-container">
+            ${currentSheet.exercises.map((ex, idx) => `
+              <div class="worksheet-question-row" id="q-card-${idx}">
+                <div class="q-card-top">
+                  <span class="q-num-pill">Q${idx + 1}</span>
+                  <div class="q-prompt">${escapeHtml(ex.q)}</div>
+                  <button class="btn ghost xs q-reveal-btn" data-target="q-ans-${idx}" type="button">Check Answer</button>
+                </div>
+                <div class="q-answer-reveal" id="q-ans-${idx}" hidden>
+                  <span class="ans-label">Correct Answer:</span>
+                  <span class="ans-body">${escapeHtml(ex.answer)}</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <!-- Consolidated Answer Key Section -->
+          <div class="worksheet-consolidated-key">
+            <div class="key-header">
+              <h3>Complete Answer Key (${currentSheet.exercises.length} Questions)</h3>
+              <button class="btn ghost sm" id="toggleConsolidatedKeyBtn" type="button">Show Full Key</button>
+            </div>
+            <div class="consolidated-key-body" id="consolidatedKeyBody" hidden>
+              <ol class="worksheet-key-ordered-list">
+                ${currentSheet.exercises.map((ex, idx) => `
+                  <li>
+                    <strong>Q${idx + 1}:</strong> ${escapeHtml(ex.answer)}
+                  </li>
+                `).join('')}
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Sheet Pagination & Navigation -->
+        <div class="worksheet-bottom-nav">
+          ${sheetIdx > 0
+            ? `<a class="pn-btn" href="#/worksheet/${topic.id}/${sheetIdx}">
+                 <div class="lbl">← Previous Sheet</div>
+                 <div class="t">Sheet ${sheetIdx}: ${escapeHtml(sheets[sheetIdx - 1].title.replace(/^Sheet \d+:\s*/, ''))}</div>
+               </a>`
+            : `<a class="pn-btn" href="#/${topic.module}/${topic.id}">
+                 <div class="lbl">← Back to Lesson</div>
+                 <div class="t">${escapeHtml(topic.title)}</div>
+               </a>`
+          }
+          ${sheetIdx < sheets.length - 1
+            ? `<a class="pn-btn next-sheet" href="#/worksheet/${topic.id}/${sheetIdx + 2}">
+                 <div class="lbl">Next Sheet →</div>
+                 <div class="t">Sheet ${sheetIdx + 2}: ${escapeHtml(sheets[sheetIdx + 1].title.replace(/^Sheet \d+:\s*/, ''))}</div>
+               </a>`
+            : `<a class="pn-btn" href="#/${topic.module}/${topic.id}">
+                 <div class="lbl">Practice Completed</div>
+                 <div class="t">Return to Lesson (${escapeHtml(topic.title)}) →</div>
+               </a>`
+          }
+        </div>
+
+        <footer class="foot">
+          Apprendre.io Practice System — Original adult FLE practice curriculum. All rights reserved.
+        </footer>
       </div>
-
-      <footer class="foot">Original practice material written for this course — not an external download.</footer>
     `;
 
-    document.getElementById('toggleAnswerKey').addEventListener('click', (e) => {
-      const list = document.getElementById('answerList');
-      list.hidden = !list.hidden;
-      e.target.textContent = list.hidden ? 'Show answer key' : 'Hide answer key';
+    // Event handlers for interactivity
+    main.querySelectorAll('.q-reveal-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const targetId = e.currentTarget.getAttribute('data-target');
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.hidden = !target.hidden;
+          e.currentTarget.textContent = target.hidden ? 'Check Answer' : 'Hide Answer';
+        }
+      });
     });
+
+    const toggleAllBtn = document.getElementById('toggleAllAnswersBtn');
+    if (toggleAllBtn) {
+      toggleAllBtn.addEventListener('click', () => {
+        const allAnswers = main.querySelectorAll('.q-answer-reveal');
+        const anyHidden = Array.from(allAnswers).some(el => el.hidden);
+        allAnswers.forEach(el => el.hidden = !anyHidden);
+        main.querySelectorAll('.q-reveal-btn').forEach(btn => {
+          btn.textContent = anyHidden ? 'Hide Answer' : 'Check Answer';
+        });
+        toggleAllBtn.textContent = anyHidden ? 'Hide All Answers' : 'Reveal All Answers';
+      });
+    }
+
+    const consolidatedBtn = document.getElementById('toggleConsolidatedKeyBtn');
+    const consolidatedBody = document.getElementById('consolidatedKeyBody');
+    if (consolidatedBtn && consolidatedBody) {
+      consolidatedBtn.addEventListener('click', () => {
+        consolidatedBody.hidden = !consolidatedBody.hidden;
+        consolidatedBtn.textContent = consolidatedBody.hidden ? 'Show Full Key' : 'Hide Full Key';
+      });
+    }
+
+    const printBtn = document.getElementById('printSheetBtn');
+    if (printBtn) {
+      printBtn.addEventListener('click', () => {
+        window.print();
+      });
+    }
+
+    const downloadBtn = document.getElementById('downloadSheetBtn');
+    if (downloadBtn) {
+      downloadBtn.addEventListener('click', () => {
+        let text = `APPRENDRE.IO — PRACTICE WORKSHEET\n`;
+        text += `Topic: ${topic.title} (${topic.level || 'FLE'})\n`;
+        text += `${currentSheet.title}\n`;
+        text += `${currentSheet.subtitle || ''}\n`;
+        text += `=======================================================\n\n`;
+        text += `EXERCISES:\n`;
+        currentSheet.exercises.forEach((ex, idx) => {
+          text += `${idx + 1}. ${ex.q}\n`;
+        });
+        text += `\n=======================================================\n`;
+        text += `ANSWER KEY:\n`;
+        currentSheet.exercises.forEach((ex, idx) => {
+          text += `${idx + 1}. ${ex.answer}\n`;
+        });
+        const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${topic.id}-sheet-${sheetIdx + 1}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    }
   }
 
   function scrollToReference(e) {
@@ -400,7 +596,7 @@
         <h2>Check your knowledge</h2>
         <p class="stage-desc">${topic.test.questions.length} questions. Score ${topic.test.passScore}/${topic.test.questions.length} to pass.</p>
         <div id="quizMount"></div>
-        ${topic.reference && topic.reference.worksheet ? renderWorksheetCard(topic.reference.worksheet, topic.id) : ''}
+        ${renderWorksheetCard(topic.reference && topic.reference.worksheet, topic.id)}
       </div>
 
       <div class="stage" id="stage-reference">
@@ -825,13 +1021,14 @@
     renderHeader();
     renderSidebar();
     updateNavState();
-    const [moduleId, topicId] = currentRoute();
+    const [moduleId, topicId, sheetParam] = currentRoute();
 
     if (moduleId === 'practice') {
       location.hash = '#/overview';
       return;
     } else if (moduleId === 'worksheet' && topicId && window.TOPICS && window.TOPICS[topicId]) {
-      renderWorksheet(window.TOPICS[topicId]);
+      const sheetNum = parseInt(sheetParam, 10) || 1;
+      renderWorksheet(window.TOPICS[topicId], sheetNum);
     } else if (topicId && window.TOPICS && window.TOPICS[topicId]) {
       renderLesson(window.TOPICS[topicId]);
     } else {

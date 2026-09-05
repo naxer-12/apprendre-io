@@ -241,6 +241,18 @@ Each topic file assigns directly into `window.TOPICS[id]`:
 - **Decision:** Extend `progress.js` with `recordActivity()`, tracking `current`/`longest` streak and a per-day `history` map, keyed off the same `localStorage` progress object. A completed quiz attempt (pass or fail) counts as a day of activity. Surfaced via a header flame badge and a 7-day activity strip on the overview page.
 - **Rationale:** Gives learners a lightweight, always-visible motivation signal without adding gamification mechanics (points, leaderboards) beyond what was asked for.
 
+### ADR-014: Zero-Dependency Dual-Environment Server (`scripts/server.js`)
+- **Status:** Accepted
+- **Date:** 2026-09-05
+- **Decision:** Provide a zero-dependency Node.js HTTP server supporting `--mode=dev` (`port 8086`, anti-caching headers `Cache-Control: no-store, no-cache, must-revalidate`, `X-Environment: development`) and `--mode=prod` (`port 8085`, production caching).
+- **Rationale:** Satisfies the requirement to maintain concurrent dev and production instances without introducing npm bundlers or external server frameworks, adhering strictly to ADR-001.
+
+### ADR-015: Curated Adult FLE Practice System (84 Graded Worksheets · 1,680 Questions)
+- **Status:** Accepted
+- **Date:** 2026-09-05
+- **Decision:** Store curated practice content in a dedicated `datasource/worksheets/` directory (covering all 28 subtopics × 3 sheets × 20 questions = 1,680 questions) tailored exclusively for adult learners (real-world situations, workplace, travel, cultural nuance, no juvenile tracing/coloring). Each sheet features individual "Check Answer" interactive reveals, complete answer keys, printable styling, and text export.
+- **Rationale:** Substantially elevates learning efficacy beyond passive reading while keeping topic order and IDs intact.
+
 ---
 
 ## 7. Implementation & Task Tracking Matrix
@@ -267,6 +279,7 @@ Each topic file assigns directly into `window.TOPICS[id]`:
 | **TSK-18** | Local Auth & Onboarding | `auth.js` sign-up/sign-in gate + one-time level-picker onboarding screen | Completed | `test/auth.test.js` (PASSED), verified in browser |
 | **TSK-19** | Beginner Pathway Reorg | `data/pathways.js` cross-module sidebar sequence + updated `requires` chains | Completed | `test/data.test.js` pathway/DAG assertions (PASSED) |
 | **TSK-20** | Original Worksheets & Streaks | In-app adult-level worksheets (`#/worksheet/:topicId`) and streak tracking (badge + 7-day strip) | Completed | `test/data.test.js`, `test/progress.test.js` (PASSED), verified in browser |
+| **TSK-21** | Dual Servers & 84 Curated Practice Worksheets | Zero-dep dev (:8086) and prod (:8085) servers; 3 graded practice sheets × 20 questions across all 28 topics (1,680 questions) in `datasource/` | Completed | `npm test` (all 5 suites passed), dev verified on :8086 |
 
 ---
 

@@ -58,9 +58,10 @@ require("../auth.js");
   files.forEach(f => require(path.join(__dirname, `../data/topics/${dir}`, f)));
 });
 
-// 3. Load modules
+// 3. Load modules & worksheets datasource
 require("../data/modules.js");
 require("../data/pathways.js");
+require("../datasource/worksheets/index.js");
 
 // 4. Load app
 require("../app.js");
@@ -94,6 +95,29 @@ assert.ok(!elements.main.innerHTML.includes("video-thumb-wrap"), "Must not rende
 // Test deep-dive / further study link in Stage 2
 assert.ok(elements.main.innerHTML.includes("where you can get more details for further topic and study"), "Stage 2 must include further study link");
 assert.ok(elements.main.innerHTML.includes('id="stage-reference"'), "Stage 4 must have id stage-reference");
+
+// Test Practice Worksheet System in lesson view
+assert.ok(elements.main.innerHTML.includes("worksheet-section-card"), "Lesson must render curated practice worksheets section card");
+assert.ok(elements.main.innerHTML.includes("3 Sheets · 60 Questions"), "Card must display 3 sheets and 60 questions badge");
+assert.ok(elements.main.innerHTML.includes("#/worksheet/a1-articles/1"), "Card must link to Sheet 1");
+
+// Test routing to Practice Worksheet Sheet 1 view
+globalThis.location.hash = "#/worksheet/a1-articles/1";
+window.render();
+assert.ok(elements.main.innerHTML.includes("worksheet-page-wrap"), "Worksheet route must render worksheet page container");
+assert.ok(elements.main.innerHTML.includes("Practice Sheet 1 of 3"), "Must render Sheet 1 kicker");
+assert.ok(elements.main.innerHTML.includes("Q20"), "Must render all 20 questions in Sheet 1");
+assert.ok(elements.main.innerHTML.includes("toggleAllAnswersBtn"), "Must render toggle all answers button");
+
+// Test routing to Practice Worksheet Sheet 2 view
+globalThis.location.hash = "#/worksheet/a1-articles/2";
+window.render();
+assert.ok(elements.main.innerHTML.includes("Practice Sheet 2 of 3"), "Must render Sheet 2 kicker");
+
+// Test routing to Practice Worksheet Sheet 3 view
+globalThis.location.hash = "#/worksheet/a1-articles/3";
+window.render();
+assert.ok(elements.main.innerHTML.includes("Practice Sheet 3 of 3"), "Must render Sheet 3 kicker");
 
 // Test speech synthesis pronunciation engine
 assert.strictEqual(typeof window.speak, "function", "window.speak must be exported as a function");

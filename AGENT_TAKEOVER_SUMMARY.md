@@ -2,8 +2,8 @@
 
 **Date:** September 2026
 **Repository Path:** `/Users/jainamshah/apprendre-io`
-**Current Branch:** `feature/feedback-4-enhancements`
-**Architecture:** Zero-dependency, client-side static web application (HTML5, CSS3 Custom Properties, Vanilla ES6+ JavaScript, `localStorage` persistence). A simulated local auth gate was added in Feedback 8 — **there is still no server or database.**
+**Current Branch:** `feature/feedback-9-v2`
+**Architecture:** Zero-dependency, client-side static web application (HTML5, CSS3 Custom Properties, Vanilla ES6+ JavaScript, `localStorage` persistence). Dual-server architecture via zero-dep Node.js (`scripts/server.js`): Production on `http://localhost:8085`, Development on `http://localhost:8086`. Curated 84-sheet (1,680 question) adult FLE practice system in `datasource/worksheets/`.
 
 ---
 
@@ -12,7 +12,7 @@
 `apprendre-io` is an evidence-based French language learning web application designed according to cognitive science principles:
 - **Cognitive Load Theory (Sweller):** Visual schemas before rule explanations.
 - **Desirable Difficulty (Bjork):** Hard prerequisite gating ($\ge 80\%$ score to unlock downstream topics).
-- **Retrieval Practice (Roediger & Karpicke):** Stage 3 immediate active recall testing on every topic, plus original adult-level worksheets for select topics.
+- **Retrieval Practice (Roediger & Karpicke):** Stage 3 immediate active recall testing on every topic, plus a comprehensive 3-sheet × 20-question practice system (84 sheets · 1,680 questions) for adult learners across all 28 topics.
 - **Dual Coding (Paivio):** Orthographic, IPA phonetic, audio pronunciation, and video modalities paired for every concept.
 
 ---
@@ -23,36 +23,43 @@
 |---|---|---|
 | **Structure** | `index.html` | Semantic HTML5, accessible landmarks. Loads `authRoot` (auth/onboarding screens) as a sibling of the main `#app` shell. |
 | **Styling** | `styles.css` | Tokenized CSS variables (`var(--...)`), 5 WCAG AAA themes, responsive design. Type system: **Fraunces** (headings), **Inter** (body/UI), **Source Code Pro** (mono/phonetics). |
-| **Application Logic** | `app.js` | SPA hash-router (`#/module/topic`, `#/worksheet/:topicId`, `#/overview`), dynamic DOM rendering, Web Speech API, auth-gated `boot()` bootstrap. |
+| **Application Logic** | `app.js` | SPA hash-router (`#/module/topic`, `#/worksheet/:topicId/:sheetNum`, `#/overview`), dynamic DOM rendering, Web Speech API, auth-gated `boot()` bootstrap. |
+| **Servers** | `scripts/server.js` | Zero-dependency Node.js HTTP server. Mode `dev` (port 8086, anti-caching headers `Cache-Control: no-store, no-cache`, `X-Environment: development`), Mode `prod` (port 8085). |
+| **Datasource & Worksheets** | `datasource/worksheets/*.js` | 28 topics × 3 sheets × 20 questions = 84 sheets (1,680 questions) curated for adult learners with self-check reveal and full answer keys. |
 | **Auth** | `auth.js` | **Simulated local auth only** — sign-up/sign-in against `localStorage`-stored, hashed (SHA-256 via Web Crypto, non-crypto fallback off-`https`) credentials. Not real security. |
 | **Progression Engine** | `progress.js` | Client-side gating engine: `localStorage` persistence, prerequisite tree traversal, score recording, **and streak tracking** (`recordActivity`). |
 | **Curriculum Data** | `data/modules.js`, `data/pathways.js`, `data/topics/**/*.js` | Modules = per-skill topic lists (unchanged order, used for module-tree sidebar & module cards). Pathways = the cross-module recommended Beginner unit sequence (sidebar display order only — see §3). |
-| **Testing** | `test/*.test.js` | Headless Node.js unit and simulation tests, no external test runner. Run via `npm test`. |
+| **Testing** | `test/*.test.js` | Headless Node.js unit and simulation tests: `progress.test.js`, `auth.test.js`, `data.test.js`, `worksheets.test.js`, `e2e-simulation.test.js`. Run via `npm test`. |
 
 ### Architectural Invariants (DO NOT BREAK)
-1. **Zero External Build Step / Dependencies:** Must run instantly via static file server or directly in the browser. No npm build, webpack, or external framework dependencies. `package.json` exists only for a `test`/`start` script convenience — it has no `dependencies`.
-2. **No Real Backend:** Feedback 5 added and then rolled back a real backend/DB. Feedback 8 added sign-in/sign-up but explicitly as **simulated local-only auth** (`localStorage`, no server). Don't quietly upgrade this to a real backend without an explicit, unambiguous user request — this exact oscillation has happened twice already.
-3. **Zero Iframes and Zero Unavailable Content (`ADR-007`):** Use **clean video resource link cards** (`.video-link-card`) with verified, reachable (HTTP 200) `watchUrl`s. Never insert fake, deleted, or unverified YouTube IDs.
-4. **Hard Sequential Gating (`ADR-003`):** Topics are locked until prerequisite topics (`topic.requires`) are completed with a score of $\ge 4/5$ ($80\%$). As of Feedback 8, `requires` chains can cross module boundaries (see §3) — the gating *engine* in `progress.js` is unchanged, only the *data* now interleaves.
-5. **Resilient French Speech Synthesis (`ADR-008`):** Use `window.speechSynthesis` with asynchronous voice caching, fallback matching (`fr-FR`, `fr-CA`), and visual `.speaking` ripple animation.
-6. **Original Worksheet Content:** Vocabulary's 3 topics link to in-app worksheet pages (`#/worksheet/:topicId`) with exercises authored for adult learners (not tracing/coloring), each with a toggleable answer key. This is original content, not an external download — do not silently replace it with an external kid-oriented worksheet link (this was explicitly corrected once already).
+1. **Zero External Build Step / Dependencies:** Must run instantly via static file server or directly in the browser. No npm build, webpack, or external framework dependencies. `package.json` exists only for scripts (`dev`, `start`, `test`) — it has no `dependencies`.
+2. **Dual Server Support:** Production lives at `http://localhost:8085` (`npm start`), Development lives at `http://localhost:8086` (`npm run dev`). Dev server serves anti-caching headers so code modifications are immediately reflected without aggressive browser caching.
+3. **No Real Backend:** Simulated local-only auth (`localStorage`, no external database).
+4. **Zero Iframes and Zero Unavailable Content (`ADR-007`):** Use **clean video resource link cards** (`.video-link-card`) with verified, reachable (HTTP 200) `watchUrl`s. Never insert fake, deleted, or unverified YouTube IDs.
+5. **Hard Sequential Gating (`ADR-003`):** Topics are locked until prerequisite topics (`topic.requires`) are completed with a score of $\ge 4/5$ ($80\%$). Topic ordering and prerequisite trees remain intact.
+6. **Resilient French Speech Synthesis (`ADR-008`):** Use `window.speechSynthesis` with asynchronous voice caching, fallback matching (`fr-FR`, `fr-CA`), and visual `.speaking` ripple animation.
+7. **Curated Adult Practice Worksheets:** Every one of the 28 subtopics has 3 graded worksheets of 20 questions each (60 questions per subtopic, 1,680 questions overall) tailored for adults (professional, travel, real-world context, no child tracing/coloring), with English headings and self-check answer reveals.
 
 ---
 
 ## 3. Curriculum, Pathways & Content Inventory (28 Topics)
 
-The application has **28 complete topics** across 6 modalities. Grammar (21), Vocabulary (3), and one A1 topic each for Reading/Writing/Speaking/Listening. See `data/modules.js` for the full per-module topic lists (unchanged in Feedback 8) and `docs/PRD.md` for the full topic-by-topic breakdown.
-
-**Beginner pathway (Feedback 8):** For `userLevel === 'beginner'`, the sidebar renders `data/pathways.js`'s `PATHWAYS.beginner` — 8 thematic units covering exactly the 20 A1+A2 topics, in an order grounded in common A1 course sequencing (greetings/intro first → naming/articles → pronouns → core verbs → numbers → applied skills → A2 past tenses), rather than the raw per-skill module tree. **This is a real change to each topic's `requires` field**, not just a display reorder — completing topics out of the new pathway order will show them as locked even from a different module's own page. Intermediate and Expert still see the original per-module tree (`renderModuleTreeSidebar`); only Beginner uses `renderPathwaySidebar`. If you extend the pathway concept to Intermediate/Expert, update `data/pathways.js` and the `data.test.js` pathway-coverage assertion together.
+The application has **28 complete topics** across 6 modalities. Grammar (21), Vocabulary (3), and one A1 topic each for Reading/Writing/Speaking/Listening. See `data/modules.js` for the full per-module topic lists and `docs/PRD.md` for the full topic-by-topic breakdown. Subtopic positioning and hierarchy remain strictly preserved.
 
 ---
 
-## 4. Topic Page Structure: The 4-Stage Layout (+ Worksheet)
+## 4. Topic Page Structure: The 4-Stage Layout (+ 3 Practice Sheets)
 
-Every topic view (`renderLesson`) is partitioned into 4 pedagogical stages, with an optional worksheet link after Stage 3:
+Every topic view (`renderLesson`) is partitioned into 4 pedagogical stages, with a dedicated Practice Worksheets section after Stage 3:
 1. **Stage 1 · Visual Reference:** Card grid or table, IPA phonetic guide, `.speak-btn` pronunciation buttons.
 2. **Stage 2 · Content & Rules:** High-yield rules, bilingual examples, and a deep-dive callout jumping to Stage 4.
-3. **Stage 3 · Short Test:** 5 MCQs, instant feedback, `recordScore()` + `recordActivity()` (streak) on completion. **If the topic has `reference.worksheet`, a `.worksheet-link-card` appears immediately after the quiz**, linking to `#/worksheet/:topicId` (`renderWorksheet`) — an in-app page with numbered exercises and a toggleable answer key. Currently wired for the 3 Vocabulary topics only.
+3. **Stage 3 · Short Test:** 5 MCQs, instant feedback, `recordScore()` + `recordActivity()` (streak) on completion.
+   - **Immediately following Stage 3:** `.worksheet-section-card` surfaces the 3 Curated Practice Sheets (60 questions), with direct previews for Sheet 1, Sheet 2, and Sheet 3.
+   - Linking to `#/worksheet/:topicId/:sheetNum` renders an interactive multi-tab practice workspace:
+     - Tab navigation between Sheet 1, Sheet 2, and Sheet 3
+     - 20 adult-level questions per sheet with individual "Check Answer" interactive reveals
+     - "Reveal All Answers", "Print Sheet", and "Download Text" utility buttons
+     - Consolidated review answer key accordion
 4. **Stage 4 · Reference & Video:** `.video-link-card` + curated text citations.
 
 ---
